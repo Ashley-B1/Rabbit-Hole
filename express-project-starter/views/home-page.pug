@@ -7,5 +7,11 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
+  div#header
+    div.left-nav
+      div#icon rabbit
+      h1= title
+    div.right-nav
+      ul
+        li
   p Welcome to your Project Skeleton
