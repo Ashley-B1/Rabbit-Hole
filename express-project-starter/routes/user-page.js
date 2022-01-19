@@ -16,12 +16,12 @@ router.route('/:id(\\d+)')
   const userId = parseInt(req.params.id, 10);
 
   const likesCount = await db.PostLike.findAll({where: userId}).length || `There are no posts. Add seeder data?`;
-  console.log(`likes count: ${likesCount}`)
+  // console.log(`likes count: ${likesCount}`)
 
   const comments = await db.Comment.findAll({where: userId}) || `There are no posts. Add seeder data?`;
-  console.log(`comments: ${comments}`)
+  // console.log(`comments: ${comments}`)
   const commentsCount = comments.length || `There are no posts. Add seeder data?`;
-  console.log(`commentsCount: ${commentsCount}`)
+  // console.log(`commentsCount: ${commentsCount}`)
 
   const posts = await db.Post.findAll({
     order: [["createdAt", "DESC"]],
@@ -30,7 +30,7 @@ router.route('/:id(\\d+)')
     //   { model: Comment, as: "user", attributes: ["username"] },
     // ],
   }) || `There are no posts. Add seeder data?`;
-  console.log(`posts: ${posts}`)
+  console.log(`posts: ${posts[0].createdAt}`)
 
 
   res.render('user-page', {

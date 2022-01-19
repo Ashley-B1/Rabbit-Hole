@@ -40,11 +40,18 @@ block content
       align-items: flex-start;
       border: 2px solid #1786ff;
       padding: 10px;
+      align-items: center;
       width: 60%;
     }
-    .post{
+    .posts{
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
+      border: 2px solid #ff9705;
+      color: white;
+      width: 100%;
+    }
+    .title{
+
     }
 
   ul.sub-nav
@@ -56,17 +63,9 @@ block content
     div.posts-container Render Posts here!
       each post in posts 
         //- mixin and an array
-        ul.posts
-          li.postDate=`${post.createdAt.month} ${post.createdAt.day}, ${post.createdAt.year}`
-          li.postTitle=post.title
-          li.postContent=post.content
+        .posts
+          p.postDate=`Month: ${post.createdAt.getMonth() + 1} Day: ${post.createdAt.getDay() + 1}, Year: ${post.createdAt.getFullYear()}`
+          h2.postTitle=post.title
+          p.postContent=post.content
           li.likes=`likesIcon + likesCount: ${likesCount}`
           li.comments=`commentsIcon + commentsCount: ${commentsCount}`
-    
-      li.posts=`post 0: ${posts[0] || `There are no posts. Add seeder data?`}`
-      li.likes=`likesIcon + likesCount: ${likesCount}`
-      li.comments=`commentsIcon + commentsCount: ${commentsCount}`
-
-
-
-
