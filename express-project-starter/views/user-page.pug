@@ -3,41 +3,60 @@ extends layout.pug
 block content
   p=`Hello this is the user page of user ${userName}`
 
+  style(type='text/css').
+    *{
+      list-style: none;
+      text-decoration: none;
+      background: #242424;
+      font-family: sans-serif;
+      color: #36bcff;
+      box-sizing: border-box;
+    }
+    .sub-nav{
+      display: flex;
+      flex-direction: row;
+      border: 2px solid #1786ff;
+      justify-content: space-between;
+      padding: 2px;
+      width: 400px;
+    }
+    .submit-button{
+      border: 2px solid #00cc70;
+      color: #00cc70;
+    }
+    .left-nav{
+      display: flex;
+      flex-direction: row;
+    }
+    .users-posts{
+      display: flex;
+      flex-direction: column;
+      border: 2px solid #1786ff;
+    }
+    .post{
+      display: flex;
+      flex-direction: row;
+    }
 
-  //- style(type='text/css').
-  //-   .sub-nav{
-  //-     display: flex;
-  //-     flex-direction: column;
-  //-   }
-  //-   .left-nav{
-  //-     display: flex;
-  //-     flex-direction: column;
-  //-   }
-  //-   .users-posts{
-  //-     display: flex;
-  //-     flex-direction: column;
-  //-   }
-  //-   .post{
-  //-     display: flex;
-  //-     flex-direction: row;
-  //-   }
-
-  nav.sub-nav 
-    //-OR '.left-nav' which can interchange with layout
-    ul.left-nav
-      li=userName
-      li=`${followersCount} ${(followersCount > 1) ? 'Followers' : 'Follower'}`
-      li
-        a(href='/' role='button') Follow (currently just returns to home page)
-  //-   div.users-posts
-  //-     each post in posts 
-  //-       //- mixin and an array
-  //-       ul.post
-  //-         li.postDate=`${post.createdAt.month} ${post.createdAt.day}, ${post.createdAt.year}`
-  //-         li.postTitle=post.title
-  //-         li.postContent=post.content
-  //-         li.likes=`likesIcon${post.likesCount}`
-  //-         li.comments=`commentsIcon${post.commentsCount}`
+  ul.sub-nav
+    li=`User: ${userName}`
+    li=`${followersCount} ${(followersCount > 1) ? 'Followers' : 'Follower'}`
+    li.submit-button
+      a(href='/' role='button') Follow (currently routed to /)
+  div.users-posts
+    p What up chump
+    each post in posts 
+      //- mixin and an array
+      ul.posts
+        li.postDate=`${post.createdAt.month} ${post.createdAt.day}, ${post.createdAt.year}`
+        li.postTitle=post.title
+        li.postContent=post.content
+        li.likes=`likesIcon + likesCount: ${likesCount}`
+        li.comments=`commentsIcon + commentsCount: ${commentsCount}`
+    
+    li.posts=`post 0: ${posts[0] || `There are no posts. Add seeder data?`}`
+    li.likes=`likesIcon + likesCount: ${likesCount}`
+    li.comments=`commentsIcon + commentsCount: ${commentsCount}`
 
 
 
