@@ -4,7 +4,6 @@ const { check } = require('express-validator');
 //todo: spread out the different validatorsArrays into different files/modules once you write them all out. Thanks!
 //* what other kinds of validators do we want to include??
 
-const 
 
 
 const signUpValidators = [
@@ -31,7 +30,7 @@ const signUpValidators = [
 ];
 
 //todo ***********************************************************************************
-//todo this is a snippet to show WHERE in the code we would add 
+//todo this is a snippet to show WHERE in the code we would add
 //todo 'routes/users.js'
 
 const { check, validationResult } = require('express-validator');
@@ -53,7 +52,7 @@ router.route('/users/add')
       pageCount,
       publisher,
     } = req.body;
-    
+
     const book = db.Book.build({
       title,
       author,
@@ -61,9 +60,9 @@ router.route('/users/add')
       pageCount,
       publisher,
     });
-    
+
     const validatorErrors = validationResult(req);
-    
+
     if (validatorErrors.isEmpty()) {
       await book.save();
       res.redirect('/');
@@ -78,6 +77,6 @@ router.route('/users/add')
     }
   }));
   //todo ***********************************************************************************
-  
-  
+
+
   module.exports = {signUpValidators}
