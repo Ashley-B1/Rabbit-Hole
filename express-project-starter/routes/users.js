@@ -1,5 +1,6 @@
 const express = require('express');
 const { asyncHandler } = require('../middleware/error-handling');
+const { signUpValidators } = require('../middleware/validators/ourProjectValidators')
 const csrf = require('csurf');
 const csrfProtection = csrf({cookie: true});
 const router = express.Router();
@@ -19,12 +20,10 @@ router.get('/user/create', csrfProtection, asyncHandler(async(req, res) => {
   });
 }));
 
-const userValidators = [];
-
-router.post('user/create', csrfProtection, userValidators, asyncHandler(async(req, res) => {
+router.post('user/create', csrfProtection, signUpValidators, asyncHandler(async(req, res) => {
   const { userName, firstName, lastName, email, password } = req.body;
   const user = db.User.build({ userName, firstName, lastName, email });
-  const validatorErrors = userValidators(req);
+  const validatorErrors = signUpValidators(req);
 
   if(validatorErrors.isEmpty()){
     const hashedPassword = await bcrypt.hash(password, 10);
