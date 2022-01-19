@@ -17,10 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     // User vs PostLike -- one to many
     User.hasMany( models.PostLike, { foreignKey: 'userId'});
 
-    // User vs UserFollows -- many to many (self joining)
+    // User vs Follow  -- many to many (self joining)
     const columnMappingOne = { // User vs User, through Follow as follower
       through: 'Follow',
-      otherKey: 'followingId',
+      otherKey: 'userId',
       foreignKey: 'followerId',
       as: 'followings'
     }
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     const columnMappingTwo = {
       through: 'Follow',
       otherKey: 'followerId',
-      foreignKey: 'following',
+      foreignKey: 'userId',
       as: 'followers'
     }
 
