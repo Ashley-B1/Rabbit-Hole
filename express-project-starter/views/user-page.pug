@@ -1,27 +1,41 @@
 extends layout.pug
 
 block content
+  style(type='text/css').
+    .sub-nav{
+      display: flex;
+      flex-direction: column;
+    }
+    .left-nav{
+      display: flex;
+      flex-direction: column;
+    }
+    .users-posts{
+      display: flex;
+      flex-direction: column;
+    }
+    .post{
+      display: flex;
+      flex-direction: row;
+    }
+
   nav.sub-nav 
     //-OR '.left-nav' which can interchange with layout
-    ul 
+    ul.left-nav
       li=username
       li=`${followersCount} Followers` (followersCount > 1) ? 'Followers' : 'Follower'
       li
         button Follow 
-  .users-posts 
-    //- mixin and an array
-    ul
-      li.dateOfPost=dateOfPost
-      li.blogTitle
-      //- li.blogSubtitle?
-      li.
+    div.users-posts
+      each post in posts 
+        //- mixin and an array
+        ul.post
+          li.postDate=`${post.createdAt.month} ${post.createdAt.day}, ${post.createdAt.year}`
+          li.postTitle=post.title
+          li.postContent=post.content
+          li.likes=`likesIcon${post.likesCount}`
+          li.comments=`commentsIcon${post.commentsCount}`
 
 
-{
-  id,
-  userId,
-  createdAt,
-  title,
-  content, 
-  createdAt
-}
+
+
