@@ -6,6 +6,8 @@ const db = require('../db/models');
 
 router.route('/')
 .get(asyncHandler(async(req, res) => {
+  // const users = await db.User.findAll({order: [['userName', 'DESC']]}); //? do we want to condense how much data we want to send in our response on this side?
+  // res.render('list-users', users);
   res.render('list-users');
 }));
 
@@ -26,7 +28,8 @@ router.route('/:id(\\d+)')
 
   res.render('user-page', {
     // posts
-    userName: 'hellow'
+    userName: userId,
+    followersCount: 1,
   })
 }));
 

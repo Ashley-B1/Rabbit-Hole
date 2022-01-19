@@ -22,13 +22,13 @@ block content
   //-     flex-direction: row;
   //-   }
 
-  //- nav.sub-nav 
-  //-   //-OR '.left-nav' which can interchange with layout
-  //-   ul.left-nav
-  //-     li=username
-  //-     li=`${followersCount} Followers` (followersCount > 1) ? 'Followers' : 'Follower'
-  //-     li
-  //-       button Follow 
+  nav.sub-nav 
+    //-OR '.left-nav' which can interchange with layout
+    ul.left-nav
+      li=userName
+      li=`${followersCount} ${(followersCount > 1) ? 'Followers' : 'Follower'}`
+      li
+        a(href='/' role='button') Follow (currently just returns to home page)
   //-   div.users-posts
   //-     each post in posts 
   //-       //- mixin and an array
