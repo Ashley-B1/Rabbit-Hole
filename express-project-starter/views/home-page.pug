@@ -9,9 +9,20 @@ append head
 block content
   div#header
     div.left-nav
-      div#icon rabbit
-      h1= title
+      div#icon
+        img.logo(src="./splash-imgs/rabbit_hole_logo.jpeg", alt="logo")
+      div#title
+        h1= title
     div.right-nav
       ul
         li
+          a(href='google.com') Write
+        li
+          a(href='google.com') Posts
+        li
+          a(href='google.com') Feed
+        li
+          a(href='google.com') Sign In
+        li
+          a(href='google.com') Register
   p Welcome to your Project Skeleton

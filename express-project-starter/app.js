@@ -37,6 +37,7 @@ store.sync();
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use(express.static('./images'));
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

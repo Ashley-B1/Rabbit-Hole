@@ -1,6 +1,5 @@
-h1 {
-  color: #555555;
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 
 #header {
   border: solid red 2px;
@@ -9,6 +8,37 @@ h1 {
   justify-content: space-between;
 }
 
+.left-nav {
+  display: flex;
+  padding: 5px;
+  height: fit-content;
+  width: 20%;
+}
+
+#icon {
+  padding: 2px;
+  width: 20%;
+}
+
+.logo {
+  width: 100%;
+}
+
+#title {
+  padding: 2px;
+  display: flex;
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+.right-nav {
+  border: solid blue 2px;
+}
+
 h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+  letter-spacing: .1px;
   font-size: 24px;
+  color: #18A0FB;
 }
