@@ -13,7 +13,7 @@ const errorCatcher = (req, res, next) => {
 const errorLogger = (err, req, res, next) => {
   if (environment === 'production' || 
       environment === 'test') {
-    dbErrors.push(err);
+    dbErrors.push(err); //* this will add errors to the 'dbErrors' array so we can visualize them.
   } else {
     console.error(err);
   }
