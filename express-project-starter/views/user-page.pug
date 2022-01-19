@@ -1,0 +1,27 @@
+extends layout.pug
+
+block content
+  nav.sub-nav 
+    //-OR '.left-nav' which can interchange with layout
+    ul 
+      li=username
+      li=`${followersCount} Followers` (followersCount > 1) ? 'Followers' : 'Follower'
+      li
+        button Follow 
+  .users-posts 
+    //- mixin and an array
+    ul
+      li.dateOfPost=dateOfPost
+      li.blogTitle
+      //- li.blogSubtitle?
+      li.
+
+
+{
+  id,
+  userId,
+  createdAt,
+  title,
+  content, 
+  createdAt
+}
