@@ -23,7 +23,7 @@ router.get('/user/create', csrfProtection, asyncHandler(async(req, res) => {
 router.post('user/create', csrfProtection, signUpValidators, asyncHandler(async(req, res) => {
   const { userName, firstName, lastName, email, password } = req.body;
   const user = db.User.build({ userName, firstName, lastName, email });
-  const validatorErrors = signUpValidators(req);
+  const validatorErrors = validationResult(req);
 
   if(validatorErrors.isEmpty()){
     const hashedPassword = await bcrypt.hash(password, 10);
