@@ -6,8 +6,8 @@ block content
   form(action="/posts/create" method="post")
     input(type="hidden" name="_csrf" value=csrfToken)
     label(for="title") Title
-    input(type="string" name="title" class='post title' value=post.title required)
+    input(type="string" name="title" class='post title' value=post.title)
     label(for="content") Content
     textarea(name="content" cols="30" rows="10" class='post content' value=post.content)
     button(type="submit" class="") Add New Story
-    a(href=`/posts` class="submit btn") Cancel
+    a(href=`/` class="submit btn") Cancel
