@@ -1,40 +1,43 @@
 extends layout.pug
 
 block content
-  style(type='text/css').
-    .sub-nav{
-      display: flex;
-      flex-direction: column;
-    }
-    .left-nav{
-      display: flex;
-      flex-direction: column;
-    }
-    .users-posts{
-      display: flex;
-      flex-direction: column;
-    }
-    .post{
-      display: flex;
-      flex-direction: row;
-    }
+  p=`Hello this is the user page of user ${userName}`
 
-  nav.sub-nav 
-    //-OR '.left-nav' which can interchange with layout
-    ul.left-nav
-      li=username
-      li=`${followersCount} Followers` (followersCount > 1) ? 'Followers' : 'Follower'
-      li
-        button Follow 
-    div.users-posts
-      each post in posts 
-        //- mixin and an array
-        ul.post
-          li.postDate=`${post.createdAt.month} ${post.createdAt.day}, ${post.createdAt.year}`
-          li.postTitle=post.title
-          li.postContent=post.content
-          li.likes=`likesIcon${post.likesCount}`
-          li.comments=`commentsIcon${post.commentsCount}`
+
+  //- style(type='text/css').
+  //-   .sub-nav{
+  //-     display: flex;
+  //-     flex-direction: column;
+  //-   }
+  //-   .left-nav{
+  //-     display: flex;
+  //-     flex-direction: column;
+  //-   }
+  //-   .users-posts{
+  //-     display: flex;
+  //-     flex-direction: column;
+  //-   }
+  //-   .post{
+  //-     display: flex;
+  //-     flex-direction: row;
+  //-   }
+
+  //- nav.sub-nav 
+  //-   //-OR '.left-nav' which can interchange with layout
+  //-   ul.left-nav
+  //-     li=username
+  //-     li=`${followersCount} Followers` (followersCount > 1) ? 'Followers' : 'Follower'
+  //-     li
+  //-       button Follow 
+  //-   div.users-posts
+  //-     each post in posts 
+  //-       //- mixin and an array
+  //-       ul.post
+  //-         li.postDate=`${post.createdAt.month} ${post.createdAt.day}, ${post.createdAt.year}`
+  //-         li.postTitle=post.title
+  //-         li.postContent=post.content
+  //-         li.likes=`likesIcon${post.likesCount}`
+  //-         li.comments=`commentsIcon${post.commentsCount}`
 
 
 

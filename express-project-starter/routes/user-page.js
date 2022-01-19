@@ -1,56 +1,45 @@
 const express = require('express');
 const router = express.Router();
+const {asyncHandler} = require('../middleware/error-handling');
 
-const db = require('../db');
-
+const db = require('../db/models');
 
 router.route('/')
-.get((req, res) => {
-  // const {
-    //   id,
-    //   userId,
-    //   createdAt,
-    //   title,
-    //   content, 
-    //   createdAt
-    // } = reference database
-    // const postId = parseInt(req.params.postId, 10)
-    // const posts = await db.Post.findAll(postId);
+.get(asyncHandler(async(req, res) => {
+  res.render('list-users');
+}));
 
-  const postId = parseInt(req.params.postId)
+router.route('/:id(\\d+)')
+.get(asyncHandler(async(req, res) => {
+  const userId = parseInt(req.params.id, 10);
 
-  const likes = await db.Like.findAll({
-    where: postId
-  });
+  // const likesCount = await db.PostLike.findAll({where: postId}).length;
   
-  const likesCount = likes.length;
-  
-  const comments = await db.Comment.findAll({
-    where: postId
-  });
-  const commentsCount = comments.length;
+  // const comments = await db.Comment.findAll({where: postId});
+  // const commentsCount = comments.length;
 
-  const posts = await db.Post.findAll({
-    include: [{ model: User, as: "user", attributes: ["username"] }],
-    order: [["createdAt", "DESC"]],
-    // attributes: ["message"],
-  });
-  res.render('/', posts)
+  // const posts = await db.Post.findAll({
+  //   order: [["createdAt", "DESC"]],
+  //   // include: [{ model: User, as: "user", attributes: ["username"] }],
+  // });
 
 
   res.render('user-page', {
-
+    // posts
+    userName: 'hellow'
   })
-});
+}));
 
 
-router.route('/follows')
-.get((req, res) => {
 
-  res.render('user-follows-page', {
+//todo: 
+// router.route('/follows')
+// .get((req, res) => {
 
-  });
-});
+//   res.render('user-follows-page', {
+
+//   });
+// });
 
 
 module.exports = router;
