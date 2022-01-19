@@ -9,7 +9,7 @@ const csrfProtection = csrf({cookie: true});
 
 
 const bookValidators = [
-  check('title')
+  check('title') //* how are these strings identified? are these object keys? class names? Referring to lines 50-56, it seems to be destructured from the request body
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Title')
     .isLength({ max: 255 })
