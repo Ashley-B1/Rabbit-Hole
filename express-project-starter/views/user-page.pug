@@ -28,10 +28,19 @@ block content
       display: flex;
       flex-direction: row;
     }
-    .users-posts{
+    .main{
       display: flex;
       flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .posts-container{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
       border: 2px solid #1786ff;
+      padding: 10px;
+      width: 60%;
     }
     .post{
       display: flex;
@@ -43,20 +52,20 @@ block content
     li=`${followersCount} ${(followersCount > 1) ? 'Followers' : 'Follower'}`
     li.submit-button
       a(href='/' role='button') Follow (currently routed to /)
-  div.users-posts
-    p What up chump
-    each post in posts 
-      //- mixin and an array
-      ul.posts
-        li.postDate=`${post.createdAt.month} ${post.createdAt.day}, ${post.createdAt.year}`
-        li.postTitle=post.title
-        li.postContent=post.content
-        li.likes=`likesIcon + likesCount: ${likesCount}`
-        li.comments=`commentsIcon + commentsCount: ${commentsCount}`
+  div.main
+    div.posts-container Render Posts here!
+      each post in posts 
+        //- mixin and an array
+        ul.posts
+          li.postDate=`${post.createdAt.month} ${post.createdAt.day}, ${post.createdAt.year}`
+          li.postTitle=post.title
+          li.postContent=post.content
+          li.likes=`likesIcon + likesCount: ${likesCount}`
+          li.comments=`commentsIcon + commentsCount: ${commentsCount}`
     
-    li.posts=`post 0: ${posts[0] || `There are no posts. Add seeder data?`}`
-    li.likes=`likesIcon + likesCount: ${likesCount}`
-    li.comments=`commentsIcon + commentsCount: ${commentsCount}`
+      li.posts=`post 0: ${posts[0] || `There are no posts. Add seeder data?`}`
+      li.likes=`likesIcon + likesCount: ${likesCount}`
+      li.comments=`commentsIcon + commentsCount: ${commentsCount}`
 
 
 
