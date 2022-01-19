@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs/dist/bcrypt');
 const express = require('express');
+const { loginUser } = require('../auth');
 const router = express.Router();
 
 /* GET users listing. */
@@ -8,7 +9,7 @@ router.get('/', (req, res, next) => {
 });
 
 
-router.get('user/login', csrfProtection, (req, res) => {
+router.get('/user/login', csrfProtection, (req, res) => {
   res.render('user-login', { title: 'Login', csrfToken: req.csrfToken() });
 });
 
@@ -21,7 +22,7 @@ const loginValidators = [
     .withMessage('Please enter a valid password.')
 ]
 
-router.post('user/login', csrfProtection, loginValidators, asyncHandler(async(req, res) => {
+router.post('/user/login', csrfProtection, loginValidators, asyncHandler(async(req, res) => {
   const { email, password } = req.body;
 
   let errors = [];
@@ -32,7 +33,7 @@ router.post('user/login', csrfProtection, loginValidators, asyncHandler(async(re
     if(user !== null) {
       const passWordMatch = await bcrypt.compare(password, user.hashedPassword.toString());
       if(passWordMatch) {
-        // TODO: login user
+        loginUser(req, res, user);
         return res.redirect('/');
       }
     }
@@ -48,4 +49,6 @@ router.post('user/login', csrfProtection, loginValidators, asyncHandler(async(re
     csrfToken: req.csrfToken()
   });
 }));
+
+
 module.exports = router;
