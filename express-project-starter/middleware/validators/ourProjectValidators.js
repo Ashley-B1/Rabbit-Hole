@@ -1,5 +1,5 @@
 //todo: Express-validator validations as middleware for the API routes
-const { check } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 
 //todo: spread out the different validatorsArrays into different files/modules once you write them all out. Thanks!
 //* what other kinds of validators do we want to include??
@@ -33,49 +33,49 @@ const signUpValidators = [
 //todo this is a snippet to show WHERE in the code we would add
 //todo 'routes/users.js'
 
-const { check, validationResult } = require('express-validator');
-router.route('/users/add')
-.get(csrfProtection, (req, res) => {
-  const book = db.Book.build();
-  res.render('book-add', {
-    title: 'Add Book',
-    book,
-    csrfToken: req.csrfToken(),
-  });
-})
-.post(csrfProtection, bookValidators, //! add bookValidators here
-  asyncHandler(async (req, res) => {
-    const {
-      title,
-      author,
-      releaseDate,
-      pageCount,
-      publisher,
-    } = req.body;
+// const { check, validationResult } = require('express-validator');
+// router.route('/users/add')
+// .get(csrfProtection, (req, res) => {
+//   const book = db.Book.build();
+//   res.render('book-add', {
+//     title: 'Add Book',
+//     book,
+//     csrfToken: req.csrfToken(),
+//   });
+// })
+// .post(csrfProtection, bookValidators, //! add bookValidators here
+//   asyncHandler(async (req, res) => {
+//     const {
+//       title,
+//       author,
+//       releaseDate,
+//       pageCount,
+//       publisher,
+//     } = req.body;
 
-    const book = db.Book.build({
-      title,
-      author,
-      releaseDate,
-      pageCount,
-      publisher,
-    });
+//     const book = db.Book.build({
+//       title,
+//       author,
+//       releaseDate,
+//       pageCount,
+//       publisher,
+//     });
 
-    const validatorErrors = validationResult(req);
+//     const validatorErrors = validationResult(req);
 
-    if (validatorErrors.isEmpty()) {
-      await book.save();
-      res.redirect('/');
-    } else {
-      const errors = validatorErrors.array().map((error) => error.msg);
-      res.render('book-add', {
-        title: 'Add Book',
-        book,
-        errors,
-        csrfToken: req.csrfToken(),
-      });
-    }
-  }));
+//     if (validatorErrors.isEmpty()) {
+//       await book.save();
+//       res.redirect('/');
+//     } else {
+//       const errors = validatorErrors.array().map((error) => error.msg);
+//       res.render('book-add', {
+//         title: 'Add Book',
+//         book,
+//         errors,
+//         csrfToken: req.csrfToken(),
+//       });
+//     }
+//   }));
   //todo ***********************************************************************************
 
 
