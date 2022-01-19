@@ -9,9 +9,7 @@ const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
 
 // need to confirm the directory
-// const { asyncHandler } = require('./')
-
-const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
+const { asyncHandler } = require('./middleware/error-handling')
 
 // need to add asyncHandler
 router.get('/posts/create', csrfProtection, async(req, res) => {
@@ -42,7 +40,6 @@ router.post('/posts/create', postValidators, csrfProtection, asyncHandler(async(
     content
   } = req.body
 
-  console.log('req.body is HERE!!')
   const post = db.Post.build({
     // userId: res.locals.user.id,
     title,
