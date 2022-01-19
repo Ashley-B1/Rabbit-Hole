@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs/dist/bcrypt');
 const express = require('express');
-const { loginUser } = require('../auth');
+const { loginUser } = require('../middleware/auth.js');
 const router = express.Router();
 
 /* GET users listing. */
