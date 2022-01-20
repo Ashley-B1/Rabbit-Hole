@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+#rh-feed {
+  border: solid red 2px;
+  padding: 30px;
+}
+
+.feed-heading {
+  border: solid green 2px;
+  width: fit-content;
+  padding: 15px;
+  margin-top: 40px;
+  margin-left: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 44px;
+  font-weight: lighter;
+}
+
+.feed-title {
+  font-weight: bolder;
+}

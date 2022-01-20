@@ -3,6 +3,7 @@ extends layout
 append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/splash-banner.css")
+  link(rel="stylesheet" href="/stylesheets/rh-feed.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
@@ -16,4 +17,12 @@ block content
     div#write-button
       button.create-post
         a(href="#") Start Writing
-  p just some random text
+  div#rh-feed
+    div.feed-heading
+      p.feed-title What's new in the rabbit hole?
+    div.feed-posts_top
+      div.post-one
+      div.post-two
+    div.feed-posts_bottom
+      div.post-three
+      div.post-four
