@@ -21,7 +21,8 @@ router.route('/:id(\\d+)')
   const {userName} = await db.User.findByPk(userId);
 
   const likesCount = await db.PostLike.findAll({
-    where: userId && (postId='something'),
+    where: userId,
+    // where: userId && (postId='something'),
     //! implement correct logic for likes
   });
   // console.log(`likes count: ${likesCount}`)
