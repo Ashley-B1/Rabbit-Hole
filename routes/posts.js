@@ -12,6 +12,9 @@ const csrfProtection = csrf({ cookie: true });
 const { asyncHandler } = require('../middleware/error-handling')
 const { postValidators } = require('../middleware/formValidators')
 
+router.use(express.static('./images'));
+
+
 // Checked, works
 router.get('/create', csrfProtection, async(req, res) => {
   const post = db.Post.build();
