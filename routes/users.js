@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { loginUser, logoutUser } = require('../middleware/auth.js');
+const { validationResult } = require("express-validator");
 
 const { asyncHandler } = require('../middleware/error-handling');
 const { signUpValidators, loginValidators } = require('../middleware/formValidators')
@@ -47,6 +48,8 @@ router.route('/login')
   } else {
     errors = validatorErrors.array().map(error => error.msg);
   }
+
+  res.redirect('/')
 
   res.render('user-login', {
     title: 'Log In',
