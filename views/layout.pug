@@ -19,7 +19,7 @@ html
       div.right-nav
         ul
           li
-            a(href='#') Write
+            a(href='/posts/create') Write
           li
             a(href='#') Posts
           li
@@ -29,8 +29,8 @@ html
               a(href='#') Logout
           else
             li
-              a(href='#') Sign In
+              a(href='/users/login') Sign In
             li#sign-up
               button
-                a(href='#') Register
+                a(href='/users/create') Register
     block content
