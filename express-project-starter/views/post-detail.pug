@@ -1,0 +1,21 @@
+extends layout.pug
+
+block content
+  h3= post.title
+  div(class='postcontainer')
+    div(class='post author')=post.user.userName
+    p(class='post content')=post.content
+    div
+      button(type='submit') Like
+      div Number of Likes
+  div(class='commentcontainer')
+    table(class='table')
+      thead
+        tr
+          th Name
+          th Comment
+      tbody
+        each comment in comments
+          tr
+            td=comment.user.userName
+            td=comment.content

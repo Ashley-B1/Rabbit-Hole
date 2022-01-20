@@ -8,8 +8,8 @@ const cookieParser = require('cookie-parser')
 const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
 
-// need to confirm the directory
-const { asyncHandler } = require('./middleware/error-handling')
+
+const { asyncHandler } = require('../middleware/error-handling')
 
 // need to add asyncHandler
 router.get('/posts/create', csrfProtection, async(req, res) => {
@@ -60,6 +60,26 @@ router.post('/posts/create', postValidators, csrfProtection, asyncHandler(async(
     })
   }
 }))
+
+
+// haven't check if it works, waiting for userId
+router.get(`/posts/:postId(\\d+)`, asyncHandler(async (req, res) => {
+  const postId = parseInt(req.params.postId, 10);
+  const post = await db.Post.findByPk(postId, { include: ['user'] });
+  const comments = await db.Comment.findAll({
+    where: {
+      postId: postId
+    }
+  })
+
+  if (post) {
+    res.render('post-detail', {
+      post,
+      comments
+    })
+  }
+}))
+
 
 
 module.exports = router
