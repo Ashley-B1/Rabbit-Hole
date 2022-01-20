@@ -1,34 +1,30 @@
 'use strict';
 module.exports = {
-  up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('PostLikes', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      userId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: { model: 'Users' }
-      },
-      postId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: { model: 'Posts' }
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
-    });
-  },
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('PostLikes');
-  }
+  up: (queryInterface, Sequelize) => queryInterface.createTable('PostLikes', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
+    },
+    userId: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+      references: { model: 'Users' }
+    },
+    postId: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+      references: { model: 'Posts' }
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE
+    },
+    updatedAt: {
+      allowNull: true,
+      type: Sequelize.DATE
+    }
+  }),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('PostLikes')
 };
