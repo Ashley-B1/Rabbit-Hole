@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs/dist/bcrypt');
 const express = require('express');
-const { loginUser } = require('../middleware/auth.js');
+const { loginUser, logoutUser } = require('../middleware/auth.js');
 const router = express.Router();
 
 /* GET users listing. */
@@ -49,6 +49,11 @@ router.post('/user/login', csrfProtection, loginValidators, asyncHandler(async(r
     csrfToken: req.csrfToken()
   });
 }));
+
+router.post('/user/logout', (req, res) => {
+  logoutUser(req, res);
+  res.redirect('/user/login');
+})
 
 
 module.exports = router;
