@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -5,14 +8,53 @@
 }
 
 #main-banner {
-  border: solid blue 2px;
   padding: 30em;
   background-image: url("/splash-imgs/rh-banner.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  display: flex;
+  justify-content: center;
+  font-family: 'Barlow', sans-serif;
 }
 
 .banner-title {
-  border: solid red 2px;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 10px;
+  font-size: 35px;
+  position: absolute;
+  top: 78%;
+}
+
+.title-one {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.title-two {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+#write-button {
+  position: absolute;
+  top: 105%;
+}
+
+.create-post {
+  padding: 20px;
+  background-color: #18A0FB;
+  border: none;
+  border-radius: 10px;
+  width: 225px;
+}
+
+.create-post a {
+  padding: 5px;
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
 }
