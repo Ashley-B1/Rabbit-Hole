@@ -2,28 +2,18 @@ extends layout
 
 append head
   //- add page specific styles by appending to the head
-  link(rel="stylesheet" href="/stylesheets/index.css")
+  link(rel="stylesheet" href="/stylesheets/splash-banner.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  //- div#header
-  //-   div.left-nav
-  //-     div#icon
-  //-       img.logo(src="./splash-imgs/rabbit_hole_logo.jpeg", alt="logo")
-  //-     div#title
-  //-       h1= title
-  //-   div.right-nav
-  //-     ul
-  //-       li
-  //-         a(href='#') Write
-  //-       li
-  //-         a(href='#') Posts
-  //-       li
-  //-         a(href='#') Feed
-  //-       li
-  //-         a(href='#') Sign In
-  //-       li#sign-up
-  //-         button
-  //-           a(href='#') Register
-  p Welcome to your Project Skeleton
+  div#main-banner
+    div.banner-title
+      div.title-one
+        h2 SWE student with questions, answers, tips?
+      div.title-two
+        h2 You're in the right place.
+    div#write-button
+      button.create-post
+        a(href="#") Start Writing
+  p just some random text
