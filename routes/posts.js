@@ -25,7 +25,7 @@ router.get('/create', csrfProtection, async(req, res) => {
   })
 })
 
-// Not works, only display 404 not found, no other error message
+// works
 router.post('/create', postValidators, csrfProtection, asyncHandler(async(req, res) => {
   const { title, content } = req.body;
 
@@ -41,7 +41,7 @@ router.post('/create', postValidators, csrfProtection, asyncHandler(async(req, r
 
   if (validationErrors.isEmpty()) {
       await post.save();
-      res.redirect(`/users/${userId}`); 
+      res.redirect(`/users/${userId}`);
   } else {
       const errors = validationErrors.array().map((error) => error.msg);
       res.render('create-post', {
@@ -107,10 +107,12 @@ const commentValidators = [
 router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHandler( async (req, res) => {
   const { content } = req.body;
 
-  const postId = parserInt(req.params.id, 10);
+  const postId = parseInt(req.params.id, 10);
+
+  const userId = req.session.auth.userId;
 
   const comment = db.Comment.build({
-    userId: res.session.auth.userId,
+    userId: userId,
     postId,
     content
   })
