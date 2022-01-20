@@ -1,0 +1,18 @@
+extends layout.pug
+
+include utils.pug
+
+block content
+  h1 Welcome back to rabbit hole!
+  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+  div
+    +validationErrors(errors)
+    form(action='/user/login' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        +field('Email', 'email', email)
+        +field('Password', 'password', null, 'password')
+        div(class='py-4')
+            button(type='submit') Login
+            a(href='/') Cancel
+  div
+    p: a(href='/user/register') Create an account.
