@@ -14,7 +14,6 @@ const {errorCatcher, errorHandler} = require('./middleware/error-handling');
 const indexRouter = require('./routes/index');
 const postRouter = require('./routes/posts');
 const commentRouter = require('./routes/comments')
-const usersPageRouter = require('./routes/user-page');
 const usersRouter = require('./routes/users');
 
 
@@ -47,10 +46,9 @@ app.use(
 store.sync();
 app.use(restoreUser);
 app.use('/', indexRouter);
-app.use('/users', usersPageRouter);
+app.use('/users', usersRouter);
 app.use(postRouter);
 app.use(commentRouter);
-app.use(usersRouter);
 
 
 
