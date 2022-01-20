@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 
 
 #header {
   border: solid red 2px;
-  padding: 10px;
   display: flex;
   justify-content: space-between;
 }
@@ -13,11 +13,12 @@
   padding: 5px;
   height: fit-content;
   width: 20%;
+  /* border: ; */
 }
 
 #icon {
   padding: 2px;
-  width: 20%;
+  width: 30%;
 }
 
 .logo {
@@ -27,18 +28,48 @@
 #title {
   padding: 2px;
   display: flex;
-  margin-top: 20px;
-  margin-left: 15px;
-}
-
-.right-nav {
-  border: solid blue 2px;
+  margin-top: 30px;
+  margin-left: 5px;
 }
 
 h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
   letter-spacing: .1px;
-  font-size: 24px;
+  font-size: 32px;
   color: #18A0FB;
+}
+
+.right-nav {
+  padding: 5px;
+  height: fit-content;
+  margin-top: 10px;
+}
+.right-nav ul {
+  padding: 5px;
+}
+
+.right-nav ul li{
+  display: inline-flex;
+  padding: 5px;
+  color: #18A0FB;
+  font-family: 'Barlow', sans-serif;
+}
+
+.right-nav ul li a {
+  text-decoration: none;
+  padding: 20px;
+  font-size: 20px;
+}
+/*
+#sign-up {
+  background-color: #18A0FB;
+} */
+
+#sign-up button {
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #18A0FB;
+  border: none;
 }
