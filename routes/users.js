@@ -1,6 +1,4 @@
-const bcrypt = require('bcryptjs/dist/bcrypt');
 const express = require('express');
-
 const { loginUser, logoutUser } = require('../middleware/auth.js');
 
 const { asyncHandler } = require('../middleware/error-handling');
@@ -10,7 +8,6 @@ const csrfProtection = csrf({cookie: true});
 
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const { loginUser } = require('../../auth');
 
 /* GET users listing. */
 router.get('/', (req, res, next) => {
