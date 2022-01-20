@@ -1,6 +1,12 @@
+
+
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
-const errorCatcher = (req, res, next) => next(createError(404));
+const errorCatcher = (req, res, next) => {
+  const err = new Error('The page couldn\'t be found.');
+  err.status = 404;
+  next(err);
+};
 
 const errorHandler =(err, req, res, next) => {
   res.locals.message = err.message;
