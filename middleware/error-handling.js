@@ -39,4 +39,36 @@ const genericServerErrorHandler = (err, req, res, next) => {
   });
 };
 
+
+
+const handleValidationErrors = (req, res, next) => {
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    const errors = validationErrors.array().map((error) => error.msg);
+
+    const err = Error("Bad request.");
+    err.status = 400;
+    err.title = "Bad request.";
+    err.errors = errors;
+    return next(err);
+  }
+  next();
+};
+
+const postNotFoundError = (id) => {
+  const err = Error("Tweet not found");
+  err.errors = [`Tweet with id of ${id} could not be found.`];
+  err.title = "Tweet not found.";
+  err.status = 404;
+  return err;
+};
+const commentNotFoundError = (id) => {
+  const err = Error("Tweet not found");
+  err.errors = [`Tweet with id of ${id} could not be found.`];
+  err.title = "Tweet not found.";
+  err.status = 404;
+  return err;
+};
+
 module.exports = {asyncHandler, errorCatcher, errorLogger, pageNotFoundErrorHandler, genericServerErrorHandler};
