@@ -5,6 +5,69 @@ const { check, validationResult } = require('express-validator');
 //* what other kinds of validators do we want to include??
 
 
+const { validationResult } = require("express-validator");
+
+const asyncHandler = (handler) => (req, res, next) =>
+  handler(req, res, next).catch(next);
+
+const handleValidationErrors = (req, res, next) => {
+  const validationErrors = validationResult(req);
+
+  if (!validationErrors.isEmpty()) {
+    const errors = validationErrors.array().map((error) => error.msg);
+
+    const err = Error("Bad request.");
+    err.status = 400;
+    err.title = "Bad request.";
+    err.errors = errors;
+    return next(err);
+  }
+  next();
+};
+
+
+const validateEmailAndPassword = [
+  check("email")
+    .exists({ checkFalsy: true })
+    .isEmail()
+    .withMessage("Please provide a valid email."),
+  check("password")
+    .exists({ checkFalsy: true })
+    .withMessage("Please provide a password."),
+  handleValidationErrors,
+];
+
+
+const postNotFoundError = (id) => {
+  const err = Error("Tweet not found");
+  err.errors = [`Tweet with id of ${id} could not be found.`];
+  err.title = "Tweet not found.";
+  err.status = 404;
+  return err;
+};
+const commentNotFoundError = (id) => {
+  const err = Error("Tweet not found");
+  err.errors = [`Tweet with id of ${id} could not be found.`];
+  err.title = "Tweet not found.";
+  err.status = 404;
+  return err;
+};
+
+
+const validatePost = [
+  check("message")
+    .exists({ checkFalsy: true })
+    .withMessage("Tweet can't be empty."),
+  //  message cannot be longer than 280 characters:
+  check("message")
+    .isLength({ max: 280 })
+    .withMessage("Tweet can't be longer than 280 characters."),
+  handleValidationErrors,
+];
+
+
+
+
 
 const signUpValidators = [
   check('username') //* how are these strings identified? are these object keys? class names? Referring to lines 50-56, it seems to be destructured from the request body
