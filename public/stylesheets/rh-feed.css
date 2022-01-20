@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+#rh-feed {
+  border: solid red 2px;
+  padding: 30px;
+}
+
+.feed-heading {
+  border: solid green 2px;
+  width: fit-content;
+  padding: 15px;
+  margin-top: 40px;
+  margin-left: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 44px;
+  font-weight: lighter;
+}
+
+.feed-posts{
+  border: blue solid 2px;
+  padding: 20px;
+}
+
+.feed-title {
+  font-weight: bolder;
+}
+
+.feed-posts_top {
+  border: brown 2px solid;
+  padding: 25px;
+  display: flex;
+}
+
+.feed-posts_bottom {
+  border: solid goldenrod 2px;
+  padding: 25px;
+  display: flex;
+}

@@ -1,10 +1,14 @@
 const express = require('express');
+const { asyncHandler } = require('../middleware/error-handling');
 const router = express.Router();
+const db = require('../db/models');
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('home-page', { title: 'rabbit hole' });
+router.route('/')
+.get(asyncHandler(async(req, res) => {
+  const posts = await db.Post.findAll({ limit: 4 })
 
-});
+  console.log(posts);
+  res.render('home-page', { title: 'rabbit hole', posts })
+}));
 
 module.exports = router;
