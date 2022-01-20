@@ -15,17 +15,16 @@ block content
   div(class='comment-container' href=`/posts/${post.id}/comments/create`)
     h4 Comments
     if post.comment && post.comment.length > 0
-    //- div(class='commentcontainer')
-    //-   table(class='table')
-    //-     thead
-    //-       tr
-    //-         th Name
-    //-         th Comment
-    //-     tbody
-    //-       each comment in comments
-    //-         tr
-    //-           td=comment.user.userName
-    //-           td=comment.content
-
+      div(class='commentcontainer')
+        table(class='table')
+          thead
+            tr
+              th Name
+              th Comment
+          tbody
+            each comment in comments
+              tr
+                td=comment.user.userName
+                td=comment.content
     else
       p: em No comments available for this story now.

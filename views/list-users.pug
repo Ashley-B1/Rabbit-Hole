@@ -4,13 +4,15 @@ block content
   p Hello
   a Users will go here:
 
-  //- table
-  //-   thead
-  //-     tr
-  //-       th(scope='col') User
-  //-   tbody
-  //-     each user in users
-  //-       tr
-  //-         td= user.userName
-  //-           a Follow
-  //-           //- a(class='btn btn-primary' href=`/book/edit/${book.id}` role='button') Follow
+  table
+    thead
+      tr
+        th(scope='col') User
+        th(scope='col') Follow
+    tbody
+      each user in users
+        tr
+          td= user.userName
+          td
+            a Follow
+            //- a(class='btn btn-primary' href=`/book/edit/${book.id}` role='button') Follow
