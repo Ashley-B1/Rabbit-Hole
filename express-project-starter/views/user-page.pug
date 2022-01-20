@@ -1,0 +1,87 @@
+extends layout.pug
+
+block content
+  p=`Hello this is the user page of user ${userName}`
+
+  style(type='text/css').
+    *{
+      list-style: none;
+      text-decoration: none;
+      background: #242424;
+      font-family: sans-serif;
+      color: #36bcff;
+      box-sizing: border-box;
+    }
+    .sub-nav{
+      display: flex;
+      flex-direction: row;
+      border: 2px solid #1786ff;
+      border-radius: 2px;
+      justify-content: space-between;
+      padding: 2px;
+      width: 400px;
+    }
+    .submit-button{
+      border: 2px solid #00cc70;
+      color: #00cc70;
+    }
+    .left-nav{
+      display: flex;
+      flex-direction: row;
+    }
+    .main{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+    .posts-container{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 2px solid #1786ff;
+      border-radius: 2px;
+      padding: 10px;
+      align-items: center;
+      width: 60%;
+    }
+    .posts{
+      display: flex;
+      flex-direction: column;
+      border: 2px solid #ff9705;
+      border-radius: 2px;
+      width: 100%;
+      padding: 10px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin: 10px;
+    }
+    .postTitle{
+      font-size: 24px;
+    }
+    .postContent{
+      color: white;
+    }
+    .likesAndComments{
+      display: flex;
+      flex-direction: row;
+      width: 25%;
+      justify-content: space-between;
+    }
+
+
+  ul.sub-nav
+    li=`User: ${userName}`
+    li=`${followersCount} ${(followersCount > 1) ? 'Followers' : 'Follower'}`
+    li.submit-button
+      a(href='/' role='button') Follow (currently routed to /)
+  div.main
+    div.posts-container Render Posts here!
+      each post in posts 
+        ul.posts
+          li.postDate=`${months[post.createdAt.getMonth()]} ${post.createdAt.getDay() + 1}, ${post.createdAt.getFullYear()}`
+          li.postTitle=post.title
+          li.postContent=post.content
+          li.likesAndComments
+            div.likes=`likes: ${likesCount}`
+            div.comments=`comments: ${commentsCount}`
