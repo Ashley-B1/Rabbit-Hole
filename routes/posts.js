@@ -29,29 +29,29 @@ router.get('/create', csrfProtection, async(req, res) => {
 router.post('/create', postValidators, csrfProtection, asyncHandler(async(req, res) => {
   const { title, content } = req.body;
 
+  const userId = req.session.auth.userId;
   const post = db.Post.build({
-    userId: req.session.auth.userId,
+    userId: userId,
     title,
     content
   })
 
-  console.log("WWWWWW")
-  res.redirect(`/`)
 
-  // const validationErrors = validationResult(req);
+  const validationErrors = validationResult(req);
 
-  // if (validationErrors.isEmpty()) {
-  //   await post.save();
-  //   res.redirect('/'); // maybe redirect to user profile page
-  // } else {
-  //   const errors = validationErrors.array().map((error) => error.msg);
-  //   res.render('create-post', {
-  //     title: 'Add New Story',
-  //     post,
-  //     errors,
-  //     csrfToken: req.csrfToken()
-  //   })
-  // }
+  if (validationErrors.isEmpty()) {
+      await post.save();
+      res.redirect(`/users/${userId}`); 
+  } else {
+      const errors = validationErrors.array().map((error) => error.msg);
+      res.render('create-post', {
+            title: 'Add New Story',
+            post,
+            errors,
+            csrfToken: req.csrfToken()
+        })
+      }
+    res.redirect(`/posts/create`)
 }))
 
 
@@ -67,7 +67,7 @@ router.get(`/:id`, asyncHandler(async (req, res) => {
     include: ['users'],
     order: [["createdAt", "DESC"]]
   });
-  
+
   res.render('post-detail', { post, comments })
 
 }));
