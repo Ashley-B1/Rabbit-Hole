@@ -16,6 +16,23 @@
   font-weight: lighter;
 }
 
+.feed-posts{
+  border: blue solid 2px;
+  padding: 20px;
+}
+
 .feed-title {
   font-weight: bolder;
+}
+
+.feed-posts_top {
+  border: brown 2px solid;
+  padding: 25px;
+  display: flex;
+}
+
+.feed-posts_bottom {
+  border: solid goldenrod 2px;
+  padding: 25px;
+  display: flex;
 }
