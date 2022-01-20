@@ -13,7 +13,7 @@ const { asyncHandler } = require('../middleware/error-handling')
 const { postValidators } = require('../middleware/formValidators')
 
 // Checked, works
-router.get('/posts/create', csrfProtection, async(req, res) => {
+router.get('/create', csrfProtection, async(req, res) => {
   const post = db.Post.build();
   res.render('create-post', {
     title: 'Add New Story',
@@ -23,19 +23,17 @@ router.get('/posts/create', csrfProtection, async(req, res) => {
 })
 
 // Not works, only display 404 not found, no other error message
-router.post('/posts/create', postValidators, csrfProtection, asyncHandler(async(req, res) => {
-  const {
-    title,
-    content
-  } = req.body
+router.post('/create', postValidators, csrfProtection, asyncHandler(async(req, res) => {
+  const { title, content } = req.body;
 
   const post = db.Post.build({
-    userId: 6,
+    userId: req.session.auth.userId,
     title,
     content
   })
 
-  console.log("WWWWWW", title, content)
+  console.log("WWWWWW")
+  res.redirect(`/`)
 
   // const validationErrors = validationResult(req);
 
@@ -55,7 +53,7 @@ router.post('/posts/create', postValidators, csrfProtection, asyncHandler(async(
 
 
 // Checked, can display post title and content, but haven't checked if the comments can be displayed
-router.get(`/posts/:id`, asyncHandler(async (req, res) => {
+router.get(`/:id`, asyncHandler(async (req, res) => {
   const postId = parseInt(req.params.id, 10);
   const post = await db.Post.findByPk(postId, { include: ['users'] });
 
@@ -64,18 +62,80 @@ router.get(`/posts/:id`, asyncHandler(async (req, res) => {
       postId: postId
     }
   })
-  res.render('post-detail', { post })
+  res.render('post-detail', { post, comments })
 
 }));
 
 // delete routes, haven't tested yet
-router.post('posts/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
+router.post('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
   const post = await db.Post.findByPk(postId);
   await post.destroy();
   res.redirect(`/`);
 }));
 
+
+
+
+// Comments route handlers below
+
+
+// Need to checked the path
+router.get(`/:id/comments/create`, csrfProtection, asyncHandler(async (req, res) => {
+  const comment = db.Comment.build();
+  res.render('create-comment', {
+    title: 'Add a comment',
+    comment,
+    csrfToken: req.csrfToken()
+  })
+
+}));
+
+const commentValidators = [
+  check('content')
+    .exists({ checkFalsy: true})
+    .withMessage('Please provide content for your comment.')
+]
+
+// Need to checked the path
+router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHandler( async (req, res) => {
+  const { content } = req.body;
+
+  const postId = parserInt(req.params.id, 10);
+
+  const comment = db.Comment.build({
+    // userId: res.locals.user.id,
+    postId,
+    content
+  })
+
+  const validationErrors = validationResult(req);
+
+  if (validationErrors.isEmpty()) {
+    await comment.save();
+    res.redirect(`/posts/${postId}`)
+  } else {
+    const errors = validationErrors.array().map((error) => error.msg);
+    res.render('create-comment', {
+      title: 'Add a comment',
+      postId,
+      comment,
+      errors,
+      csrfToken: req.csrfToken()
+    })
+  }
+
+}))
+
+// Add a edit route
+
+// Haven't checked yet.
+router.post('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
+  const commentId = parseInt(req.params.commentId, 10);
+  const comment = await db.Comment.findByPk(commentId);
+  await comment.destroy();
+  res.redirect(`/`); // should redirect to the specific post
+}));
 
 
 module.exports = router

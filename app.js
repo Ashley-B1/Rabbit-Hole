@@ -47,8 +47,9 @@ store.sync();
 app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use(postRouter);
+app.use('/posts', postRouter);
 app.use(commentRouter);
+
 
 
 
