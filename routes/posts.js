@@ -115,7 +115,7 @@ router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHand
   const postId = parserInt(req.params.id, 10);
 
   const comment = db.Comment.build({
-    // userId: res.locals.user.id,
+    userId: res.session.auth.userId,
     postId,
     content
   })
