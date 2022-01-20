@@ -47,7 +47,7 @@ app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/users', usersPageRouter);
 app.use('/posts', postRouter);
-app.use('/comments', commentRouter);
+
 
 
 
