@@ -67,7 +67,7 @@ router.get(`/:id`, asyncHandler(async (req, res) => {
     include: ['users'],
     order: [["createdAt", "DESC"]]
   });
-  // console.log("wowow", comments[0].users.userName)
+  
   res.render('post-detail', { post, comments })
 
 }));
