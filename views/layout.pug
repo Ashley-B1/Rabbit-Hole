@@ -13,7 +13,8 @@ html
     div#header
       div.left-nav
         div#icon
-          img.logo(src="./splash-imgs/rabbit_hole_logo.jpeg", alt="logo")
+          a(href='/')
+            img.logo(src="./splash-imgs/rabbit_hole_logo.jpeg", alt="logo")
         div#title
           h1= title
       div.right-nav
@@ -21,7 +22,7 @@ html
           li
             a(href='/posts/create') Write
           li
-            a(href='#') Posts
+            a(href=`/${userId}`) Posts
           li
             a(href='#') Feed
           if locals.authenticated
