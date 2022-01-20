@@ -30,6 +30,8 @@ const signUpValidators = [
   .withMessage('Please provide a valid integer for Page Count'),
 ];
 
+const loginValidators = [];
+
 //todo ***********************************************************************************
 //todo this is a snippet to show WHERE in the code we would add 
 //todo 'routes/users.js'
