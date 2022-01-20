@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 const {asyncHandler} = require('../middleware/error-handling');
 
 const db = require('../db/models');
+
+router.use(express.static('./images'));
+router.use(express.static(path.join(__dirname, 'public')));
 
 router.route('/')
 .get(asyncHandler(async(req, res) => {

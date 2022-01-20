@@ -45,16 +45,17 @@ block content
       align-items: center;
       width: 60%;
     }
-    .posts{
-      display: flex;
-      flex-direction: column;
+    .post-object{
       border: 2px solid #ff9705;
       border-radius: 2px;
       width: 100%;
-      padding: 10px;
       padding-top: 20px;
       padding-bottom: 20px;
       margin: 10px;
+    }
+    .posts{
+      display: flex;
+      flex-direction: column;
     }
     .postTitle{
       font-size: 24px;
@@ -65,10 +66,30 @@ block content
     .likesAndComments{
       display: flex;
       flex-direction: row;
-      width: 25%;
+      width: 100px;
+      margin-left: 40px;
       justify-content: space-between;
     }
-
+    .likes{
+      display: flex;
+      flex-direction: row;
+      width: 40px;
+      justify-content: space-between;
+    }
+    .comments{
+      display: flex;
+      flex-direction: row;
+      width: 40px;
+      justify-content: space-between;
+    }
+    .likeIcon{
+      width: 20px;
+      height: 20px;
+    }
+    .commentIcon{
+      width: 20px;
+      height: 20px;
+    }
 
   ul.sub-nav
     li=`User: ${userName}`
@@ -78,10 +99,15 @@ block content
   div.main
     div.posts-container Render Posts here!
       each post in posts 
-        ul.posts
-          li.postDate=`${months[post.createdAt.getMonth()]} ${post.createdAt.getDay() + 1}, ${post.createdAt.getFullYear()}`
-          li.postTitle=post.title
-          li.postContent=post.content
-          li.likesAndComments
-            div.likes=`likes: ${likesCount}`
-            div.comments=`comments: ${commentsCount}`
+        div.post-object
+          ul.posts
+            li.postDate=`${months[post.createdAt.getMonth()]} ${post.createdAt.getDay() + 1}, ${post.createdAt.getFullYear()}`
+            li.postTitle=post.title
+            li.postContent=post.content
+          div.likesAndComments
+            div.likes
+              img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
+              div.likesCount=likesCount
+            div.comments
+              img.commentIcon(src='./icons/comment.svg.png', alt="logo")
+              div.commentsCount=commentsCount
