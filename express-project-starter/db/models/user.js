@@ -9,13 +9,21 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   User.associate = function(models) {
     // User vs Post -- one to many
-    User.hasMany( models.Post, { foreignKey: 'userId' });
+    User.hasMany( models.Post, {
+      as: 'posts',
+      foreignKey: 'userId'
+    });
 
     // User vs Comment -- one to many
-    User.hasMany( models.Comment, { foreignKey: 'userId'});
+    User.hasMany( models.Comment, {
+      as: 'comments',
+      foreignKey: 'userId'
+    });
 
     // User vs PostLike -- one to many
-    User.hasMany( models.PostLike, { foreignKey: 'userId'});
+    User.hasMany( models.PostLike, {
+      as: 'postlikes',
+      foreignKey: 'userId'});
 
     // User vs Follow  -- many to many (self joining)
     const columnMappingOne = { // User vs User, through Follow as follower
