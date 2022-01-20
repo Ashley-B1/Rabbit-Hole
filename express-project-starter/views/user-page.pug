@@ -16,6 +16,7 @@ block content
       display: flex;
       flex-direction: row;
       border: 2px solid #1786ff;
+      border-radius: 2px;
       justify-content: space-between;
       padding: 2px;
       width: 400px;
@@ -37,8 +38,9 @@ block content
     .posts-container{
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      justify-content: space-between;
       border: 2px solid #1786ff;
+      border-radius: 2px;
       padding: 10px;
       align-items: center;
       width: 60%;
@@ -47,12 +49,26 @@ block content
       display: flex;
       flex-direction: column;
       border: 2px solid #ff9705;
-      color: white;
+      border-radius: 2px;
       width: 100%;
+      padding: 10px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      margin: 10px;
     }
-    .title{
+    .postTitle{
+      font-size: 24px;
+    }
+    .postContent{
+      color: white;
+    }
+    .likesAndComments{
+      display: flex;
+      flex-direction: row;
+      width: 25%;
+      justify-content: space-between;
+    }
 
-    }
 
   ul.sub-nav
     li=`User: ${userName}`
@@ -62,10 +78,10 @@ block content
   div.main
     div.posts-container Render Posts here!
       each post in posts 
-        //- mixin and an array
-        .posts
-          p.postDate=`Month: ${post.createdAt.getMonth() + 1} Day: ${post.createdAt.getDay() + 1}, Year: ${post.createdAt.getFullYear()}`
-          h2.postTitle=post.title
-          p.postContent=post.content
-          li.likes=`likesIcon + likesCount: ${likesCount}`
-          li.comments=`commentsIcon + commentsCount: ${commentsCount}`
+        ul.posts
+          li.postDate=`${months[post.createdAt.getMonth()]} ${post.createdAt.getDay() + 1}, ${post.createdAt.getFullYear()}`
+          li.postTitle=post.title
+          li.postContent=post.content
+          li.likesAndComments
+            div.likes=`likes: ${likesCount}`
+            div.comments=`comments: ${commentsCount}`

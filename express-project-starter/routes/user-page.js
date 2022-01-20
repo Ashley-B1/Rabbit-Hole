@@ -15,23 +15,25 @@ router.route('/:id(\\d+)')
 .get(asyncHandler(async(req, res) => {
   const userId = parseInt(req.params.id, 10);
 
-  const likesCount = await db.PostLike.findAll({where: userId}).length || `There are no posts. Add seeder data?`;
+  const likesCount = await db.PostLike.findAll({where: userId}).length || 0;
   // console.log(`likes count: ${likesCount}`)
 
-  const comments = await db.Comment.findAll({where: userId}) || `There are no posts. Add seeder data?`;
+  const comments = await db.Comment.findAll({where: userId}) || 0;
   // console.log(`comments: ${comments}`)
-  const commentsCount = comments.length || `There are no posts. Add seeder data?`;
+  const commentsCount = comments.length || 0;
   // console.log(`commentsCount: ${commentsCount}`)
 
   const posts = await db.Post.findAll({
     order: [["createdAt", "DESC"]],
-    // include: [
-    //   { model: PostLike, as: "user", attributes: ["username"] },
-    //   { model: Comment, as: "user", attributes: ["username"] },
-    // ],
-  }) || `There are no posts. Add seeder data?`;
+  });
   console.log(`posts: ${posts[0].createdAt}`)
 
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+  for (const post in posts){
+    const thing = 2;
+    
+  };
 
   res.render('user-page', {
     userName: userId,
@@ -39,6 +41,7 @@ router.route('/:id(\\d+)')
     followersCount: 1,
     likesCount,
     commentsCount,
+    months,
   })
 }));
 
