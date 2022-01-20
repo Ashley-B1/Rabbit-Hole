@@ -126,10 +126,10 @@ router.route('/:id(\\d+)')
       'May', 'Jun', 'Jul', 'Aug',
       'Sep', 'Oct', 'Nov', 'Dec'
     ][post.createdAt.getMonth()];
-    
+
     const day = post.createdAt.getDay() + 1;
     const year = post.createdAt.getFullYear();
-    
+
     date = `${month} ${day}, ${year}`;
   }
 
@@ -146,7 +146,7 @@ router.route('/:id(\\d+)')
 
 
 
-//todo: 
+//todo:
 // router.route('/follows')
 // .get((req, res) => {
 
