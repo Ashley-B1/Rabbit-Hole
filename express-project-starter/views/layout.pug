@@ -24,9 +24,13 @@ html
             a(href='#') Posts
           li
             a(href='#') Feed
-          li
-            a(href='#') Sign In
-          li#sign-up
-            button
-              a(href='#') Register
+          if locals.authenticated
+            li
+              a(href='#') Logout
+          else
+            li
+              a(href='#') Sign In
+            li#sign-up
+              button
+                a(href='#') Register
     block content
