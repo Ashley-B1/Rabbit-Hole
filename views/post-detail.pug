@@ -14,7 +14,7 @@ block content
         input(type="submit" value= 'Write a Comment')
   div(class='comment-container' href=`/posts/${post.id}/comments/create`)
     h4 Comments
-    if post.comment && post.comment.length > 0
+    if comments
       div(class='commentcontainer')
         table(class='table')
           thead
@@ -24,7 +24,7 @@ block content
           tbody
             each comment in comments
               tr
-                td=comment.user.userName
+                td=comment.users.userName
                 td=comment.content
     else
       p: em No comments available for this story now.

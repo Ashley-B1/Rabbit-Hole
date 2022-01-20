@@ -63,8 +63,11 @@ router.get(`/:id`, asyncHandler(async (req, res) => {
   const comments = await db.Comment.findAll({
     where: {
       postId: postId
-    }
-  })
+    },
+    include: ['users'],
+    order: [["createdAt", "DESC"]]
+  });
+  
   res.render('post-detail', { post, comments })
 
 }));
@@ -107,7 +110,7 @@ router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHand
   const postId = parserInt(req.params.id, 10);
 
   const comment = db.Comment.build({
-    // userId: res.locals.user.id,
+    userId: res.session.auth.userId,
     postId,
     content
   })
