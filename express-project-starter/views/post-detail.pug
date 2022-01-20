@@ -1,0 +1,31 @@
+extends layout.pug
+
+block content
+  h2= post.title
+  div(class='post-container')
+    div Author
+    div(class='author')=post.users.userName
+    p(class='content')=post.content
+    div
+      button(type='submit') Like
+      div Number of Likes(To be modified)
+    div
+      form(action=`/posts/${post.id}/comments/create`)
+        input(type="submit" value= 'Write a Comment')
+  div(class='comment-container' href=`/posts/${post.id}/comments/create`)
+    h4 Comments
+    if post.comment && post.comment.length > 0
+    //- div(class='commentcontainer')
+    //-   table(class='table')
+    //-     thead
+    //-       tr
+    //-         th Name
+    //-         th Comment
+    //-     tbody
+    //-       each comment in comments
+    //-         tr
+    //-           td=comment.user.userName
+    //-           td=comment.content
+
+    else
+      p: em No comments available for this story now.

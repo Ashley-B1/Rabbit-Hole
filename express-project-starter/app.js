@@ -9,9 +9,13 @@ const { sessionSecret } = require('./config');
 const { restoreUser } = require('./middleware/auth.js')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
+
+const postRouter = require('./routes/posts');
+const commentRouter = require('./routes/comments')
+
 // const usersRouter = require('./routes/users');
 const usersPageRouter = require('./routes/user-page');
-const postRouter = require('./routes/post');
+
 
 const app = express();
 
@@ -43,6 +47,8 @@ app.use('/', indexRouter);
 app.use(express.static('./images'));
 app.use('/users', usersPageRouter);
 app.use(postRouter);
+app.use(commentRouter);
+
 
 
 // catch 404 and forward to error handler
