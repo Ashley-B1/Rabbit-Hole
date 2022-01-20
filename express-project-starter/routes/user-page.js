@@ -19,13 +19,18 @@ router.route('/:id(\\d+)')
 .get(asyncHandler(async(req, res) => {
   const userId = parseInt(req.params.id, 10);
 
-  const likesCount = await db.PostLike.findAll({where: userId}).length || 0;
+  const likes = await db.PostLike.findAll({where: userId});
+  // console.log(likes)
+  const likesCount = (await db.PostLike.findAll({where: userId})).length || 0;
   // console.log(`likes count: ${likesCount}`)
 
-  const comments = await db.Comment.findAll({where: userId}) || 0;
+  const comments = await db.Comment.findAll({where: userId});
   // console.log(`comments: ${comments}`)
   const commentsCount = comments.length || 0;
   // console.log(`commentsCount: ${commentsCount}`)
+
+  const followersCount = (await db.Follow.findAll({where: userId})).length || 0;
+
 
   const posts = await db.Post.findAll({
     order: [["createdAt", "DESC"]],
@@ -42,7 +47,7 @@ router.route('/:id(\\d+)')
   res.render('user-page', {
     userName: userId,
     posts,
-    followersCount: 1,
+    followersCount,
     likesCount,
     commentsCount,
     months,

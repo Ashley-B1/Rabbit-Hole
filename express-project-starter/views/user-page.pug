@@ -93,7 +93,7 @@ block content
 
   ul.sub-nav
     li=`User: ${userName}`
-    li=`${followersCount} ${(followersCount > 1) ? 'Followers' : 'Follower'}`
+    li=`${followersCount} ${(followersCount > 1 || followersCount <= 0) ? 'Followers' : 'Follower'}`
     li.submit-button
       a(href='/' role='button') Follow (currently routed to /)
   div.main
