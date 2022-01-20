@@ -3,6 +3,30 @@ html
   head
       block head
         title="Rabbit Hole"
-        link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/index.css')
+        append head
+        //- add page specific styles by appending to the head
+        link(rel="stylesheet" href="/stylesheets/index.css")
+        //- add page specific js
+        script(src="/javascripts/index.js" type="module" defer)
   body
+    div#header
+      div.left-nav
+        div#icon
+          img.logo(src="./splash-imgs/rabbit_hole_logo.jpeg", alt="logo")
+        div#title
+          h1= title
+      div.right-nav
+        ul
+          li
+            a(href='#') Write
+          li
+            a(href='#') Posts
+          li
+            a(href='#') Feed
+          li
+            a(href='#') Sign In
+          li#sign-up
+            button
+              a(href='#') Register
     block content

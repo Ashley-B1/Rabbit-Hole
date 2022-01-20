@@ -5,11 +5,17 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const { sequelize } = require('./db/models');
 const session = require('express-session');
+const { sessionSecret } = require('./config');
+const { restoreUser } = require('./middleware/auth.js')
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+
 const postRouter = require('./routes/posts');
 const commentRouter = require('./routes/comments')
+
+// const usersRouter = require('./routes/users');
+const usersPageRouter = require('./routes/user-page');
+
 
 const app = express();
 
@@ -19,7 +25,7 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(sessionSecret));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // set up session middleware
@@ -27,7 +33,7 @@ const store = new SequelizeStore({ db: sequelize });
 
 app.use(
   session({
-    secret: 'superSecret',
+    secret: sessionSecret,
     store,
     saveUninitialized: false,
     resave: false,
@@ -36,11 +42,13 @@ app.use(
 
 // create Session table if it doesn't already exist
 store.sync();
-
+app.use(restoreUser);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(express.static('./images'));
+app.use('/users', usersPageRouter);
 app.use(postRouter);
 app.use(commentRouter);
+
 
 
 // catch 404 and forward to error handler
