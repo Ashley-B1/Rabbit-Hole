@@ -10,11 +10,11 @@ const csrf = require('csurf');
 const csrfProtection = csrf({cookie: true});
 const bcrypt = require('bcryptjs');
 
-const path = require('path');
+// const path = require('path');
+// router.use(express.static(path.join(__dirname, 'public')));
 
 const db = require('../db/models');
 router.use(express.static('./images'));
-router.use(express.static(path.join(__dirname, 'public')));
 
 
 router.route('/')
