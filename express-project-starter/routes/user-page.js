@@ -18,39 +18,51 @@ router.route('/')
 router.route('/:id(\\d+)')
 .get(asyncHandler(async(req, res) => {
   const userId = parseInt(req.params.id, 10);
+  const {userName} = await db.User.findByPk(userId);
 
-  const likes = await db.PostLike.findAll({where: userId});
-  // console.log(likes)
-  const likesCount = (await db.PostLike.findAll({where: userId})).length || 0;
+  const likesCount = await db.PostLike.findAll({
+    where: userId && (postId='something'),
+    //! implement correct logic for likes
+  });
   // console.log(`likes count: ${likesCount}`)
 
   const comments = await db.Comment.findAll({where: userId});
   // console.log(`comments: ${comments}`)
+  //todo: comments will be more necessary for a 'post' page where comments will be rendered explicitly (namely, the content)
   const commentsCount = comments.length || 0;
   // console.log(`commentsCount: ${commentsCount}`)
 
-  const followersCount = (await db.Follow.findAll({where: userId})).length || 0;
-
+  const followers = (await db.Follow.findAll({where: userId})).length || 0;
+  const followersCount = `${followers} ${(followers > 1 || followers <= 0) ? 'Followers' : 'Follower'}`;
 
   const posts = await db.Post.findAll({
+    where: userId,
     order: [["createdAt", "DESC"]],
   });
-  console.log(`posts: ${posts[0].createdAt}`)
 
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  let date;
 
-  for (const post in posts){
-    const thing = 2;
+  for(const post of posts){
+    const month = [
+      'Jan', 'Feb', 'Mar', 'Apr',
+      'May', 'Jun', 'Jul', 'Aug',
+      'Sep', 'Oct', 'Nov', 'Dec'
+    ][post.createdAt.getMonth()];
     
-  };
+    const day = post.createdAt.getDay() + 1;
+    const year = post.createdAt.getFullYear();
+    
+    date = `${month} ${day}, ${year}`;
+  }
+
 
   res.render('user-page', {
-    userName: userId,
+    userName,
     posts,
     followersCount,
     likesCount,
     commentsCount,
-    months,
+    date,
   })
 }));
 
