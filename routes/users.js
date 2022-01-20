@@ -4,7 +4,7 @@ const express = require('express');
 const { loginUser, logoutUser } = require('../middleware/auth.js');
 
 const { asyncHandler } = require('../middleware/error-handling');
-const { signUpValidators } = require('../middleware/validators/ourProjectValidators')
+const { signUpValidators, loginValidators } = require('../middleware/validators/ourProjectValidators')
 const csrf = require('csurf');
 const csrfProtection = csrf({cookie: true});
 
@@ -23,14 +23,7 @@ router.get('/user/login', csrfProtection, (req, res) => {
   res.render('user-login', { title: 'Login', csrfToken: req.csrfToken() });
 });
 
-const loginValidators = [
-  check('email')
-    .exists({ checkFalsy: true })
-    .withMessage('Please provide a valid email.'),
-  check('password')
-    .exists({ checkFalsy: true })
-    .withMessage('Please enter a valid password.')
-]
+
 
 router.post('/user/login', csrfProtection, loginValidators, asyncHandler(async(req, res) => {
   const { email, password } = req.body;

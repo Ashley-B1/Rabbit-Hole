@@ -67,8 +67,6 @@ const validatePost = [
 
 
 
-
-
 const signUpValidators = [
   check('username') //* how are these strings identified? are these object keys? class names? Referring to lines 50-56, it seems to be destructured from the request body
   .exists({ checkFalsy: true })
@@ -92,56 +90,14 @@ const signUpValidators = [
   .withMessage('Please provide a valid integer for Page Count'),
 ];
 
-const loginValidators = [];
-
-//todo ***********************************************************************************
-//todo this is a snippet to show WHERE in the code we would add
-//todo 'routes/users.js'
-
-// const { check, validationResult } = require('express-validator');
-// router.route('/users/add')
-// .get(csrfProtection, (req, res) => {
-//   const book = db.Book.build();
-//   res.render('book-add', {
-//     title: 'Add Book',
-//     book,
-//     csrfToken: req.csrfToken(),
-//   });
-// })
-// .post(csrfProtection, bookValidators, //! add bookValidators here
-//   asyncHandler(async (req, res) => {
-//     const {
-//       title,
-//       author,
-//       releaseDate,
-//       pageCount,
-//       publisher,
-//     } = req.body;
-
-//     const book = db.Book.build({
-//       title,
-//       author,
-//       releaseDate,
-//       pageCount,
-//       publisher,
-//     });
-
-//     const validatorErrors = validationResult(req);
-
-//     if (validatorErrors.isEmpty()) {
-//       await book.save();
-//       res.redirect('/');
-//     } else {
-//       const errors = validatorErrors.array().map((error) => error.msg);
-//       res.render('book-add', {
-//         title: 'Add Book',
-//         book,
-//         errors,
-//         csrfToken: req.csrfToken(),
-//       });
-//     }
-//   }));
-  //todo ***********************************************************************************
+const loginValidators = [
+  check('email')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a valid email.'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please enter a valid password.')
+];
 
 
-  module.exports = {signUpValidators}
+  module.exports = {signUpValidators, loginValidators}
