@@ -10,7 +10,7 @@ const csrfProtection = csrf({ cookie: true });
 
 
 const { asyncHandler } = require('../middleware/error-handling')
-const { postValidators } = require('../middleware/validators/ourProjectValidators')
+const { postValidators } = require('../middleware/formValidators')
 
 // Checked, works
 router.get('/posts/create', csrfProtection, async(req, res) => {

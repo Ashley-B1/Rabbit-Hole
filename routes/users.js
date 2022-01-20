@@ -4,7 +4,7 @@ const express = require('express');
 const { loginUser, logoutUser } = require('../middleware/auth.js');
 
 const { asyncHandler } = require('../middleware/error-handling');
-const { signUpValidators, loginValidators } = require('../middleware/validators/ourProjectValidators')
+const { signUpValidators, loginValidators } = require('../middleware/formValidators')
 const csrf = require('csurf');
 const csrfProtection = csrf({cookie: true});
 
