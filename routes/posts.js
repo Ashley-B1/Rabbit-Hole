@@ -63,8 +63,11 @@ router.get(`/:id`, asyncHandler(async (req, res) => {
   const comments = await db.Comment.findAll({
     where: {
       postId: postId
-    }
-  })
+    },
+    include: ['users'],
+    order: [["createdAt", "DESC"]]
+  });
+  // console.log("wowow", comments[0].users.userName)
   res.render('post-detail', { post, comments })
 
 }));
