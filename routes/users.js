@@ -18,9 +18,8 @@ router.use(express.static(path.join(__dirname, 'public')));
 
 router.route('/')
 .get(asyncHandler(async(req, res) => {
-  // const users = await db.User.findAll({order: [['userName', 'DESC']]}); //? do we want to condense how much data we want to send in our response on this side?
-  // res.render('list-users', users);
-  res.render('list-users');
+  const users = await db.User.findAll({order: [['createdAt', 'ASC']]}); //? do we want to condense how much data we want to send in our response on this side?
+  res.render('list-users', {users});
 }));
 
 
