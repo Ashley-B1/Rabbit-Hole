@@ -1,7 +1,3 @@
-// const {environment} = require('../config');
-const dbErrors = require('./dbErrors');
-
-
 const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).catch(next);
 
 const errorCatcher = (req, res, next) => next(createError(404));
@@ -14,22 +10,6 @@ const errorHandler =(err, req, res, next) => {
   res.render('error');
 };
 
-
-
-const handleValidationErrors = (req, res, next) => {
-  const validationErrors = validationResult(req);
-
-  if (!validationErrors.isEmpty()) {
-    const errors = validationErrors.array().map((error) => error.msg);
-
-    const err = Error("Bad request.");
-    err.status = 400;
-    err.title = "Bad request.";
-    err.errors = errors;
-    return next(err);
-  }
-  next();
-};
 
 const postNotFoundError = (id) => {
   const err = Error("Tweet not found");

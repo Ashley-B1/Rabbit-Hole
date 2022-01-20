@@ -1,4 +1,6 @@
 const express = require('express');
+const router = express.Router();
+
 const { loginUser, logoutUser } = require('../middleware/auth.js');
 
 const { asyncHandler } = require('../middleware/error-handling');
@@ -6,7 +8,6 @@ const { signUpValidators, loginValidators } = require('../middleware/formValidat
 const csrf = require('csurf');
 const csrfProtection = csrf({cookie: true});
 
-const router = express.Router();
 const bcrypt = require('bcryptjs');
 
 /* GET users listing. */
