@@ -10,6 +10,7 @@ const csrfProtection = csrf({ cookie: true });
 
 
 const { asyncHandler } = require('../middleware/error-handling')
+const { postValidators } = require('../middleware/formValidators')
 
 // Checked, works
 router.get('/create', csrfProtection, async(req, res) => {
@@ -20,18 +21,6 @@ router.get('/create', csrfProtection, async(req, res) => {
     csrfToken: req.csrfToken()
   })
 })
-
-const postValidators = [
-  check('title')
-    .exists({ checkFalsy: true})
-    .withMessage('Title cannot be empty.')
-    .isLength({ max: 255 })
-    .withMessage('Title must be less than 255 characters.'),
-  check('content')
-    .exists({ checkFalsy: true})
-    .withMessage('Content cannot be empty.')
-
-]
 
 // Not works, only display 404 not found, no other error message
 router.post('/create', postValidators, csrfProtection, asyncHandler(async(req, res) => {
