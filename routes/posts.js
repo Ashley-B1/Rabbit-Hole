@@ -42,6 +42,7 @@ router.post('/create', postValidators, csrfProtection, asyncHandler(async(req, r
   if (validationErrors.isEmpty()) {
       await post.save();
       res.redirect(`/users/${userId}`);
+
   } else {
       const errors = validationErrors.array().map((error) => error.msg);
       res.render('create-post', {

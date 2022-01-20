@@ -114,7 +114,7 @@ router.route('/:id(\\d+)')
   const followersCount = `${followers} ${(followers > 1 || followers <= 0) ? 'Followers' : 'Follower'}`;
 
   const posts = await db.Post.findAll({
-    where: userId,
+    where: { userId },
     order: [["createdAt", "DESC"]],
   });
 
@@ -140,7 +140,7 @@ router.route('/:id(\\d+)')
     followersCount,
     likesCount,
     commentsCount,
-    date,
+    // date,
   })
 }));
 
