@@ -22,16 +22,28 @@ block content
       p.feed-title What's new in the rabbit hole?
     div.feed-posts
       div.feed-posts_top
-        div.post-one
+        div.post
           h4.post-title= posts[0].title
-          content= posts[0].content
-        div.post-two
+          div.article-content= posts[0].content
+          div.article-button
+            button.learn-more
+              a(href="#") Learn more
+        div.post
           h4.post-title= posts[1].title
-          content= posts[1].content
+          div.article-content= posts[1].content
+          div.article-button
+            button.learn-more
+              a(href="#") Learn more
       div.feed-posts_bottom
-        div.post-three
+        div.post
           h4.post-title= posts[2].title
-          content= posts[2].content
-        div.post-four
+          div.article-content= posts[2].content
+          div.article-button
+            button.learn-more
+              a(href="#") Learn more
+        div.post
           h4.post-title= posts[3].title
-          content= posts[3].content
+          div.article-content= posts[3].content
+          div.article-button
+            button.learn-more
+              a(href="#") Learn more
