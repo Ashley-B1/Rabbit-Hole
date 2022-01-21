@@ -4,6 +4,7 @@ append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/splash-banner.css")
   link(rel="stylesheet" href="/stylesheets/rh-feed.css")
+  link(rel="stylesheet" href="/stylesheets/rh-articles.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
@@ -47,3 +48,15 @@ block content
           div.article-button
             button.learn-more
               a(href=`/posts/${posts[3].id}`) Learn more
+  div#article-section-one
+    div.article-one
+      div.first-image
+      div.first-article
+        h4.article-title= posts[4].title
+        div.article-snippet= posts[4].content
+  div#article-section-two
+    div.article-two
+      div.second-article
+        h4.article-title= posts[5].title
+        div.article-snippet= posts[5].content
+      div.second-image
