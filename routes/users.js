@@ -133,6 +133,7 @@ router.route('/:id(\\d+)')
       
       posts.push({
           date: `${month} ${day}, ${year}`,
+          postId: post.id,
           title: post.title,
           content: post.content,
           likesCount: post.postLikes.length,
