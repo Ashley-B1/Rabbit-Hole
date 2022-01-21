@@ -109,15 +109,11 @@ router.route('/:id(\\d+)')
 
       {
         model: db.Comment,
-      as: 'comments',
-    }
-    ]
-      // model: db.Follow,
-      // as: 'followings',
-      // model: db.Follow,
-      // as: 'followers',
-    }
-  })
+        as: 'comments',
+      }
+    ],
+    },
+  });
 
 console.log(`debugger`);
 console.log(userQuery);
