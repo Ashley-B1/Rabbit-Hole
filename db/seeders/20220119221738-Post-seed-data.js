@@ -30,6 +30,20 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        userId: 2,
+        title: 'How To Become A Full Stack Engineer',
+        content: 'The first thing you need to do is download VSCode and type a simple algorithm. Test your algorithm and see all of the error messages populate. Once all errors are generated, bang your head on the keyboard until you draw blood. VSCode requires a blood sacrifice in order for your code to work. If you do not want to go through the traditional route you can simply come here and ask your peers questions and watch YouTube videos.',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        userId: 3,
+        title: 'How Javascript Traumatized Me',
+        content: 'I thought I was a great coder until I came across Javascript. It\'s hard to use computer logic when I barely use common sense logic in real life. The binary code behind the computer is more complex than my one-dimensional brain can handle. I never thought I could be defeated by 1\'s and 0\'s but I guess it\'s a nice life lesson to humble myself.',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
   ], {}),
 
   down: (queryInterface, Sequelize) => queryInterface.bulkDelete('Posts', null, {})

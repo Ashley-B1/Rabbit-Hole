@@ -1,24 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap');
 
 #rh-feed {
-  border: solid red 2px;
-  padding: 30px;
+  padding: 10px;
 }
 
 .feed-heading {
-  border: solid green 2px;
   width: fit-content;
   padding: 15px;
-  margin-top: 40px;
-  margin-left: 20px;
+  margin-top: 60px;
+  margin-left: 34px;
   font-family: 'Montserrat', sans-serif;
   font-size: 44px;
   font-weight: lighter;
 }
 
 .feed-posts{
-  border: blue solid 2px;
   padding: 20px;
+  margin-top: 95px;
 }
 
 .feed-title {
@@ -26,13 +25,61 @@
 }
 
 .feed-posts_top {
-  border: brown 2px solid;
   padding: 25px;
   display: flex;
+  justify-content: space-between;
 }
 
 .feed-posts_bottom {
-  border: solid goldenrod 2px;
   padding: 25px;
   display: flex;
+  justify-content: space-between;
+}
+
+.post {
+  padding: 5px;
+}
+
+.post-title {
+  font-size: 28px;
+  width: fit-content;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 1.2px;
+  padding: 5px;
+}
+
+.right-post-one {
+  margin-right: 175px;
+}
+
+.right-post-two {
+  margin-right: 175px;
+}
+
+.article-content {
+  padding: 10px;
+  width: 680px;
+  font-size: 20px;
+  margin-top: 25px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.article-button {
+  width: fit-content;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+.learn-more {
+  padding: 10px;
+  border: #18A0FB solid 1px;
+  background-color: white;
+  width: 120px;
+  border-radius: 5px;
+}
+
+.learn-more a {
+  color: #18A0FB;
+  text-decoration: none;
+  font-size: 14px;
 }
