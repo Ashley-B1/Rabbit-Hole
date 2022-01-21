@@ -5,6 +5,7 @@ append head
   link(rel="stylesheet" href="/stylesheets/splash-banner.css")
   link(rel="stylesheet" href="/stylesheets/rh-feed.css")
   link(rel="stylesheet" href="/stylesheets/rh-articles.css")
+  link(rel="stylesheet" href="/stylesheets/splash-signup.css")
   //- add page specific js
   script(src="/javascripts/index.js" type="module" defer)
 
@@ -60,3 +61,16 @@ block content
         h4.article-title= posts[5].title
         div.article-snippet= posts[5].content
       div.second-image
+  div#sign-up-section
+    div.top-section
+      h3.reminder You're in good company
+      p.join Join our community today to get all the answers you need to thrive in your career!
+    div.bottom-section
+      div.splash-quote
+        p.rabbit-quote "If you don't know where you are going any road will get you there."
+        blockquote -- White Rabbit
+        span.book-reference 'Alice In Wonderland'
+      button.join-btn
+        a(href="#") Join Today
+      button.login-btn
+        a(href="#") Sign In
