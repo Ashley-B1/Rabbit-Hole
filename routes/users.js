@@ -92,23 +92,44 @@ router.route('/create')
 }));
 
 
+
 router.route('/:id(\\d+)')
 .get(asyncHandler(async(req, res) => {
   const userId = parseInt(req.params.id, 10);
-  const {userName} = await db.User.findByPk(userId);
+  const userName = await db.User.findByPk(userId, {
+    include: {
+      model: db.Post,
+      as: 'posts',
+      include: {
+        model: db.PostLike,
+        as: 'postLikes'
+      },
+      model: db.Comment,
+      as: 'comments',
+      model: db.Follow,
+      as: 'followings',
+      model: db.Follow,
+      as: 'followers',
 
-  const likesCount = await db.PostLike.findAll({
-    where: userId,
-    // where: userId && (postId='something'),
-    //! implement correct logic for likes
-  });
-  // console.log(`likes count: ${likesCount}`)
+    }
+  })
+  console.log('Hello')  
 
-  const comments = await db.Comment.findAll({where: userId});
-  // console.log(`comments: ${comments}`)
-  //todo: comments will be more necessary for a 'post' page where comments will be rendered explicitly (namely, the content)
-  const commentsCount = comments.length || 0;
-  // console.log(`commentsCount: ${commentsCount}`)
+  // const {userName} = await db.User.findByPk(userId, {
+  //   include: {
+  //       model: Post,
+  //       include: PostLike,
+  //   },
+  //   include: {
+  //     model: Comment,
+  //       model: Follow,
+  //   },
+
+  // });
+  
+console.log(userName);
+
+  /* const likesCount = await db.PostLike.findAll({where: userId });
 
   const followers = (await db.Follow.findAll({where: userId})).length || 0;
   const followersCount = `${followers} ${(followers > 1 || followers <= 0) ? 'Followers' : 'Follower'}`;
@@ -118,19 +139,22 @@ router.route('/:id(\\d+)')
     order: [["createdAt", "DESC"]],
   });
 
-  let date;
+  const dates = [];
 
   for(const post of posts){
-    const month = [
-      'Jan', 'Feb', 'Mar', 'Apr',
-      'May', 'Jun', 'Jul', 'Aug',
-      'Sep', 'Oct', 'Nov', 'Dec'
-    ][post.createdAt.getMonth()];
+    const postId = 2;
+    const date = {
+      month: [
+        'Jan', 'Feb', 'Mar', 'Apr',
+        'May', 'Jun', 'Jul', 'Aug',
+        'Sep', 'Oct', 'Nov', 'Dec'
+        ][post.createdAt.getMonth()],
+      day: post.createdAt.getDay() + 1,
+      year: post.createdAt.getFullYear(),
+    };
 
-    const day = post.createdAt.getDay() + 1;
-    const year = post.createdAt.getFullYear();
+    dates.push({postId:date})
 
-    date = `${month} ${day}, ${year}`;
   }
 
 
@@ -140,9 +164,12 @@ router.route('/:id(\\d+)')
     followersCount,
     likesCount,
     commentsCount,
-    // date,
-  })
+    dates,
+  }) */
 }));
+
+
+
 
 
 
