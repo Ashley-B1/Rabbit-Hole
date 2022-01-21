@@ -146,6 +146,7 @@ router.route('/:id(\\d+)')
     // console.log(posts)
 
     res.render('user-page', {
+      title: `${queryData.userName}'s Page`,
       userName: queryData.userName,
       posts,
     })
