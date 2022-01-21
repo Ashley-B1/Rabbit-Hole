@@ -31,6 +31,10 @@ html
           else
             li
               a(href='/users/login') Sign In
+          if locals.authenticated
+            li
+              a(href=`/users/2`) My Page
+          else
             li#sign-up
               button
                 a(href='/users/create') Register
