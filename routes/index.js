@@ -7,7 +7,7 @@ router.route('/')
 .get(asyncHandler(async(req, res) => {
   const posts = await db.Post.findAll({ limit: 6 })
 
-  console.log(posts);
+  // console.log(posts);
   res.render('home-page', { title: 'rabbit hole', posts })
 }));
 

@@ -6,9 +6,10 @@ block content
     *{
       list-style: none;
       text-decoration: none;
-      background: #242424;
-      font-family: sans-serif;
-      color: #36bcff;
+      font-family: 'Montserrat', sans-serif;
+      //- background: #242424;
+      //- font-family: sans-serif;
+      //- color: #36bcff;
       box-sizing: border-box;
     }
     .main{
@@ -53,10 +54,12 @@ block content
       flex-direction: column;
     }
     .postTitle{
+      text-decoration: none;
       font-size: 24px;
+      color: #18A0FB;
     }
     .postContent{
-      color: white;
+      color: gray;
     }
     .likesAndComments{
       display: flex;
@@ -97,12 +100,15 @@ block content
         div.post-object
           ul.posts
             li.postDate=post.date
-            li.postTitle=post.title
+            li.postTitle
+              a(href=`/posts/${post.postId}` class='postTitle') #{post.title}
             li.postContent=post.content
           div.likesAndComments
             div.likes
-              img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
+              a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
+                img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
               div.likesCount=post.likesCount
             div.comments
-              img.commentIcon(src='./icons/comment.svg.png', alt="logo")
+              a(href='')
+                img.commentIcon(src='./icons/comment.svg.png', alt="logo")
               div.commentsCount=post.commentsCount

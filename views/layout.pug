@@ -5,8 +5,6 @@ html
         title="Rabbit Hole"
         link(rel='stylesheet' href='/stylesheets/index.css')
         append head
-        //- add page specific styles by appending to the head
-        link(rel="stylesheet" href="/stylesheets/index.css")
         //- add page specific js
         script(src="/javascripts/index.js" type="module" defer)
   body
@@ -21,8 +19,6 @@ html
         ul
           li
             a(href='/posts/create') Write
-          li
-            a(href='#') Feed
           if locals.authenticated
             li
               a(href='/users/logout') Logout
@@ -31,7 +27,7 @@ html
               a(href='/users/login') Sign In
           if locals.authenticated
             li
-              a(href=`/users/2`) My Page
+              a(href=`/users/${locals.user.id}`) My Page
           else
             li#sign-up
               button

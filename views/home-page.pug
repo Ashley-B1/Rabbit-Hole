@@ -17,7 +17,7 @@ block content
         h2 You're in the right place.
     div#write-button
       button.create-post
-        a(href="#") Start Writing
+        a(href=`/${locals.authenticated ? 'posts/create' : 'users/login'}`) Start Writing
   div#rh-feed
     div.feed-heading
       p.feed-title What's new in the rabbit hole?
@@ -28,26 +28,26 @@ block content
           div.article-content= posts[0].content
           div.article-button
             button.learn-more
-              a(href="#") Learn more
+              a(href=`/posts/${posts[0].id}`) Learn more
         div.right-post-one
           h4.post-title= posts[1].title
           div.article-content= posts[1].content
           div.article-button
             button.learn-more
-              a(href="#") Learn more
+              a(href=`/posts/${posts[1].id}`) Learn more
       div.feed-posts_bottom
         div.post
           h4.post-title= posts[2].title
           div.article-content= posts[2].content
           div.article-button
             button.learn-more
-              a(href="#") Learn more
+              a(href=`/posts/${posts[2].id}`) Learn more
         div.right-post-two
           h4.post-title= posts[3].title
           div.article-content= posts[3].content
           div.article-button
             button.learn-more
-              a(href="#") Learn more
+              a(href=`/posts/${posts[3].id}`) Learn more
   div#article-section-one
     div.article-one
       div.first-image
