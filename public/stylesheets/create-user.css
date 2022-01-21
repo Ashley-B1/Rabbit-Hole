@@ -34,6 +34,11 @@
     border: none;
 }
 
+.sign-up > a {
+    color: white;
+    text-decoration: none;
+}
+
 h4 {
     font-family: 'Monserrat', sans-serif;
     font-weight: bold;
@@ -94,4 +99,18 @@ h4 {
 }
 .sign-in-text a {
     text-decoration: none;
+    color: #18A0FB;
+}
+
+.demo-user {
+    font-family: 'Monserrat', sans-serif;
+    margin-top: 10px;
+    border-radius: 5px;
+    padding: 5px 15px;
+    background-color: #18A0FB;
+    border: none;
+}
+
+.demo-user > a {
+    color: white;
 }
