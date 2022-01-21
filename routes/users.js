@@ -59,10 +59,11 @@ router.route('/login')
   });
 }));
 
-router.get('/logout', (req, res) => {
-  logoutUser(req, res);
-  res.redirect('/');
-})
+router.route('/logout')
+.get(asyncHandler(async(req, res) => {
+  await logoutUser(req, res);
+  await res.redirect('/users/login');
+}))
 
 
 router.route('/create')
