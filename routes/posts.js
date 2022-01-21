@@ -139,6 +139,7 @@ router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHand
 }))
 
 // Add a edit route
+// router.
 
 // Haven't checked yet.
 router.post('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
