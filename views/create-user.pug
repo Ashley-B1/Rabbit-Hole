@@ -30,7 +30,8 @@ block content
         li
           input(type="password" name="confirmPassword" class="field-style field-full align-none" placeholder="Confirm password" value= '' )
         div
-          button(class='sign-up' type='submit') Register
+          button(class='sign-up' type='submit')
+            a(href="/users/create") Register
   div.sign-in-text
     p Already part of the community?
       span: a(href='/users/login')  Sign In
