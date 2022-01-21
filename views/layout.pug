@@ -22,15 +22,17 @@ html
           li
             a(href='/posts/create') Write
           li
-            a(href=`/${userId}`) Posts
-          li
             a(href='#') Feed
           if locals.authenticated
             li
-              a(href='#') Logout
+              a(href='/users/logout') Logout
           else
             li
               a(href='/users/login') Sign In
+          if locals.authenticated
+            li
+              a(href=`/users/2`) My Page
+          else
             li#sign-up
               button
                 a(href='/users/create') Register

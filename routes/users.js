@@ -19,16 +19,23 @@ router.use(express.static('./images'));
 
 router.route('/')
 .get(asyncHandler(async(req, res) => {
-  const users = await db.User.findAll({order: [['createdAt', 'ASC']]}); //? do we want to condense how much data we want to send in our response on this side?
+  const users = await db.User.findAll({order: [['createdAt', 'ASC']]});
   res.render('list-users', {users});
 }));
 
 
+router.route('/demo-login')
+.get(asyncHandler(async(req, res) => {
+  const demoUser = await db.User.findByPk(1);
+  await loginUser(req, res, demoUser);
+  return res.redirect('/users/1');
+}))
+
 
 router.route('/login')
-.get(csrfProtection, (req, res) => {
+.get(csrfProtection, asyncHandler(async(req, res) => {
   res.render('user-login', { title: 'Login', csrfToken: req.csrfToken() });
-})
+}))
 .post(csrfProtection, loginValidators, asyncHandler(async(req, res) => {
   const { email, password } = req.body;
 
@@ -59,10 +66,11 @@ router.route('/login')
   });
 }));
 
-router.post('/logout', (req, res) => {
-  logoutUser(req, res);
-  res.redirect('/login');
-})
+router.route('/logout')
+.get(asyncHandler(async(req, res) => {
+  await logoutUser(req, res);
+  await res.redirect('/users/login');
+}))
 
 
 router.route('/create')
