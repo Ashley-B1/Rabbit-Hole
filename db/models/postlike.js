@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     postId: DataTypes.INTEGER
   }, {});
-  PostLike.associate = function(models) {
+  PostLike.associate = (models) => {
     // associations can be defined here
     PostLike.belongsTo( models.User, { foreignKey: 'userId'})
     PostLike.belongsTo( models.Post, { foreignKey: 'postId'})
