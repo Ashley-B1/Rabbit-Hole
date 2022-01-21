@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500&display=swap');
+
+#splash-footer {
+  border: solid red 2px;
+  padding: 30px;
+}
+
+.footer-links {
+  /* DO NOT DELETE BORDER: for production use */
+  border-bottom: solid 1px black;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
+.footer-nav-right {
+  border: solid pink 2px;
+  padding: 10px;
+}
+
+.footer-nav-right li {
+  display: inline-flex;
+  margin-right: 45px;
+  padding: 45px;
+}
+
+.footer-nav-right li a {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.icon-link {
+  margin-top: 50px;
+  border: solid blue 2px;
+  padding: 2px;
+  width: 5%;
+  height: fit-content;
+}
+
+#footer-logo {
+  width: 100%;
+}
+
+.footer-nav-left {
+  border: solid yellow 2px;
+  padding: 10px;
+}
+
+.footer-nav-left li {
+  display: inline-flex;
+  padding: 45px;
+  margin-right: 45px;
+}
+
+.footer-nav-left li a {
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.footer-collaborators {
+  border: solid peachpuff 2px;
+}
