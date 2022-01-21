@@ -7,9 +7,6 @@ block content
       list-style: none;
       text-decoration: none;
       font-family: 'Montserrat', sans-serif;
-      //- background: #242424;
-      //- font-family: sans-serif;
-      //- color: #36bcff;
       box-sizing: border-box;
     }
     .main{
@@ -45,27 +42,33 @@ block content
       //- border: 2px solid #ff9705;
       //- border-radius: 2px;
       width: 100%;
-      padding-top: 20px;
-      padding-bottom: 20px;
+      //- padding-top: 20px;
+      //- padding-bottom: 20px;
+      padding-left: 20px;
       margin: 10px;
     }
     .posts{
       display: flex;
       flex-direction: column;
     }
+    .postDate{
+      color: gray;
+    }
     .postTitle{
       text-decoration: none;
       font-size: 24px;
       color: #18A0FB;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
     .postContent{
-      color: gray;
+      color: black;
     }
     .likesAndComments{
       display: flex;
       flex-direction: row;
       width: 100px;
-      margin-left: 40px;
+      margin-top: 20px;
       justify-content: space-between;
     }
     .likes{
@@ -92,7 +95,9 @@ block content
       background-color: rgb(61, 61, 61);
       width: 95%;
       height: 1px;
-      margin-top: 7px;
+      margin-top: 20px;
+      padding-left: 20px;
+      margin-bottom: 20px;
     }
 
   div.main
@@ -102,6 +107,7 @@ block content
       li.submit-button
         a(href='/' role='button') Follow api route make it green?
     div.posts-container Render Posts here!
+      div.line-break
       if posts === null
         div No posts! Start Writing!
       else
