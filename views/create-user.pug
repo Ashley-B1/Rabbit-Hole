@@ -1,24 +1,52 @@
-extends layout.pug
+extends layout
 
-include utils.pug
+include utils
+
+append head
+  link(rel="stylesheet", type="text/css", href="/stylesheets/create-user.css")
+  script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1 Ready to join the rabbit hole community?
-  p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+  div.headline-container
+     h1 Ready to join the rabbit hole community?
+     p Read our posts, articles, questions, tips and more on all things tech and software development.
 
   div
-
     +validationErrorSummary(errors)
-    form(action='/user/create' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
-        +field('Username', 'userName', user.userName)
-        +field('First Name', 'firstName', user.firstName)
-        +field('Last Name', 'lastName', user.lastName)
-        +field('Email', 'email', user.email)
-        +field('Password', 'password', user.password, 'password')
-        +field('Confirm Password', 'confirmPassword', '', 'password')
-        div(class='py-4')
-            button(type='submit') Register
-            a(href='/') Cancel
-  div
-    p: a(href='/user/login') Sign In
+    form(class="form-style" action='/user/create' method='post')
+      input(type='hidden' name='_csrf' value=csrfToken)
+      img.form-logo(src="./splash-imgs/rabbit_hole_logo.jpeg", alt="logo")
+      h4 Sign up for a free account
+      ul
+        li
+          input(type="text" name="firstName" class="field-style field-split align-left" placeholder="First name" value= user.userName)
+          input(type="text" name="lastName" class="field-style field-split align-right" placeholder="Last name" value= user.lastName)
+        li
+          input(type="text" name="userName" class="field-style field-full align-none" placeholder="Username" value= user.userName)
+        li
+          input(type="text" name="email" class="field-style field-full align-none" placeholder="Email address" value= user.email)
+        li
+          input(type="password" name="password" class="field-style field-full align-none" placeholder="Create password" value= user.password)
+        li
+          input(type="password" name="confirmPassword" class="field-style field-full align-none" placeholder="Confirm password" value= '' )
+        div
+          button(class='sign-up' type='submit') Register
+  div.sign-in-text
+    p Already part of the community?
+      span: a(href='/users/login')  Sign In
+
+
+  //- div.form-container
+  //-   +validationErrorSummary(errors)
+  //-   form(action='/user/create' method='post')
+  //-       input(type='hidden' name='_csrf' value=csrfToken)
+  //-       h4 Sign up for a free account
+  //-       +field('Username', 'userName', user.userName)
+  //-       +field('First Name', 'firstName', user.firstName)
+  //-       +field('Last Name', 'lastName', user.lastName)
+  //-       +field('Email', 'email', user.email)
+  //-       +field('Password', 'password', user.password, 'password')
+  //-       +field('Confirm Password', 'confirmPassword', '', 'password')
+  //-       div
+  //-           button(class='sign-up' type='submit') Register
+  //-           a(href='/') Cancel
