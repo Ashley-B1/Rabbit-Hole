@@ -94,21 +94,24 @@ block content
       li=userName
       li=`followers (implement on weekend) ${followersCount}`
       li.submit-button
-        a(href='/' role='button') Follow (currently routed to /)
+        a(href='/' role='button') Follow api route make it green?
     div.posts-container Render Posts here!
-      each post in posts
-        div.post-object
-          ul.posts
-            li.postDate=post.date
-            li.postTitle
-              a(href=`/posts/${post.postId}` class='postTitle') #{post.title}
-            li.postContent=post.content
-          div.likesAndComments
-            div.likes
-              a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
-                img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
-              div.likesCount=post.likesCount
-            div.comments
-              a(href='')
-                img.commentIcon(src='./icons/comment.svg.png', alt="logo")
-              div.commentsCount=post.commentsCount
+      if posts === null
+        div No posts! Start Writing!
+      else
+        each post in posts
+          div.post-object
+            ul.posts
+              li.postDate=post.date
+              li.postTitle
+                a(href=`/posts/${post.postId}` class='postTitle') #{post.title}
+              li.postContent=post.content
+            div.likesAndComments
+              div.likes
+                a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
+                  img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
+                div.likesCount=post.likesCount
+              div.comments
+                a(href='')
+                  img.commentIcon(src='./icons/comment.svg.png', alt="logo")
+                div.commentsCount=post.commentsCount

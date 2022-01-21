@@ -148,7 +148,7 @@ router.route('/:id(\\d+)')
     res.render('user-page', {
       title: `${queryData.userName}'s Page`,
       userName: queryData.userName,
-      posts,
+      posts: posts || null,
     })
   
 }));
