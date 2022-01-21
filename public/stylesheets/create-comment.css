@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+
+.comment-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  color: gray;
+  padding: 10px;
+}
+
+.comment-content {
+  width: 600px;
+  height: 200px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  font-family: 'Montserrat', sans-serif;
+  color: gray
+}
+
+.btn-send {
+  width: 95px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #03926e;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  margin: 5px 10px;
+}
+
+.btn-cancel {
+
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #bd0303;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  margin: 5px 10px;
+}
+
+a:link { text-decoration: none}
+
+a:visited { text-decoration: none}
