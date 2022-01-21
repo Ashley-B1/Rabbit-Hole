@@ -19,7 +19,7 @@ router.use(express.static('./images'));
 
 router.route('/')
 .get(asyncHandler(async(req, res) => {
-  const users = await db.User.findAll({order: [['createdAt', 'ASC']]}); //? do we want to condense how much data we want to send in our response on this side?
+  const users = await db.User.findAll({order: [['createdAt', 'ASC']]});
   res.render('list-users', {users});
 }));
 
@@ -59,9 +59,9 @@ router.route('/login')
   });
 }));
 
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
   logoutUser(req, res);
-  res.redirect('/login');
+  res.redirect('/');
 })
 
 
