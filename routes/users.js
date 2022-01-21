@@ -10,11 +10,9 @@ const csrf = require('csurf');
 const csrfProtection = csrf({cookie: true});
 const bcrypt = require('bcryptjs');
 
-// const path = require('path');
-// router.use(express.static(path.join(__dirname, 'public')));
-
 const db = require('../db/models');
 router.use(express.static('./images'));
+
 
 
 router.route('/')
@@ -119,8 +117,8 @@ router.route('/:id(\\d+)')
     }
   });
 
-  console.log(`debugger`);
-  console.log(queryData);
+  // console.log(`debugger`);
+  // console.log(queryData);
 
   const posts = [];
 
@@ -142,9 +140,9 @@ router.route('/:id(\\d+)')
         });
     };
 
-    console.log('debugger')
-    console.log('posts')
-    console.log(posts)
+    // console.log('debugger')
+    // console.log('posts')
+    // console.log(posts)
 
     res.render('user-page', {
       userName: queryData.userName,
@@ -154,18 +152,14 @@ router.route('/:id(\\d+)')
 }));
 
 
+// //todo:
+// router.route('/follows')
+// .get((req, res) => {
 
+//   res.render('user-follows-page', {
 
-
-
-//todo:
-router.route('/follows')
-.get((req, res) => {
-
-  res.render('user-follows-page', {
-
-  });
-});
+//   });
+// });
 
 
 module.exports = router;
