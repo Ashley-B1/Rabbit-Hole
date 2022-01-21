@@ -100,44 +100,29 @@ router.route('/:id(\\d+)')
     include: {
       model: db.Post,
       as: 'posts',
+      order: [['createdAt', 'DESC']],
       include: {
         model: db.PostLike,
         as: 'postLikes'
       },
       model: db.Comment,
       as: 'comments',
-      model: db.Follow,
-      as: 'followings',
-      model: db.Follow,
-      as: 'followers',
+      // model: db.Follow,
+      // as: 'followings',
+      // model: db.Follow,
+      // as: 'followers',
 
     }
   })
   console.log('Hello')  
 
-  // const {userName} = await db.User.findByPk(userId, {
-  //   include: {
-  //       model: Post,
-  //       include: PostLike,
-  //   },
-  //   include: {
-  //     model: Comment,
-  //       model: Follow,
-  //   },
-
-  // });
-  
-console.log(userName);
+console.log(`debugger ${userName}`);
 
   /* const likesCount = await db.PostLike.findAll({where: userId });
-
   const followers = (await db.Follow.findAll({where: userId})).length || 0;
   const followersCount = `${followers} ${(followers > 1 || followers <= 0) ? 'Followers' : 'Follower'}`;
 
-  const posts = await db.Post.findAll({
-    where: { userId },
-    order: [["createdAt", "DESC"]],
-  });
+  const posts = await db.Post.findAll({where: { userId }, order: [["createdAt", "DESC"]]});
 
   const dates = [];
 
