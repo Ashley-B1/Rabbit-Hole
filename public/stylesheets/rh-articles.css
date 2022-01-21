@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+
+#article-section-one {
+  padding: 30px;
+}
+
+.article-one {
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.first-image {
+  background-image: url("/article-photos/full-stack.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 800px;
+  height: 450px;
+  margin-right: 100px;
+}
+
+.first-article {
+  height: fit-content;
+  width: 750px;
+  margin-top: 100px;
+}
+
+#article-section-two {
+  padding: 30px;
+  background-color: #F5F5F5;
+}
+
+.article-two {
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.second-image {
+  background-image: url("/article-photos/trauma-article.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 800px;
+  height: 450px;
+}
+
+.second-article {
+  height: fit-content;
+  width: 750px;
+  margin-top: 100px;
+  margin-right: 100px;
+}
+
+.article-title {
+  padding: 15px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px;
+  width: fit-content;
+}
+
+.article-snippet {
+  padding: 15px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 20px;
+}
