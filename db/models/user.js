@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     hashedPassword: DataTypes.STRING
   }, {});
-  User.associate = function(models) {
+  User.associate = (models) => {
     // User vs Post -- one to many
     User.hasMany( models.Post, {
       as: 'posts',

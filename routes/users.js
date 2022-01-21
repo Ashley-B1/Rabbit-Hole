@@ -96,66 +96,53 @@ router.route('/create')
 router.route('/:id(\\d+)')
 .get(asyncHandler(async(req, res) => {
   const userId = parseInt(req.params.id, 10);
-  const userQuery = await db.User.findByPk(userId, {
+  const queryData = await db.User.findByPk(userId, {
     include: {
       model: db.Post,
       as: 'posts',
       order: [['createdAt', 'DESC']],
-      include: [
-        {
+      include: [{
         model: db.PostLike,
         as: 'postLikes'
-      },
-
-      {
+      }, {
         model: db.Comment,
-      as: 'comments',
+        as: 'comments',
+      }]
     }
-    ]
-      // model: db.Follow,
-      // as: 'followings',
-      // model: db.Follow,
-      // as: 'followers',
-    }
-  })
+  });
 
-console.log(`debugger`);
-console.log(userQuery);
+  console.log(`debugger`);
+  console.log(queryData);
 
+  const posts = [];
 
-  /* const likesCount = await db.PostLike.findAll({where: userId });
-  const followers = (await db.Follow.findAll({where: userId})).length || 0;
-  const followersCount = `${followers} ${(followers > 1 || followers <= 0) ? 'Followers' : 'Follower'}`;
-
-  const posts = await db.Post.findAll({where: { userId }, order: [["createdAt", "DESC"]]});
-
-  const dates = [];
-
-  for(const post of posts){
-    const postId = 2;
-    const date = {
-      month: [
+  for(const post of queryData.posts){
+      const month = [
         'Jan', 'Feb', 'Mar', 'Apr',
         'May', 'Jun', 'Jul', 'Aug',
         'Sep', 'Oct', 'Nov', 'Dec'
-        ][post.createdAt.getMonth()],
-      day: post.createdAt.getDay() + 1,
-      year: post.createdAt.getFullYear(),
+      ][post.createdAt.getMonth()];
+      const day = post.createdAt.getDay() + 1;
+      const year = post.createdAt.getFullYear();
+      
+      posts.push({
+          date: `${month} ${day}, ${year}`,
+          title: post.title,
+          content: post.content,
+          likesCount: post.postLikes.length,
+          commentsCount: post.comments.length,
+        });
     };
 
-    dates.push({postId:date})
+    console.log('debugger')
+    console.log('posts')
+    console.log(posts)
 
-  }
-
-
-  res.render('user-page', {
-    userName,
-    posts,
-    followersCount,
-    likesCount,
-    commentsCount,
-    dates,
-  }) */
+    res.render('user-page', {
+      userName: queryData.userName,
+      posts,
+    })
+  
 }));
 
 

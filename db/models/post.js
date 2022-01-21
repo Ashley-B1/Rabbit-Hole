@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     content: DataTypes.TEXT
   }, {});
-  Post.associate = function(models) {
+  Post.associate = (models) => {
     // associations can be defined here
     Post.belongsTo( models.User, {
       as: 'users',
@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     });
     Post.hasMany( models.PostLike, {
       as: 'postLikes',
+      foreignKey: 'postId'
+    });
+    Post.hasMany( models.Comment, {
+      as: 'comments',
       foreignKey: 'postId'
     });
   };
