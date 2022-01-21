@@ -99,7 +99,8 @@ block content
         div.post-object
           ul.posts
             li.postDate=post.date
-            li.postTitle=post.title
+            li.postTitle
+              a(href=`/posts/${post.postId}`) #{post.title}
             li.postContent=post.content
           div.likesAndComments
             div.likes
