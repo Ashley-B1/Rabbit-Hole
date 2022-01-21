@@ -4,9 +4,9 @@ append head
 block content
   p=comment.content
   div
-    p Proceed with deleting this story?
+    p Proceed with deleting this comment?
   div
-    form(action=`/posts/${comment.id}/delete` method='post')
+    form(action=`/posts/${postId}/comments/${comment.id}/delete` method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
-      button(class='btn-delete' type='submit') Delete Story
-      a(href=`/posts/${comment.id}` class="btn-cancel") Cancel
+      button(class='btn-delete' type='submit') Delete Comment
+      a(href=`/posts/${postId}/comments/${comment.id}` class="btn-cancel") Cancel

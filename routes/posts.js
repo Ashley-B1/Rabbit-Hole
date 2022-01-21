@@ -173,7 +173,7 @@ const commentValidators = [
     .withMessage('Please provide content for your comment.')
 ]
 
-// Need to checked the path
+
 router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHandler( async (req, res) => {
   const { content } = req.body;
 
@@ -208,8 +208,8 @@ router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHand
 // Get the edit form
 router.get('/:id/comments/:commentId/edit', csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
-  const commentId = parseInt(req.params.id, 10);
-
+  const commentId = parseInt(req.params.commentId, 10);
+  console.log("hohoho", commentId)
   const comment = await db.Comment.findByPk(commentId);
   res.render('edit-comment', {
     postId,
@@ -221,7 +221,7 @@ router.get('/:id/comments/:commentId/edit', csrfProtection, asyncHandler(async(r
 // Update the edit form
 router.post('/:id/comments/:commentId/edit', commentValidators, csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
-  const commentId = parseInt(req.params.id, 10);
+  const commentId = parseInt(req.params.commentId, 10);
 
   const commentToUpdate = await db.Comment.findByPk(commentId);
   const { content } = req.body;
@@ -249,14 +249,29 @@ router.post('/:id/comments/:commentId/edit', commentValidators, csrfProtection, 
 }))
 
 // get the delete form
-
-router.post('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
+router.get('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
   const commentId = parseInt(req.params.commentId, 10);
   const comment = await db.Comment.findByPk(commentId);
   const postId = parseInt(req.params.id, 10)
+  res.render('delete-comment', {
+    title: 'Delete Comment',
+    postId,
+    comment,
+    csrfToken: req.csrfToken()
+  })
+}))
+
+// delete the comment
+router.post('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
+  const commentId = parseInt(req.params.commentId, 10);
+  const comment = await db.Comment.findByPk(commentId);
+  const postId = parseInt(req.params.id, 10);
+  console.log("comment!!!!!!", comment);
+  console.log("postID!!!!", postId)
   await comment.destroy();
   res.redirect(`/posts/${postId}`);
 }));
+
 
 
 module.exports = router
