@@ -4,6 +4,7 @@ append head
   link(rel="stylesheet" href="/stylesheets/post-detail.css")
 
 block content
+  br
   h2=post.title
   div(class='post-container')
     a(href=`/users/${post.userId}` class='author')=post.users.userName
