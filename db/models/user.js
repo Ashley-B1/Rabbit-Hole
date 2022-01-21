@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
 
     // User vs PostLike -- one to many
     User.hasMany( models.PostLike, {
-      as: 'postlikes',
+      as: 'postLikes',
       foreignKey: 'userId'});
 
     // User vs Follow  -- many to many (self joining)
