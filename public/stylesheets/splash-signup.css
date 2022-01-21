@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+#sign-up-section {
+  border: red solid 2px;
+}
+
+.top-section {
+  border: solid green 2px;
+  padding: 5em;
+  text-align: center;
+  display: block;
+  justify-content: center;
+}
+
+.reminder {
+  border: solid yellow 2px;
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  font-size: 40px;
+}
+
+.join {
+  border: solid pink 2px;
+  padding: 20px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 34px;
+}
