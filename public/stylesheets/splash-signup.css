@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap');
+
+.top-section {
+  padding: 5em;
+  text-align: center;
+  display: block;
+  justify-content: center;
+}
+
+.reminder {
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+  font-size: 40px;
+}
+
+.join {
+  padding: 20px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 34px;
+}
+
+.bottom-section {
+  background-color: #F5F5F5;
+  padding: 35px;
+  display: flex;
+  justify-content: space-around;
+  font-family: 'Rubik', sans-serif;
+}
+
+.splash-quote {
+  width: 1025px;
+  padding: 10px;
+}
+
+.rabbit-quote {
+  padding: 10px;
+  font-size: 34px;
+  width: 875px;
+}
+
+blockquote {
+  padding: 10px;
+  width: fit-content;
+  margin-left: 700px;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.book-reference {
+  padding: 5px;
+  margin-left: 800px;
+  font-family: 'Libre Baskerville', serif;
+}
+
+
+.join-btn {
+  border: none;
+  height: fit-content;
+  padding: 5px;
+  background-color: #18A0FB;
+  width: 165px;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 18px;
+  margin-top: 80px;
+  margin-left: 200px;
+}
+
+.join-btn a {
+  color: white;
+  text-decoration: none;
+}
+
+.login-btn {
+  border: solid 1px #18A0FB;
+  height: fit-content;
+  padding: 5px;
+  background-color: white;
+  width: 165px;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 18px;
+  margin-top: 80px;
+  margin-right: 200px;
+}
+
+.login-btn a {
+  color: #18A0FB;
+  text-decoration: none;
+}
