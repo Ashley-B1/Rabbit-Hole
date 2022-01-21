@@ -73,6 +73,73 @@ router.get(`/:id`, asyncHandler(async (req, res) => {
 
 }));
 
+// router.use((req, res, next) => {
+//   console.log(req.path);
+//   next();
+// })
+
+router.get('/:id/edit', csrfProtection, asyncHandler(async(req, res) => {
+  const postId = parseInt(req.params.id, 10);
+  const post = await db.Post.findByPk(postId);
+  // const postOwnerId = postToUpdate.userId;
+  // const userId = req.session.auth.userId;
+  console.log("post.content is HERE!!", post.content)
+
+  res.render("edit-post", {
+    title: 'Edit Story',
+    post,
+    csrfToken: req.csrfToken()
+  })
+}))
+
+// Edit story
+router.post('/:id/edit', postValidators, csrfProtection, asyncHandler(async(req, res) => {
+  const postId = parseInt(req.params.id, 10);
+  const postToUpdate = await db.Post.findByPk(postId);
+  const postOwnerId = postToUpdate.userId;
+  // const userId = req.session.auth.userId;
+
+  // if (postOwnerId===userId) {
+
+  // }
+
+  const {
+    title,
+    content
+  } = req.body
+
+
+  const post = {
+    userId: postOwnerId,
+    title,
+    content
+  }
+
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()){
+    await postToUpdate.update(post);
+    res.redirect(`/posts/${postId}`)
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+    res.render('edit-post', {
+      post: { ...post, id: postId},
+      errors,
+      csrfToken: req.csrfToken()
+    })
+  }
+}))
+
+router.get('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
+  const postId = parseInt(req.params.id, 10);
+  const post = await db.Post.findByPk(postId);
+  res.render('delete-post', {
+    title: 'Delete Story',
+    post,
+    csrfToken: req.csrfToken()
+  })
+}))
+
 // delete routes, haven't tested yet
 router.post('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
@@ -106,7 +173,7 @@ const commentValidators = [
     .withMessage('Please provide content for your comment.')
 ]
 
-// Need to checked the path
+
 router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHandler( async (req, res) => {
   const { content } = req.body;
 
@@ -138,16 +205,73 @@ router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHand
 
 }))
 
-// Add a edit route
-// router.
+// Get the edit form
+router.get('/:id/comments/:commentId/edit', csrfProtection, asyncHandler(async(req, res) => {
+  const postId = parseInt(req.params.id, 10);
+  const commentId = parseInt(req.params.commentId, 10);
+  console.log("hohoho", commentId)
+  const comment = await db.Comment.findByPk(commentId);
+  res.render('edit-comment', {
+    postId,
+    comment,
+    csrfToken: req.csrfToken()
+  })
+}))
 
-// Haven't checked yet.
+// Update the edit form
+router.post('/:id/comments/:commentId/edit', commentValidators, csrfProtection, asyncHandler(async(req, res) => {
+  const postId = parseInt(req.params.id, 10);
+  const commentId = parseInt(req.params.commentId, 10);
+
+  const commentToUpdate = await db.Comment.findByPk(commentId);
+  const { content } = req.body;
+
+  const comment = {
+    userId: commentToUpdate.userId,
+    postId: postId,
+    content
+  }
+
+  const validatorErrors = validationResult(req);
+
+  if (validatorErrors.isEmpty()){
+    await commentToUpdate.update(comment);
+    res.redirect(`/posts/${postId}`)
+  } else {
+    const errors = validatorErrors.array().map((error) => error.msg);
+    res.render('edit-comment', {
+      title: 'Edit Comment',
+      comment: { ...comment, id: commentId },
+      errors,
+      csrfToken: req.csrfToken()
+    })
+  }
+}))
+
+// get the delete form
+router.get('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
+  const commentId = parseInt(req.params.commentId, 10);
+  const comment = await db.Comment.findByPk(commentId);
+  const postId = parseInt(req.params.id, 10)
+  res.render('delete-comment', {
+    title: 'Delete Comment',
+    postId,
+    comment,
+    csrfToken: req.csrfToken()
+  })
+}))
+
+// delete the comment
 router.post('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
   const commentId = parseInt(req.params.commentId, 10);
   const comment = await db.Comment.findByPk(commentId);
+  const postId = parseInt(req.params.id, 10);
+  console.log("comment!!!!!!", comment);
+  console.log("postID!!!!", postId)
   await comment.destroy();
-  res.redirect(`/`); // should redirect to the specific post
+  res.redirect(`/posts/${postId}`);
 }));
+
 
 
 module.exports = router

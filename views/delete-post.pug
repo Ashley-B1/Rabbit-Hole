@@ -1,0 +1,14 @@
+extends layout.pug
+
+append head
+  link(rel="stylesheet" href="/stylesheets/delete-post.css")
+block content
+  h3=post.title
+  p=post.content
+  div
+    p Proceed with deleting this story?
+  div
+    form(action=`/posts/${post.id}/delete` method='post')
+      input(type='hidden' name='_csrf' value=csrfToken)
+      button(class='btn-delete' type='submit') Delete Story
+      a(href=`/posts/${post.id}` class="btn-cancel") Cancel

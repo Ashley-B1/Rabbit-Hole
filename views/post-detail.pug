@@ -4,7 +4,7 @@ append head
   link(rel="stylesheet" href="/stylesheets/post-detail.css")
 
 block content
-  h2= post.title
+  h2=post.title
   div(class='post-container')
     a(href=`/users/${post.userId}` class='author')=post.users.userName
     p(class='content')=post.content
@@ -12,8 +12,13 @@ block content
       button(type='submit' class='btn-like') Like
       div(class='like-number') Number of Likes(To be modified)
     div
+      a(class='btn-edit' href=`/posts/${post.id}/edit`) Edit
+      a(class='btn-delete' href=`/posts/${post.id}/delete`) Delete
+    div
       form(action=`/posts/${post.id}/comments/create`)
         input(type="submit" class='btn-write' value= 'Write a Comment')
+
+
   div(class='comment-container' href=`/posts/${post.id}/comments/create`)
     h4 Comments
     if comments
@@ -22,5 +27,7 @@ block content
           div(class='comment-content')
             li=comment.users.userName
             li=comment.content
+            a(href=`/posts/${post.id}/comments/${comment.id}/edit`) Edit
+            a(href=`/posts/${post.id}/comments/${comment.id}/delete`) Delete
     else
       p: em No comments available for this story now.
