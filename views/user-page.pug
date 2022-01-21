@@ -54,6 +54,7 @@ block content
       flex-direction: column;
     }
     .postTitle{
+      text-decoration: none;
       font-size: 24px;
       color: #18A0FB;
     }
@@ -100,7 +101,7 @@ block content
           ul.posts
             li.postDate=post.date
             li.postTitle
-              a(href=`/posts/${post.postId}`) #{post.title}
+              a(href=`/posts/${post.postId}` class='postTitle') #{post.title}
             li.postContent=post.content
           div.likesAndComments
             div.likes
