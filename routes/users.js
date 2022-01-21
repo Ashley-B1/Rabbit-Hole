@@ -101,33 +101,18 @@ router.route('/:id(\\d+)')
       model: db.Post,
       as: 'posts',
       order: [['createdAt', 'DESC']],
-      include: [
-        {
+      include: [{
         model: db.PostLike,
         as: 'postLikes'
-      },
-
-      {
+      }, {
         model: db.Comment,
-      as: 'comments',
+        as: 'comments',
+      }]
     }
-    ]
-      // model: db.Follow,
-      // as: 'followings',
-      // model: db.Follow,
-      // as: 'followers',
-    }
-  })
+  });
 
-console.log(`debugger`);
-console.log(userQuery);
-
-
-  /* const likesCount = await db.PostLike.findAll({where: userId });
-  const followers = (await db.Follow.findAll({where: userId})).length || 0;
-  const followersCount = `${followers} ${(followers > 1 || followers <= 0) ? 'Followers' : 'Follower'}`;
-
-  const posts = await db.Post.findAll({where: { userId }, order: [["createdAt", "DESC"]]});
+  console.log(`debugger`);
+  console.log(userQuery);
 
   const dates = [];
 
