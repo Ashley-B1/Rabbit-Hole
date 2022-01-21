@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+  margin: 5px 10px;
+}
+
+.author {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  color:#2e7cfa;
+  margin: 10px;
+}
+
+.like-number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  color:#2e7cfa;
+  margin: 10px;
+}
+
+.content {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  color:gray;
+  margin: 40px 10px;
+}
+
+h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  margin: 10px;
+}
+
+.btn-like {
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #2e7cfa;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  margin: 5px 10px;
+}
+
+.btn-write {
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #faac04;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  margin: 5px 10px;
+}
+
+.comment-content {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  margin: 25px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a:link { text-decoration: none}
+
+a:visited { text-decoration: none}
+
+a:hover {
+  text-decoration: underline;
+}

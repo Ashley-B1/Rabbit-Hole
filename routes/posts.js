@@ -87,11 +87,13 @@ router.post('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
 // Comments route handlers below
 
 
-// Need to checked the path
+// Checked, works
 router.get(`/:id/comments/create`, csrfProtection, asyncHandler(async (req, res) => {
   const comment = db.Comment.build();
+  const postId = req.params.id
   res.render('create-comment', {
     title: 'Add a comment',
+    postId,
     comment,
     csrfToken: req.csrfToken()
   })
@@ -137,6 +139,7 @@ router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHand
 }))
 
 // Add a edit route
+// router.
 
 // Haven't checked yet.
 router.post('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
