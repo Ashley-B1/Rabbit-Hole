@@ -101,13 +101,17 @@ router.route('/:id(\\d+)')
       model: db.Post,
       as: 'posts',
       order: [['createdAt', 'DESC']],
-      include: {
+      include: [
+        {
         model: db.PostLike,
         as: 'postLikes'
       },
 
-      model: db.Comment,
+      {
+        model: db.Comment,
       as: 'comments',
+    }
+    ]
       // model: db.Follow,
       // as: 'followings',
       // model: db.Follow,
@@ -160,13 +164,13 @@ console.log(userQuery);
 
 
 //todo:
-// router.route('/follows')
-// .get((req, res) => {
+router.route('/follows')
+.get((req, res) => {
 
-//   res.render('user-follows-page', {
+  res.render('user-follows-page', {
 
-//   });
-// });
+  });
+});
 
 
 module.exports = router;
