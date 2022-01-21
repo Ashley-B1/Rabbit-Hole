@@ -89,7 +89,7 @@ block content
   div.main
     ul.sub-nav
       li=userName
-      //- li=followersCount
+      li=`followers (implement on weekend) ${followersCount}`
       li.submit-button
         a(href='/' role='button') Follow (currently routed to /)
     div.posts-container Render Posts here!
