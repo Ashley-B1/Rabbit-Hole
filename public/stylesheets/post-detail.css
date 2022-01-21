@@ -45,6 +45,28 @@ h4 {
   margin: 5px 10px;
 }
 
+.btn-edit {
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #03926e;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  margin: 5px 10px;
+}
+
+.btn-delete {
+  border-radius: 10px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #bd0303;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  margin: 5px 10px;
+}
+
 .btn-write {
   border-radius: 10px;
   padding: 10px 20px;
