@@ -25,33 +25,34 @@ router.get('/create', csrfProtection, async(req, res) => {
   })
 })
 
-// Not works, only display 404 not found, no other error message
+// works
 router.post('/create', postValidators, csrfProtection, asyncHandler(async(req, res) => {
   const { title, content } = req.body;
 
+  const userId = req.session.auth.userId;
   const post = db.Post.build({
-    userId: req.session.auth.userId,
+    userId: userId,
     title,
     content
   })
 
-  console.log("WWWWWW")
-  res.redirect(`/`)
 
-  // const validationErrors = validationResult(req);
+  const validationErrors = validationResult(req);
 
-  // if (validationErrors.isEmpty()) {
-  //   await post.save();
-  //   res.redirect('/'); // maybe redirect to user profile page
-  // } else {
-  //   const errors = validationErrors.array().map((error) => error.msg);
-  //   res.render('create-post', {
-  //     title: 'Add New Story',
-  //     post,
-  //     errors,
-  //     csrfToken: req.csrfToken()
-  //   })
-  // }
+  if (validationErrors.isEmpty()) {
+      await post.save();
+      res.redirect(`/users/${userId}`);
+
+  } else {
+      const errors = validationErrors.array().map((error) => error.msg);
+      res.render('create-post', {
+            title: 'Add New Story',
+            post,
+            errors,
+            csrfToken: req.csrfToken()
+        })
+      }
+    res.redirect(`/posts/create`)
 }))
 
 
@@ -63,8 +64,11 @@ router.get(`/:id`, asyncHandler(async (req, res) => {
   const comments = await db.Comment.findAll({
     where: {
       postId: postId
-    }
-  })
+    },
+    include: ['users'],
+    order: [["createdAt", "DESC"]]
+  });
+
   res.render('post-detail', { post, comments })
 
 }));
@@ -104,10 +108,12 @@ const commentValidators = [
 router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHandler( async (req, res) => {
   const { content } = req.body;
 
-  const postId = parserInt(req.params.id, 10);
+  const postId = parseInt(req.params.id, 10);
+
+  const userId = req.session.auth.userId;
 
   const comment = db.Comment.build({
-    // userId: res.locals.user.id,
+    userId: userId,
     postId,
     content
   })
