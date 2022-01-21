@@ -89,20 +89,20 @@ block content
   div.main
     ul.sub-nav
       li=userName
-      li=followersCount
+      //- li=followersCount
       li.submit-button
         a(href='/' role='button') Follow (currently routed to /)
     div.posts-container Render Posts here!
       each post in posts
         div.post-object
           ul.posts
-            li.postDate=dates[postId]
+            li.postDate=post.date
             li.postTitle=post.title
             li.postContent=post.content
           div.likesAndComments
             div.likes
               img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
-              div.likesCount=likesCount
+              div.likesCount=post.likesCount
             div.comments
               img.commentIcon(src='./icons/comment.svg.png', alt="logo")
-              div.commentsCount=commentsCount
+              div.commentsCount=post.commentsCount
