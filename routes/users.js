@@ -113,7 +113,8 @@ router.route('/:id(\\d+)')
       }, {
         model: db.Comment,
         as: 'comments',
-      }]
+      },
+    ]
     }
   });
 
