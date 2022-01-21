@@ -96,7 +96,7 @@ router.route('/create')
 router.route('/:id(\\d+)')
 .get(asyncHandler(async(req, res) => {
   const userId = parseInt(req.params.id, 10);
-  const userName = await db.User.findByPk(userId, {
+  const userQuery = await db.User.findByPk(userId, {
     include: {
       model: db.Post,
       as: 'posts',
@@ -105,18 +105,19 @@ router.route('/:id(\\d+)')
         model: db.PostLike,
         as: 'postLikes'
       },
+
       model: db.Comment,
       as: 'comments',
       // model: db.Follow,
       // as: 'followings',
       // model: db.Follow,
       // as: 'followers',
-
     }
   })
-  console.log('Hello')  
 
-console.log(`debugger ${userName}`);
+console.log(`debugger`);
+console.log(userQuery);
+
 
   /* const likesCount = await db.PostLike.findAll({where: userId });
   const followers = (await db.Follow.findAll({where: userId})).length || 0;
