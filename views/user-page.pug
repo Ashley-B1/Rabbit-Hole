@@ -11,7 +11,8 @@ block content
       li=`followers (implement on weekend) ${followersCount}`
       li.submit-button
         a(href='/' role='button') Follow api route make it green?
-    div.posts-container Render Posts here!
+    div.posts-container
+      h2=`${firstName} ${lastName}`
       div.line-break
       if posts === null
         div No posts! Start Writing!
