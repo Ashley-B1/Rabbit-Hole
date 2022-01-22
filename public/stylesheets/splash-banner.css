@@ -16,6 +16,8 @@
   display: flex;
   justify-content: center;
   font-family: 'Barlow', sans-serif;
+  box-shadow: inset 0 1px 5px white;
+  margin-top: 1px;
 }
 
 .banner-title {

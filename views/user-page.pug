@@ -1,114 +1,44 @@
 extends layout.pug
 
-block content
-  p=`Hello this is the user page of ${userName}`
-  style(type='text/css').
-    *{
-      list-style: none;
-      text-decoration: none;
-      font-family: 'Montserrat', sans-serif;
-      //- background: #242424;
-      //- font-family: sans-serif;
-      //- color: #36bcff;
-      box-sizing: border-box;
-    }
-    .main{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-    .sub-nav{
-      display: flex;
-      flex-direction: row;
-      border: 2px solid #1786ff;
-      border-radius: 2px;
-      justify-content: space-between;
-      padding: 2px;
-      width: 600px;
-    }
-    .submit-button{
-      border: 2px solid #00cc70;
-      color: #00cc70;
-    }
-    .posts-container{
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border: 2px solid #1786ff;
-      border-radius: 2px;
-      padding: 10px;
-      align-items: center;
-      width: 60%;
-    }
-    .post-object{
-      border: 2px solid #ff9705;
-      border-radius: 2px;
-      width: 100%;
-      padding-top: 20px;
-      padding-bottom: 20px;
-      margin: 10px;
-    }
-    .posts{
-      display: flex;
-      flex-direction: column;
-    }
-    .postTitle{
-      text-decoration: none;
-      font-size: 24px;
-      color: #18A0FB;
-    }
-    .postContent{
-      color: gray;
-    }
-    .likesAndComments{
-      display: flex;
-      flex-direction: row;
-      width: 100px;
-      margin-left: 40px;
-      justify-content: space-between;
-    }
-    .likes{
-      display: flex;
-      flex-direction: row;
-      width: 40px;
-      justify-content: space-between;
-    }
-    .comments{
-      display: flex;
-      flex-direction: row;
-      width: 40px;
-      justify-content: space-between;
-    }
-    .likeIcon{
-      width: 20px;
-      height: 20px;
-    }
-    .commentIcon{
-      width: 20px;
-      height: 20px;
-    }
+append head
+  link(rel="stylesheet" href="/stylesheets/user-page.css")
 
+block content
+  br
   div.main
-    ul.sub-nav
-      li=userName
-      li=`followers (implement on weekend) ${followersCount}`
-      li.submit-button
-        a(href='/' role='button') Follow (currently routed to /)
-    div.posts-container Render Posts here!
-      each post in posts
-        div.post-object
-          ul.posts
-            li.postDate=post.date
-            li.postTitle
-              a(href=`/posts/${post.postId}` class='postTitle') #{post.title}
-            li.postContent=post.content
-          div.likesAndComments
-            div.likes
-              a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
-                img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
-              div.likesCount=post.likesCount
-            div.comments
-              a(href='')
-                img.commentIcon(src='./icons/comment.svg.png', alt="logo")
-              div.commentsCount=post.commentsCount
+    //- ul.sub-nav
+      //- li=userName
+      //- li=`followers (implement on weekend) ${followersCount}`
+      //- li.submit-button
+      //-   a(href='/' role='button') Follow api route make it green?
+    div.posts-container
+      h2=`${firstName} ${lastName}`
+      div.line-break
+      if posts.length
+        each post in posts
+          div.post-object
+            ul.posts
+              li.postDate=post.date
+              li.postTitle
+                a(href=`/posts/${post.postId}` class='postTitle') #{post.title}
+              li.postContent=post.content
+            div.likesAndComments
+              //- div.likes
+                //- a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
+                //-   img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
+                //- div.likesCount=post.likesCount
+              div.comments
+                a(href=`/posts/${post.postId}`)
+                  img.commentIcon(src='./icons/comment.svg.png', alt="logo")
+                div.commentsCount=post.commentsCount
+          div.line-break
+      else
+        if userId === locals.user.id
+          div You haven't written any posts yet. Why not start now?
+            button
+              a(href='/posts/create') Write
+        else 
+          div #{firstName} #{lastName} hasn't written any posts yet. Have you?
+            button
+              a(href='/users/login') Write
+

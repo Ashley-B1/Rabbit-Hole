@@ -11,24 +11,24 @@ html
     div#header
       div.left-nav
         div#icon
-          a(href='/')
-            img.logo(src="/splash-imgs/rabbit_hole_logo.jpeg", alt="logo")
+          a(href='/' class='rabbit-logo')
+            img.rabbit-logo(src="./splash-imgs/rabbit-hole-icon.png", alt="logo")
         div#title
           h1= title
       div.right-nav
         ul
-          li
-            a(href='/posts/create') Write
           if locals.authenticated
+            li
+              a(href='/posts/create') Write
             li
               a(href='/users/logout') Logout
-          else
-            li
-              a(href='/users/login') Sign In
-          if locals.authenticated
             li
               a(href=`/users/${locals.user.id}`) My Page
           else
+            li 
+              a(href='/users/login') Write
+            li
+              a(href='/users/login') Sign In
             li#sign-up
               button
                 a(href='/users/create') Register

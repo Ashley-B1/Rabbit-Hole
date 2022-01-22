@@ -4,6 +4,7 @@ include utils.pug
 append head
   link(rel="stylesheet" href="/stylesheets/create-post.css")
 block content
+  br
   +validationErrorSummary(errors)
   div.post-area
     form(action=`/posts/${post.id}/edit` method='post')

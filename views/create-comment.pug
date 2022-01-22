@@ -5,6 +5,7 @@ append head
   link(rel="stylesheet" href="/stylesheets/create-comment.css")
 
 block content
+  br
   +validationErrorSummary(errors)
   div.comment-area
     form(action=`/posts/${postId}/comments/create` method="post")

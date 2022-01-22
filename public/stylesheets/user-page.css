@@ -1,0 +1,92 @@
+*{
+  list-style: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.sub-nav{
+  display: flex;
+  flex-direction: row;
+  border: 2px solid #1786ff;
+  border-radius: 2px;
+  justify-content: space-between;
+  padding: 2px;
+  width: 600px;
+}
+.submit-button{
+  border: 2px solid #00cc70;
+  color: #00cc70;
+}
+.posts-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 2px solid #1786ff;
+  border-radius: 2px;
+  padding: 10px;
+  align-items: center;
+  width: 60%;
+}
+.post-object{
+  width: 100%;
+  padding-left: 20px;
+  margin: 10px;
+}
+.posts{
+  display: flex;
+  flex-direction: column;
+}
+.postDate{
+  color: gray;
+}
+.postTitle{
+  text-decoration: none;
+  font-size: 24px;
+  color: #18A0FB;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.postContent{
+  color: black;
+}
+.likesAndComments{
+  display: flex;
+  flex-direction: row;
+  width: 100px;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+.likes{
+  display: flex;
+  flex-direction: row;
+  width: 40px;
+  justify-content: space-between;
+}
+.comments{
+  display: flex;
+  flex-direction: row;
+  width: 40px;
+  justify-content: space-between;
+}
+.likeIcon{
+  width: 20px;
+  height: 20px;
+}
+.commentIcon{
+  width: 20px;
+  height: 20px;
+}
+.line-break{
+  background-color: rgb(61, 61, 61);
+  width: 95%;
+  height: 1px;
+  margin-top: 20px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
