@@ -37,6 +37,14 @@ module.exports = {
       createdAt: new Date(),
       updatedAt: new Date(),
     },
+    { userName: 'mAurelius121',
+      firstName: 'Marcus',
+      lastName: 'Aurelius',
+      email: 'mAurelius121@romanEmpire.gov',
+      hashedPassword: bcrypt.hashSync('stoicismRule5'),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
   ], {}),
 
   down: (queryInterface, Sequelize) => queryInterface.bulkDelete('Users', null, {})

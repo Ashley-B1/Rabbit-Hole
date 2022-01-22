@@ -8,7 +8,7 @@ router.route('/')
   const posts = await db.Post.findAll({ limit: 6 })
 
   // console.log(posts);
-  res.render('home-page', { title: 'rabbit hole', posts })
+  res.render('home-page', { title: 'Rabbit Hole', posts })
 }));
 
 module.exports = router;

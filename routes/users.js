@@ -121,7 +121,8 @@ router.route('/:id(\\d+)')
       }, {
         model: db.Comment,
         as: 'comments',
-      }]
+      },
+    ]
     }
   });
 
@@ -154,7 +155,11 @@ router.route('/:id(\\d+)')
     // console.log(posts)
 
     res.render('user-page', {
+      title: `${queryData.firstName} ${queryData.lastName}${queryData.lastName.endsWith('s') ? '\'' : '\'s'} Page`,
+      firstName: queryData.firstName,
+      lastName: queryData.lastName,
       userName: queryData.userName,
+      userId,
       posts,
     })
 
