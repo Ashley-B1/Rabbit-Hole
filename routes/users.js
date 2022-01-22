@@ -167,13 +167,21 @@ router.route('/:id(\\d+)')
 
 
 // //todo:
-// router.route('/follows')
-// .get((req, res) => {
+router.route('/follows')
+.get(asyncHandler(async(req, res) => {
 
-//   res.render('user-follows-page', {
+  console.log('hello world');
+  console.log('debugger');
 
-//   });
-// });
+  const posts = await db.Post.findAll();
+
+  res.json({posts});
+  // res.render('user-follows-page', {
+  // });
+
+}));
+
+
 
 
 module.exports = router;

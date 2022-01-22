@@ -2,10 +2,21 @@ extends layout.pug
 
 append head
   link(rel="stylesheet" href="/stylesheets/user-page.css")
+  script(type="module" src="/javascripts/user-followers.js")
 
 block content
+  style(type="text/css").
+      .postsContainer {
+        border: 3px solid black;
+        border-radius: 4px;
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 100px;
+      }
   br
-  div.likesContainer
+  div.postsContainer
   div.main
     //- ul.sub-nav
       //- li=userName
@@ -24,7 +35,7 @@ block content
                 a(href=`/posts/${post.postId}` class='postTitle') #{post.title}
               li.postContent=post.content
             div.likesAndComments
-              div.likes Likes
+              div#likes-icon Likes
               //- div.likes
                 //- a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
                   //- img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
@@ -44,4 +55,4 @@ block content
             div #{firstName} #{lastName} hasn't written any posts yet. Have you?
               button
                 a(href='/users/login') Write
-  script(type="module" src="javascripts/user-followers.js")
+  
