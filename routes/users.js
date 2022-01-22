@@ -151,7 +151,7 @@ router.route('/:id(\\d+)')
       firstName: queryData.firstName,
       lastName: queryData.lastName,
       userName: queryData.userName,
-      posts: posts || null,
+      posts,
     })
   
 }));

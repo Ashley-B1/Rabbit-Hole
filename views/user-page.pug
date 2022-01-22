@@ -14,9 +14,7 @@ block content
     div.posts-container
       h2=`${firstName} ${lastName}`
       div.line-break
-      if posts === null
-        div No posts! Start Writing!
-      else
+      if posts.length
         each post in posts
           div.post-object
             ul.posts
@@ -34,4 +32,13 @@ block content
                   img.commentIcon(src='./icons/comment.svg.png', alt="logo")
                 div.commentsCount=post.commentsCount
           div.line-break
+      else
+        if locals.authenticated
+          div You haven't written any posts yet. Why not start now?
+            button
+              a(href='/posts/create') Write
+        else 
+          div #{firstName} #{lastName} hasn't written any posts yet. Have you?
+            button
+              a(href='/users/login') Write
 
