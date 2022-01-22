@@ -19,7 +19,7 @@ block content
         h2 You're in the right place.
     div#write-button
       button.create-post
-        a(href=`/${locals.authenticated ? 'posts/create' : 'users/login'}`) Start Writing
+        a(name='feed' href=`/${locals.authenticated ? 'posts/create' : 'users/login'}`) Start Writing
   div#rh-feed
     div.feed-heading
       p.feed-title What's new in the rabbit hole?
@@ -72,16 +72,16 @@ block content
         blockquote -- White Rabbit
         span.book-reference 'Alice In Wonderland'
       button.join-btn
-        a(href="#") Join Today
+        a(href='/users/create') Join Today
       button.login-btn
-        a(href="#") Sign In
+        a(href='/users/login') Sign In
   div#splash-footer
     div.footer-links
       ul.footer-nav-right
         li
-          a(href="#") Write
+          a(href=`/${locals.authenticated ? 'posts/create' : 'users/login'}`) Write
         li
-          a(href="#") Feed
+          a(href="#feed") Feed
         li
           a(href="#") Company
       div.icon-link
