@@ -10,9 +10,12 @@
 #header {
   display: flex;
   justify-content: space-between;
+  color: #18A0FB;
   height: 100px;
   box-shadow: 0 1px 10px gray;
   z-index: 5;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
 }
 
 .left-nav {
@@ -37,9 +40,9 @@
 h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
+  color: #18A0FB;
   letter-spacing: .1px;
   font-size: 32px;
-  color: #18A0FB;
 }
 
 .right-nav {
@@ -53,13 +56,14 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  font-weight: bolder;
 }
 
 .right-nav ul li{
   display: inline-flex;
   padding: 5px;
+  /* font-family: 'Barlow', sans-serif; */
   color: #18A0FB;
-  font-family: 'Barlow', sans-serif;
 }
 
 .right-nav ul li a {
@@ -81,10 +85,3 @@ h1 {
 #sign-up button a {
   color: white;
 }
-
-/* @media screen and (max-width: 930px){
-  .boards__board{
-    max-width: none;
-    width: 100%;
-  }
-} */
