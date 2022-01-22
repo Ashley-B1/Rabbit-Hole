@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
 
 #splash-footer {
-  border: solid red 2px;
   padding: 30px;
 }
 
 .footer-links {
-  /* DO NOT DELETE BORDER: for production use */
   border-bottom: solid 1px black;
   display: flex;
   justify-content: space-between;
@@ -14,7 +13,6 @@
 }
 
 .footer-nav-right {
-  border: solid pink 2px;
   padding: 10px;
 }
 
@@ -25,16 +23,15 @@
 }
 
 .footer-nav-right li a {
-  color: black;
   text-decoration: none;
   font-size: 20px;
+  color: black;
 }
 
 .icon-link {
   margin-top: 50px;
-  border: solid blue 2px;
   padding: 2px;
-  width: 5%;
+  width: 7.2%;
   height: fit-content;
 }
 
@@ -43,7 +40,6 @@
 }
 
 .footer-nav-left {
-  border: solid yellow 2px;
   padding: 10px;
 }
 
@@ -59,6 +55,62 @@
   font-size: 20px;
 }
 
+.foot-notes {
+  padding: 15px;
+}
+
 .footer-collaborators {
-  border: solid peachpuff 2px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.team-mates {
+  padding: 30px;
+  display: flex;
+}
+
+.photo-div {
+  padding: 2px;
+  width: 100px;
+  height: 100px;
+}
+
+#hamlet {
+  width: 100%;
+  border-radius: 100%;
+}
+
+#mitch {
+  width: 100%;
+  border-radius: 100%;
+}
+
+#skye {
+  width: 100%;
+  border-radius: 100%;
+}
+
+#wan-yi {
+  width: 100%;
+  border-radius: 100%;
+}
+
+.rh-copyright {
+  display: flex;
+  padding: 15px;
+  justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.site-date {
+  border-right: solid black 1px;
+  padding: 5px;
+  height: fit-content;
+  margin-top: 7px;
+  line-height: 5px;
+}
+
+.motto {
+  padding: 5px;
 }
