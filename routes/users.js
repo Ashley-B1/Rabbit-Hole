@@ -115,8 +115,36 @@ router.route('/:id(\\d+)')
       model: db.Post,
       as: 'posts',
       order: [['createdAt', 'DESC']],
+      include: [{
+        model: db.PostLike,
+        as: 'postLikes',
+      }, {
+        model: db.Comment,
+        as: 'comments',
+      }],
     }
   });
+
+  const posts = [];
+  
+  for(const post of queryData.posts){
+    const month = [
+      'Jan', 'Feb', 'Mar', 'Apr',
+      'May', 'Jun', 'Jul', 'Aug',
+      'Sep', 'Oct', 'Nov', 'Dec'
+    ][post.createdAt.getMonth()];
+    const day = post.createdAt.getDay() + 1;
+    const year = post.createdAt.getFullYear();
+    
+    posts.push({
+      date: `${month} ${day}, ${year}`,
+      postId: post.id,
+      title: post.title,
+      content: post.content,
+      likesCount: post.postLikes.length,
+      commentsCount: post.comments.length,
+    });
+  };
 
   res.render('user-page', {
     title: `${queryData.firstName} ${queryData.lastName}${queryData.lastName.endsWith('s') ? '\'' : '\'s'} Page`,
@@ -124,6 +152,7 @@ router.route('/:id(\\d+)')
     lastName: queryData.lastName,
     userName: queryData.userName,
     userId,
+    posts,
     theUserHasWrittenAPost: queryData.posts.length
   })
 
@@ -132,6 +161,7 @@ router.route('/:id(\\d+)')
 
 router.route('/get-posts')
 .get(asyncHandler(async(req, res) => {
+
   const qposts = await db.Post.findAll({
     order: [['createdAt', 'DESC']],
     include: [{
