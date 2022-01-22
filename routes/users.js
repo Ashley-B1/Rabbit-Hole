@@ -115,58 +115,21 @@ router.route('/:id(\\d+)')
       model: db.Post,
       as: 'posts',
       order: [['createdAt', 'DESC']],
-      include: [{
-        model: db.PostLike,
-        as: 'postLikes'
-      }, {
-        model: db.Comment,
-        as: 'comments',
-      },
-    ]
     }
   });
 
-  // console.log(`debugger`);
-  // console.log(queryData);
-
-  // const posts = [];
-
-  // for(const post of queryData.posts){
-  //     const month = [
-  //       'Jan', 'Feb', 'Mar', 'Apr',
-  //       'May', 'Jun', 'Jul', 'Aug',
-  //       'Sep', 'Oct', 'Nov', 'Dec'
-  //     ][post.createdAt.getMonth()];
-  //     const day = post.createdAt.getDay() + 1;
-  //     const year = post.createdAt.getFullYear();
-
-  //     posts.push({
-  //         date: `${month} ${day}, ${year}`,
-  //         postId: post.id,
-  //         title: post.title,
-  //         content: post.content,
-  //         likesCount: post.postLikes.length,
-  //         commentsCount: post.comments.length,
-  //       });
-  //   };
-
-  //   // console.log('debugger')
-  //   // console.log('posts')
-  //   // console.log(posts)
-
-    res.render('user-page', {
-      title: `${queryData.firstName} ${queryData.lastName}${queryData.lastName.endsWith('s') ? '\'' : '\'s'} Page`,
-      firstName: queryData.firstName,
-      lastName: queryData.lastName,
-      userName: queryData.userName,
-      userId,
-      postsLength: queryData.posts.length
-    })
+  res.render('user-page', {
+    title: `${queryData.firstName} ${queryData.lastName}${queryData.lastName.endsWith('s') ? '\'' : '\'s'} Page`,
+    firstName: queryData.firstName,
+    lastName: queryData.lastName,
+    userName: queryData.userName,
+    userId,
+    theUserHasWrittenAPost: queryData.posts.length
+  })
 
 }));
 
 
-// //todo:
 router.route('/get-posts')
 .get(asyncHandler(async(req, res) => {
   const qposts = await db.Post.findAll({
@@ -202,7 +165,6 @@ router.route('/get-posts')
   };
   
   res.json({posts});
-
 }));
 
 
