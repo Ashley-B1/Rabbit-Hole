@@ -39,17 +39,82 @@ const getPosts = async () => {
   const {posts} = await res.json();
   const postsContainer = document.querySelector('.postsContainer');
   const postsHTML = posts.map(({title, content}) => 
-  `
-  <div class="card">
-    <div class="card-header">${title}</div>
-    <div class="card-body">
-      <p class="card-text">${content}</p>
-    </div>
+  // `
+  // <div class="card">
+  //   <div class="card-header">${title}</div>
+  //   <div class="card-body">
+  //     <p class="card-text">${content}</p>
+  //   </div>
+  // </div>
+  // `
+
+`
+  <div class='post-object'>
+    <ul class='posts'>
+      <li class='postDate'>{date}</li>
+      <li class='postTitle'>
+        <a href="/posts/{postId}" class='postTitle'>
+          ${title}
+        </a>
+      </li>
+      <li class='postContent'>${content}</li>
+    </ul>
+    <div class='likesAndComments'>
+      <div class='likes'>
+        <a href="/posts/{postId}"></a>
+          <img class='likeIcon' src="./icons/like-thumbs-up.png" alt="like-icon">
+        <div class='likesCount'>{post.commentsCount}</div>
+      <div class='comments'>
+        <a href="/posts/{postId}"></a>
+          <img class='commentIcon' src="./icons/comment.svg.png" alt="comment-icon">
+        <div class="commentsCount">{commentsCount}</div>
+      </div>
+    </div>  
   </div>
-  `
+  <div class='line-break'></div>
+`
+
+
   );
   postsContainer.innerHTML = postsHTML.join('');
 }
+
+
+
+// const getPosts = async () => {
+//   const res = await fetch('/likes/', {
+//     method: 'GET',
+//     headers: {"Content-Type": "application/json"},
+//   })
+  
+//   const {posts} = await res.json();
+//   const postsContainer = document.querySelector('.postsContainer');
+//   const postsHTML = posts.map(({date, title, postId, content, postId, likesCount, commentsCount}) => 
+//   `
+//   <div class='post-object'>
+//     <ul class='posts'>
+//       <li class='postDate'>${date}</li>
+//       <li class='postTitle'>
+//         <a href="/posts/${postId}" class='postTitle'>
+//           ${title}
+//         </a>
+//       </li>
+//       <li class='postContent'>${content}</li>
+//     </ul>
+//     <div class='likesAndComments'>
+//       <div class='comments'>
+//         <a href="/posts/${postId}"></a>
+//           <img class='commentIcon' src="./iconts/comment.svg.png" alt="logo">
+//         <div class="commentsCount">${commentsCount}</div>
+//       </div>
+//     </div>  
+//   </div>
+//   <div class='line-break'></div>
+//   `
+//   );
+//   postsContainer.innerHTML = postsHTML.join('');
+// }
+
 
 document.addEventListener("DOMContentLoaded", async () => {
   console.log('debugger')
@@ -60,76 +125,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error(e);
   }
 });
-
-
-// const button = document.querySelector('#likes-icon')
-// button.addEventListener('click', async (e) => {
-//   e.preventDefault();
-
-//   try {
-//     const res = await fetch("http://localhost:8080/tweets", {
-//       method: "POST",
-//       body: JSON.stringify(body),
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     }),
-//   } catch (err) {
-//     console.error(err);
-//   }
-// }
-// )
-
-const res = await fetch('/users/likes', {
-  method: 'POST',
-  headers: {"Content-Type": "application/json"},
-})
-
-const {posts} = await res.json();
-const postsContainer = document.querySelector('.postsContainer');
-const postsHTML = posts.map(({title, content}) => 
-`
-<div class="card">
-  <div class="card-header">${title}</div>
-  <div class="card-body">
-    <p class="card-text">${content}</p>
-  </div>
-</div>
-`
-);
-postsContainer.innerHTML = postsHTML.join('');
-
-
-
-// const form = document.querySelector(".create-form");
-
-// form.addEventListener("submit", async (e) => {
-//   e.preventDefault();
-//   const formData = new FormData(form);
-//   const message = formData.get("message");
-//   const body = { message };
-//   try {
-//     const res = await fetch("http://localhost:8080/tweets", {
-//       method: "POST",
-//       body: JSON.stringify(body),
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${localStorage.getItem(
-//           "TWITTER_LITE_ACCESS_TOKEN"
-//         )}`,
-//       },
-//     });
-//     if (res.status === 401) {
-//       window.location.href = "/log-in";
-//       return;
-//     }
-//     if (!res.ok) {
-//       throw res;
-//     }
-//     form.reset();
-//     await fetchTweets();
-//   } catch (err) {
-//     handleErrors(err);
-//   }
-// });
 

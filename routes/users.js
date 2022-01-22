@@ -173,11 +173,55 @@ router.route('/follows')
   console.log('hello world');
   console.log('debugger');
 
-  const posts = await db.Post.findAll();
+  const posts = await db.Post.findAll({
+    order: [['createdAt', 'DESC']],
+    include: [{
+      model: db.PostLike,
+      as: 'postLikes',
+    }, {
+      model: db.Comment,
+      as: 'comments',
+    }],
+  });
 
   res.json({posts});
-  // res.render('user-follows-page', {
-  // });
+
+  // const userId = parseInt(req.params.id, 10);
+  // const queryData = await db.Post.findAll({
+  //   where: userId,
+  //   order: [['createdAt', 'DESC']],
+  //   include: [{
+  //     model: db.PostLike,
+  //     as: 'postLikes',
+  //   }, {
+  //     model: db.Comment,
+  //     as: 'comments',
+  //   }],
+  //   })
+
+  // const posts = [];
+
+  // for(const post of queryData){
+  //     const month = [
+  //       'Jan', 'Feb', 'Mar', 'Apr',
+  //       'May', 'Jun', 'Jul', 'Aug',
+  //       'Sep', 'Oct', 'Nov', 'Dec'
+  //     ][post.createdAt.getMonth()];
+  //     const day = post.createdAt.getDay() + 1;
+  //     const year = post.createdAt.getFullYear();
+
+  //     posts.push({
+  //         date: `${month} ${day}, ${year}`,
+  //         postId: post.id,
+  //         title: post.title,
+  //         content: post.content,
+  //         likesCount: post.postLikes.length,
+  //         commentsCount: post.comments.length,
+  //       });
+  //   };
+
+  //   // console.log(posts);
+  //   res.json({queryData});
 
 }));
 
