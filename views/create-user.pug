@@ -13,7 +13,7 @@ block content
 
   div
     +validationErrorSummary(errors)
-    form(class="form-style" action='/user/create' method='post')
+    form(class="form-style" action='/users/create' method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
       img.form-logo(src="./splash-imgs/rabbit_hole_logo.jpeg", alt="logo")
       h4 Sign up for a free account
@@ -30,8 +30,8 @@ block content
         li
           input(type="password" name="confirmPassword" class="field-style field-full align-none" placeholder="Confirm password" value= '' )
         div
-          button(class='sign-up' type='submit')
-            a(href="/users/create") Register
+          button(class='sign-up' type='submit') Register
+            //- a(href="/users/create")
   div.sign-in-text
     p Already part of the community?
       span: a(href='/users/login')  Sign In
@@ -39,7 +39,7 @@ block content
 
   //- div.form-container
   //-   +validationErrorSummary(errors)
-  //-   form(action='/user/create' method='post')
+  //-   form(action='/users/create' method='post')
   //-       input(type='hidden' name='_csrf' value=csrfToken)
   //-       h4 Sign up for a free account
   //-       +field('Username', 'userName', user.userName)
