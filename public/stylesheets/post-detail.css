@@ -1,17 +1,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 
+.article-post {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+}
+.post-container {
+  /* border: green 2px solid; */
+  padding: 5px;
+  width: 800px;
+}
+
+/* .comment-container {
+  border: red 2px solid;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+} */
+
 h2 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Monserrat', sans-serif;
+  font-weight: normal;
   font-size: 50px;
   margin: 5px 10px;
 }
 
 .author {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
+  font-family: 'Monserrat', sans-serif;
+  font-weight: lighter;
+  font-size: 25px;
   color:#2e7cfa;
   margin: 10px;
+}
+
+.timestamp {
+  font-family: 'Monserrat', sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
 }
 
 .like-number {
@@ -22,16 +48,18 @@ h2 {
 }
 
 .content {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Monserrat', sans-serif;
+  font-weight: lighter;
   font-size: 30px;
-  color:gray;
-  margin: 40px 10px;
+  color:rgb(95, 93, 93);
+  margin: 30px 10px;
 }
 
 h4 {
   font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
-  margin: 10px;
+
+  font-size: 25px;
+  margin: 15px;
 }
 
 .btn-like {
@@ -49,9 +77,9 @@ h4 {
   border-radius: 10px;
   padding: 10px 20px;
   color: white;
-  background-color: #03926e;
+  background-color: #18A0FB;
   border: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Monserrat', sans-serif;
   font-size: 15px;
   margin: 5px 10px;
 }
@@ -62,7 +90,7 @@ h4 {
   color: white;
   background-color: #bd0303;
   border: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Monserrat', sans-serif;
   font-size: 15px;
   margin: 5px 10px;
 }
@@ -71,17 +99,44 @@ h4 {
   border-radius: 10px;
   padding: 10px 20px;
   color: white;
-  background-color: #faac04;
+  background-color: #029b28;
   border: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Monserrat', sans-serif;
   font-size: 15px;
-  margin: 5px 10px;
+  margin: 10px 10px;
 }
 
-.comment-content {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
-  margin: 25px;
+.username {
+  font-family: 'Monserrat', sans-serif;
+  font-size: 20px;
+  margin: 15px 10px 2px 10px;
+}
+
+.comment {
+  font-family: 'Monserrat', sans-serif;
+  font-weight: lighter;
+  font-size: 17px;
+  margin: 2px 10px;
+}
+
+.delete-comment {
+  border-radius: 10px;
+  font-family: 'Monserrat', sans-serif;
+  font-size: 12px;
+  padding: 7px 10px;
+  color: white;
+  background-color: #bd0303;
+  margin: 5px;
+}
+
+.edit-comment {
+  border-radius: 10px;
+  font-family: 'Monserrat', sans-serif;
+  font-size: 12px;
+  padding: 7px 10px;
+  color: white;
+  background-color: #18A0FB;
+  margin: 5px;
 }
 
 ul {

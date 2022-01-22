@@ -14,7 +14,6 @@ const db = require('../db/models');
 router.use(express.static('./images'));
 
 
-
 router.route('/')
 .get(asyncHandler(async(req, res) => {
   const users = await db.User.findAll({order: [['createdAt', 'ASC']]});
@@ -69,7 +68,14 @@ router.route('/logout')
   await logoutUser(req, res);
   await res.redirect('/users/login');
 }))
-
+// router.use((req, res, next) => {
+//   console.log(req.body);
+//   console.log(req.path, req.method)
+//   next();
+// })
+// router.post('/create', (req, res) => {
+//   console.log('hello test route', req.body);
+// })
 
 router.route('/create')
 .get(csrfProtection, asyncHandler(async(req, res) => {
@@ -84,6 +90,8 @@ router.route('/create')
   const { userName, firstName, lastName, email, password } = req.body;
   const user = db.User.build({ userName, firstName, lastName, email });
   const validatorErrors = validationResult(req);
+  console.log(req.body);
+  console.log(validatorErrors);
 
   if(validatorErrors.isEmpty()){
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -131,7 +139,7 @@ router.route('/:id(\\d+)')
       ][post.createdAt.getMonth()];
       const day = post.createdAt.getDay() + 1;
       const year = post.createdAt.getFullYear();
-      
+
       posts.push({
           date: `${month} ${day}, ${year}`,
           postId: post.id,
@@ -154,7 +162,7 @@ router.route('/:id(\\d+)')
       userId,
       posts,
     })
-  
+
 }));
 
 
