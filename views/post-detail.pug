@@ -15,16 +15,17 @@ block content
         a(class='btn-delete' href=`/posts/${post.id}/delete`) Delete
         a(class='btn-write' href=`/posts/${post.id}/comments/create`) Write a comment
 
-  div(href=`/posts/${post.id}/comments/create`)
-    h4 Comments
-    if comments && comments.length > 0
-      ul
-        each comment in comments
-          div(class='comment-content')
-            li(class='username')=comment.users.userName
-            li(class='comment')=comment.content
-            a.edit-comment(href=`/posts/${post.id}/comments/${comment.id}/edit`) Edit
-            a.delete-comment(href=`/posts/${post.id}/comments/${comment.id}/delete`) Delete
-    else
-      div(class='no-comment')
-        p: em No comments available for this story now.
+  div.comment-box
+    div.comment-div(href=`/posts/${post.id}/comments/create`)
+      h4 Comments
+      if comments && comments.length > 0
+        ul
+          each comment in comments
+            div(class='comment-content')
+              li(class='username')=comment.users.userName
+              li(class='comment')=comment.content
+              a.edit-comment(href=`/posts/${post.id}/comments/${comment.id}/edit`) Edit
+              a.delete-comment(href=`/posts/${post.id}/comments/${comment.id}/delete`) Delete
+      else
+        div(class='no-comment')
+          p: em No comments available for this story now.
