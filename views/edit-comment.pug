@@ -6,7 +6,7 @@ append head
 block content
   br
   +validationErrorSummary(errors)
-  form(action=`/posts/${postId}/comments/${commentId}/edit` method="post")
+  form(action=`/posts/${postId}/comments/${comment.id}/edit` method="post")
     input(type="hidden" name="_csrf" value=csrfToken)
     div
       label(for="content" class="comment-label") Edit Comment
