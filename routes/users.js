@@ -167,12 +167,8 @@ router.route('/:id(\\d+)')
 
 
 // //todo:
-router.route('/follows')
+router.route('/get-posts')
 .get(asyncHandler(async(req, res) => {
-
-  console.log('hello world');
-  console.log('debugger');
-
   const posts = await db.Post.findAll({
     order: [['createdAt', 'DESC']],
     include: [{

@@ -5,18 +5,7 @@ append head
   script(type="module" src="/javascripts/user-followers.js")
 
 block content
-  style(type="text/css").
-      .postsContainer {
-        border: 3px solid black;
-        border-radius: 4px;
-        width: 500px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 100px;
-      }
   br
-  div.postsContainer
   div.main
     //- ul.sub-nav
       //- li=userName
@@ -27,25 +16,26 @@ block content
       h2=`${firstName} ${lastName}`
       div.line-break
       if posts.length
-        each post in posts
-          div.post-object
-            ul.posts
-              li.postDate=post.date
-              li.postTitle
-                a(href=`/posts/${post.postId}` class='postTitle') #{post.title}
-              li.postContent=post.content
-            div.likesAndComments
-              div#likes-icon Likes
-              div#likes-count-container
-              //- div.likes
-                //- a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
-                  //- img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
-                //- div.likesCount=post.likesCount
-              div.comments
-                a(href=`/posts/${post.postId}`)
-                  img.commentIcon(src='./icons/comment.svg.png', alt="logo")
-                div.commentsCount=post.commentsCount
-          div.line-break
+        div.post-con
+      //-   each post in posts
+      //-     div.post-object
+      //-       ul.posts
+      //-         li.postDate=post.date
+      //-         li.postTitle
+      //-           a(href=`/posts/${post.postId}` class='postTitle') #{post.title}
+      //-         li.postContent=post.content
+      //-       div.likesAndComments
+      //-         div#likes-icon Likes
+      //-         div#likes-count-container
+      //-         div.likes
+      //-           a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
+      //-             img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
+      //-           div.likesCount=post.likesCount
+      //-         div.comments
+      //-           a(href=`/posts/${post.postId}`)
+      //-             img.commentIcon(src='./icons/comment.svg.png', alt="logo")
+      //-           div.commentsCount=post.commentsCount
+      //-     div.line-break
       else
         if locals.authenticated
           if userId === locals.user.id
