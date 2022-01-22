@@ -147,7 +147,7 @@ router.route('/:id(\\d+)')
     // console.log(posts)
 
     res.render('user-page', {
-      title: `${queryData.firstName} ${queryData.lastName}'s Page`,
+      title: `${queryData.firstName} ${queryData.lastName}${queryData.lastName.endsWith('s') ? '\'' : '\'s'} Page`,
       firstName: queryData.firstName,
       lastName: queryData.lastName,
       userName: queryData.userName,
