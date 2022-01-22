@@ -144,6 +144,9 @@ router.get('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
 router.post('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
   const post = await db.Post.findByPk(postId);
+  console.log("--------------------")
+  console.log("post", post)
+  console.log("--------------------")
   await post.destroy();
   res.redirect(`/`);
 }));
