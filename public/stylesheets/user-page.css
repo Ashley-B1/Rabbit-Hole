@@ -90,3 +90,15 @@
   padding-left: 20px;
   margin-bottom: 20px;
 }
+.start-writing {
+  border-radius: 10px;
+  margin-left: 5px;
+  padding: 5px 10px;
+  color: white;
+  background-color: #18A0FB;
+  border: none;
+  height: 100%;
+}
+.start-writing a {
+  color: white;
+}

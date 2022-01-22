@@ -2,6 +2,7 @@ extends layout.pug
 
 append head
   link(rel="stylesheet" href="/stylesheets/user-page.css")
+  //- script(type="module" src="/javascripts/user-followers.js")
 
 block content
   br
@@ -14,7 +15,8 @@ block content
     div.posts-container
       h2=`${firstName} ${lastName}`
       div.line-break
-      if posts.length
+      if theUserHasWrittenAPost
+        //- div.post-con
         each post in posts
           div.post-object
             ul.posts
@@ -23,22 +25,26 @@ block content
                 a(href=`/posts/${post.postId}` class='postTitle') #{post.title}
               li.postContent=post.content
             div.likesAndComments
-              //- div.likes
-                //- a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
-                //-   img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
-                //- div.likesCount=post.likesCount
+              div#likes-icon Likes
+              div#likes-count-container
+              div.likes
+                a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
+                  img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
+                div.likesCount=post.likesCount
               div.comments
                 a(href=`/posts/${post.postId}`)
                   img.commentIcon(src='./icons/comment.svg.png', alt="logo")
                 div.commentsCount=post.commentsCount
           div.line-break
-      else
-        if userId === locals.user.id
-          div You haven't written any posts yet. Why not start now?
-            button
-              a(href='/posts/create') Write
-        else 
-          div #{firstName} #{lastName} hasn't written any posts yet. Have you?
-            button
-              a(href='/users/login') Write
 
+      else
+        if locals.authenticated
+          if userId === locals.user.id
+            div You haven't written any posts yet. Why not start now?
+              button.start-writing
+                a(href='/posts/create') Write
+          else 
+            div #{firstName} #{lastName} hasn't written any posts yet. Have you?
+              button.start-writing
+                a(href='/users/login') Write
+  

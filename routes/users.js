@@ -117,63 +117,87 @@ router.route('/:id(\\d+)')
       order: [['createdAt', 'DESC']],
       include: [{
         model: db.PostLike,
-        as: 'postLikes'
+        as: 'postLikes',
       }, {
         model: db.Comment,
         as: 'comments',
-      },
-    ]
+      }],
     }
   });
 
-  // console.log(`debugger`);
-  // console.log(queryData);
-
   const posts = [];
-
+  
   for(const post of queryData.posts){
-      const month = [
-        'Jan', 'Feb', 'Mar', 'Apr',
-        'May', 'Jun', 'Jul', 'Aug',
-        'Sep', 'Oct', 'Nov', 'Dec'
-      ][post.createdAt.getMonth()];
-      const day = post.createdAt.getDay() + 1;
-      const year = post.createdAt.getFullYear();
+    const month = [
+      'Jan', 'Feb', 'Mar', 'Apr',
+      'May', 'Jun', 'Jul', 'Aug',
+      'Sep', 'Oct', 'Nov', 'Dec'
+    ][post.createdAt.getMonth()];
+    const day = post.createdAt.getDay() + 1;
+    const year = post.createdAt.getFullYear();
+    
+    posts.push({
+      date: `${month} ${day}, ${year}`,
+      postId: post.id,
+      title: post.title,
+      content: post.content,
+      likesCount: post.postLikes.length,
+      commentsCount: post.comments.length,
+    });
+  };
 
-      posts.push({
-          date: `${month} ${day}, ${year}`,
-          postId: post.id,
-          title: post.title,
-          content: post.content,
-          likesCount: post.postLikes.length,
-          commentsCount: post.comments.length,
-        });
-    };
-
-    // console.log('debugger')
-    // console.log('posts')
-    // console.log(posts)
-
-    res.render('user-page', {
-      title: `${queryData.firstName} ${queryData.lastName}${queryData.lastName.endsWith('s') ? '\'' : '\'s'} Page`,
-      firstName: queryData.firstName,
-      lastName: queryData.lastName,
-      userName: queryData.userName,
-      userId,
-      posts,
-    })
+  res.render('user-page', {
+    title: `${queryData.firstName} ${queryData.lastName}${queryData.lastName.endsWith('s') ? '\'' : '\'s'} Page`,
+    firstName: queryData.firstName,
+    lastName: queryData.lastName,
+    userName: queryData.userName,
+    userId,
+    posts,
+    theUserHasWrittenAPost: queryData.posts.length
+  })
 
 }));
 
 
-// //todo:
-// router.route('/follows')
-// .get((req, res) => {
+router.route('/get-posts')
+.get(asyncHandler(async(req, res) => {
 
-//   res.render('user-follows-page', {
+  const qposts = await db.Post.findAll({
+    order: [['createdAt', 'DESC']],
+    include: [{
+      model: db.PostLike,
+      as: 'postLikes',
+    }, {
+      model: db.Comment,
+      as: 'comments',
+    }],
+  });
 
-//   });
-// });
+  const posts = [];
+  
+  for(const post of qposts){
+    const month = [
+      'Jan', 'Feb', 'Mar', 'Apr',
+      'May', 'Jun', 'Jul', 'Aug',
+      'Sep', 'Oct', 'Nov', 'Dec'
+    ][post.createdAt.getMonth()];
+    const day = post.createdAt.getDay() + 1;
+    const year = post.createdAt.getFullYear();
+    
+    posts.push({
+      date: `${month} ${day}, ${year}`,
+      postId: post.id,
+      title: post.title,
+      content: post.content,
+      likesCount: post.postLikes.length,
+      commentsCount: post.comments.length,
+    });
+  };
+  
+  res.json({posts});
+}));
+
+
 
 
 module.exports = router;
