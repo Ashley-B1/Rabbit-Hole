@@ -15,7 +15,7 @@ block content
     div.posts-container
       h2=`${firstName} ${lastName}`
       div.line-break
-      if posts.length
+      if theUserHasPostedAnything
         div.post-con
       //-   each post in posts
       //-     div.post-object
