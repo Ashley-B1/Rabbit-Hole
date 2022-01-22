@@ -1,13 +1,15 @@
 extends layout.pug
 append head
-  link(rel="stylesheet" href="/stylesheets/delete-comment.css")
+  link(rel="stylesheet" href="/stylesheets/delete-post-comment.css")
 block content
-  br
-  p=comment.content
-  div
-    p Proceed with deleting this comment?
-  div
+  div.post-box
+    div.container
+      p.post-content=comment.content
+      div
+        p.confirm-msg Proceed with deleting this comment?
+  div.form-container
     form(action=`/posts/${postId}/comments/${comment.id}/delete` method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
-      button(class='btn-delete' type='submit') Delete Comment
-      a(href=`/posts/${postId}/comments/${comment.id}` class="btn-cancel") Cancel
+      div.buttons
+        button(class='btn-delete' type='submit') Delete Comment
+        a(href=`/posts/${postId}/comments/${comment.id}` class="btn-cancel") Cancel
