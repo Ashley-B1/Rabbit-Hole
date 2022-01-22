@@ -23,12 +23,12 @@ block content
                 a(href=`/posts/${post.postId}` class='postTitle') #{post.title}
               li.postContent=post.content
             div.likesAndComments
-              div.likes
-                a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
-                  img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
-                div.likesCount=post.likesCount
+              //- div.likes
+                //- a(href='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley')
+                //-   img.likeIcon(src='./icons/like-thumbs-up.png', alt="logo")
+                //- div.likesCount=post.likesCount
               div.comments
-                a(href='')
+                a(href=`/posts/${post.postId}`)
                   img.commentIcon(src='./icons/comment.svg.png', alt="logo")
                 div.commentsCount=post.commentsCount
           div.line-break
