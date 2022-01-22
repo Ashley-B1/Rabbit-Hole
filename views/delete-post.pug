@@ -1,14 +1,17 @@
 extends layout.pug
 
 append head
-  link(rel="stylesheet" href="/stylesheets/delete-post.css")
+  link(rel="stylesheet" href="/stylesheets/delete-post-comment.css")
 block content
-  h3=post.title
-  p=post.content
-  div
-    p Proceed with deleting this story?
-  div
+  div.post-box
+    div.container
+      h3=post.title
+      p.post-content=post.content
+      div
+        p.confirm-msg Proceed with deleting this story?
+  div.form-container
     form(action=`/posts/${post.id}/delete` method='post')
       input(type='hidden' name='_csrf' value=csrfToken)
-      button(class='btn-delete' type='submit') Delete Story
-      a(href=`/posts/${post.id}` class="btn-cancel") Cancel
+      div.buttons
+        button(class='btn-delete' type='submit') Delete Story
+        a(href=`/posts/${post.id}` class="btn-cancel") Cancel

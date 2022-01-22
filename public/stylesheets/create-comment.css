@@ -8,7 +8,7 @@
 
 .buttons {
   display: flex;
-  justify-content: right;
+  justify-content: center;
 }
 .comment-label {
   font-family: 'Monserrat', sans-serif;

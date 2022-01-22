@@ -5,17 +5,17 @@ append head
   link(rel="stylesheet" href="/stylesheets/create-post.css")
 block content
   +validationErrorSummary(errors)
-  form(action=`/posts/${post.id}/edit` method='post')
-    input(type='hidden' name='_csrf' value=csrfToken)
-    div
-      label(for="title" class='title-label') Title
-    div
-      input(type="string" name="title" class='post-title' value=post.title)
-    div
-      label(for="content" class='title-label') Tell your story
-    div
-      <textarea name='content' class='post-content'>#{post.content} </textarea>
-    div
-      button(class='btn-submit' type='submit') Update Story
-      a(href=`/posts/${post.id}` class="btn-cancel") Cancel
-
+  div.post-area
+    form(action=`/posts/${post.id}/edit` method='post')
+      input(type='hidden' name='_csrf' value=csrfToken)
+      div
+        label(for="title" class='title-label') Title
+      div
+        input(type="string" name="title" class='post-title' value=post.title)
+      div
+        label(for="content" class='title-label') Tell your story
+      div
+        <textarea name='content' class='post-content'>#{post.content} </textarea>
+      div.buttons
+        button(class='btn-submit' type='submit') Update Story
+        a(href=`/posts/${post.id}` class="btn-cancel") Cancel

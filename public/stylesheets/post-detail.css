@@ -12,12 +12,7 @@
   width: 800px;
 }
 
-/* .comment-container {
-  border: red 2px solid;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-} */
+
 
 h2 {
   font-family: 'Monserrat', sans-serif;
@@ -39,13 +34,6 @@ h2 {
   font-weight: lighter;
   font-size: 15px;
   color: rgb(88, 86, 86);
-}
-
-.like-number {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
-  color:#2e7cfa;
-  margin: 10px;
 }
 
 .content {
@@ -139,6 +127,13 @@ h4 {
   padding: 5px 5px;
   color: #18A0FB;
   margin: 5px;
+}
+
+.confirm-msg {
+  font-family: 'Monserrat', sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+  margin: 10px;
 }
 
 ul {

@@ -9,7 +9,7 @@ block content
       h2=post.title
       a(href=`/users/${post.userId}` class='author')=post.users.userName
       span.timestamp=post.createdAt
-      div
+      div.buttons
         p(class='content')=post.content
         a(class='btn-edit' href=`/posts/${post.id}/edit`) Edit
         a(class='btn-delete' href=`/posts/${post.id}/delete`) Delete
@@ -28,4 +28,4 @@ block content
               a.delete-comment(href=`/posts/${post.id}/comments/${comment.id}/delete`) Delete
       else
         div(class='no-comment')
-          p: em No comments available for this story now.
+          p.confirm-msg: em No comments available for this story now.

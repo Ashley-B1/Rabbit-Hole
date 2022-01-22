@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
+
+.post-box {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 800px
+}
+
+
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons {
+  width: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+h3 {
+  font-family: 'Monserrat', sans-serif;
+  font-weight: normal;
+  font-size: 40px;
+  margin: 5px 10px;
+}
+
+.post-content {
+  font-family: 'Monserrat', sans-serif;
+  font-weight: lighter;
+  font-size: 25px;
+  color:rgb(95, 93, 93);
+  margin: 30px 10px;
+}
+
+.confirm-msg {
+  color: rgb(187, 3, 3);
+  font-family: 'Monserrat', sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  font-style: italic;
+  margin: 30px 10px;
+  text-align: center;
+}
+
+.btn-delete {
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #bd0303;
+  border: none;
+  font-family: 'Monserrat', sans-serif;
+  font-size: 15px;
+  margin: 5px 10px;
+}
+
+.btn-cancel {
+  border-radius: 5px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #03926e;
+  border: none;
+  font-family: 'Monserrat', sans-serif;
+  font-size: 15px;
+  margin: 5px 10px;
+}
+
+a:link { text-decoration: none}
+
+a:visited { text-decoration: none}
