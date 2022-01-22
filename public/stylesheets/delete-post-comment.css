@@ -1,42 +1,57 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 
-.comment-area {
+.post-box {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 800px
+}
+
+
+.form-container {
   display: flex;
   justify-content: center;
 }
 
 .buttons {
+  width: 800px;
   display: flex;
   justify-content: center;
 }
-.comment-label {
+
+h3 {
   font-family: 'Monserrat', sans-serif;
-  font-size: 35px;
-  color: rgb(82, 81, 81);
-  padding: 10px;
+  font-weight: normal;
+  font-size: 40px;
+  margin: 5px 10px;
+}
+
+.post-content {
+  font-family: 'Monserrat', sans-serif;
+  font-weight: lighter;
+  font-size: 25px;
+  color:rgb(95, 93, 93);
   margin: 30px 10px;
 }
 
-.comment-content {
-  width: 600px;
-  height: 200px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  margin: 10px;
-  padding: 10px;
+.confirm-msg {
+  color: rgb(187, 3, 3);
   font-family: 'Monserrat', sans-serif;
-  font-weight: lighter;
-  font-size: 20px;
-  color:rgb(99, 97, 97)
+  font-weight: normal;
+  font-size: 18px;
+  font-style: italic;
+  margin: 30px 10px;
+  text-align: center;
 }
 
-.btn-send {
-  width: 95px;
+.btn-delete {
   border-radius: 5px;
   padding: 10px 20px;
   color: white;
-  background-color: #03926e;
+  background-color: #bd0303;
   border: none;
   font-family: 'Monserrat', sans-serif;
   font-size: 15px;
@@ -44,13 +59,12 @@
 }
 
 .btn-cancel {
-
   border-radius: 5px;
   padding: 10px 20px;
   color: white;
-  background-color: #bd0303;
+  background-color: #03926e;
   border: none;
-  font-family: 'Monserrat', sans-serif;;
+  font-family: 'Monserrat', sans-serif;
   font-size: 15px;
   margin: 5px 10px;
 }

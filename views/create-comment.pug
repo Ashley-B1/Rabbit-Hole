@@ -7,12 +7,13 @@ append head
 block content
   br
   +validationErrorSummary(errors)
-  form(action=`/posts/${postId}/comments/create` method="post")
-    input(type="hidden" name="_csrf" value=csrfToken)
-    div
-      label(for="content" class="comment-label") Write Comment Here
-    div
-      textarea(name="content"  class='comment-content' value=comment.content)
-    div
-      button(type="submit" class="btn-send") Send
-      a(href=`/` class="btn-cancel") Cancel
+  div.comment-area
+    form(action=`/posts/${postId}/comments/create` method="post")
+      input(type="hidden" name="_csrf" value=csrfToken)
+      div
+        label(for="content" class="comment-label") Write Comment Here
+      div
+        textarea(name="content"  class='comment-content' value=comment.content)
+      div.buttons
+        button(type="submit" class="btn-send") Send
+        a(href=`/posts/${postId}` class="btn-cancel") Cancel

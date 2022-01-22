@@ -12,12 +12,7 @@
   width: 800px;
 }
 
-/* .comment-container {
-  border: red 2px solid;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-} */
+
 
 h2 {
   font-family: 'Monserrat', sans-serif;
@@ -38,13 +33,7 @@ h2 {
   font-family: 'Monserrat', sans-serif;
   font-weight: lighter;
   font-size: 15px;
-}
-
-.like-number {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 15px;
-  color:#2e7cfa;
-  margin: 10px;
+  color: rgb(88, 86, 86);
 }
 
 .content {
@@ -57,9 +46,12 @@ h2 {
 
 h4 {
   font-family: 'Montserrat', sans-serif;
-
-  font-size: 25px;
+  font-size: 30px;
   margin: 15px;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid gray;
 }
 
 .btn-like {
@@ -68,13 +60,13 @@ h4 {
   color: white;
   background-color: #2e7cfa;
   border: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Monserrat', sans-serif;
   font-size: 15px;
   margin: 5px 10px;
 }
 
 .btn-edit {
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px 20px;
   color: white;
   background-color: #18A0FB;
@@ -85,7 +77,7 @@ h4 {
 }
 
 .btn-delete {
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px 20px;
   color: white;
   background-color: #bd0303;
@@ -96,7 +88,7 @@ h4 {
 }
 
 .btn-write {
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px 20px;
   color: white;
   background-color: #029b28;
@@ -120,23 +112,28 @@ h4 {
 }
 
 .delete-comment {
-  border-radius: 10px;
+  border-radius: 5px;
   font-family: 'Monserrat', sans-serif;
-  font-size: 12px;
-  padding: 7px 10px;
-  color: white;
-  background-color: #bd0303;
+  font-size: 11px;
+  padding: 5px 5px;
+  color: #bd0303;
   margin: 5px;
 }
 
 .edit-comment {
-  border-radius: 10px;
+  border-radius: 5px;
   font-family: 'Monserrat', sans-serif;
-  font-size: 12px;
-  padding: 7px 10px;
-  color: white;
-  background-color: #18A0FB;
+  font-size: 11px;
+  padding: 5px 5px;
+  color: #18A0FB;
   margin: 5px;
+}
+
+.confirm-msg {
+  font-family: 'Monserrat', sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+  margin: 10px;
 }
 
 ul {
@@ -149,4 +146,15 @@ a:visited { text-decoration: none}
 
 a:hover {
   text-decoration: underline;
+}
+
+.comment-box {
+  padding: 5px;
+  display:flex;
+  justify-content: center;
+}
+
+.comment-div {
+  padding: 5px;
+  width: 800px;
 }

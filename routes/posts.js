@@ -144,6 +144,9 @@ router.get('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
 router.post('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
   const post = await db.Post.findByPk(postId);
+  console.log("--------------------")
+  console.log("post", post)
+  console.log("--------------------")
   await post.destroy();
   res.redirect(`/`);
 }));
@@ -222,7 +225,13 @@ router.get('/:id/comments/:commentId/edit', csrfProtection, asyncHandler(async(r
 router.post('/:id/comments/:commentId/edit', commentValidators, csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
   const commentId = parseInt(req.params.commentId, 10);
-
+  console.log("1 --------------------------");
+  console.log("req", req);
+  console.log("2 --------------------------");
+  console.log("req.params",req.params);
+  console.log("3 --------------------------");
+  console.log("commentId",commentId)
+  console.log("--------------------------");
   const commentToUpdate = await db.Comment.findByPk(commentId);
   const { content } = req.body;
 
@@ -242,6 +251,7 @@ router.post('/:id/comments/:commentId/edit', commentValidators, csrfProtection, 
     res.render('edit-comment', {
       title: 'Edit Comment',
       comment: { ...comment, id: commentId },
+      commentId,
       errors,
       csrfToken: req.csrfToken()
     })
