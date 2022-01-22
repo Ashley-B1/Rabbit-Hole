@@ -151,6 +151,7 @@ router.route('/:id(\\d+)')
       firstName: queryData.firstName,
       lastName: queryData.lastName,
       userName: queryData.userName,
+      userId,
       posts,
     })
   

@@ -33,7 +33,7 @@ block content
                 div.commentsCount=post.commentsCount
           div.line-break
       else
-        if locals.authenticated
+        if userId === locals.user.id
           div You haven't written any posts yet. Why not start now?
             button
               a(href='/posts/create') Write
