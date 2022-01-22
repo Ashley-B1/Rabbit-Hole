@@ -5,6 +5,7 @@ append head
 
 block content
   br
+  div.likesContainer
   div.main
     //- ul.sub-nav
       //- li=userName
@@ -34,12 +35,13 @@ block content
                 div.commentsCount=post.commentsCount
           div.line-break
       else
-        if userId === locals.user.id
-          div You haven't written any posts yet. Why not start now?
-            button
-              a(href='/posts/create') Write
-        else 
-          div #{firstName} #{lastName} hasn't written any posts yet. Have you?
-            button
-              a(href='/users/login') Write
-
+        if locals.authenticated
+          if userId === locals.user.id
+            div You haven't written any posts yet. Why not start now?
+              button
+                a(href='/posts/create') Write
+          else 
+            div #{firstName} #{lastName} hasn't written any posts yet. Have you?
+              button
+                a(href='/users/login') Write
+  script(type="module" src="javascripts/user-followers.js")
