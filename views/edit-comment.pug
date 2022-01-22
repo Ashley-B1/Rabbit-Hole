@@ -2,15 +2,16 @@ extends layout.pug
 include utils.pug
 
 append head
-  link(rel="stylesheet" href="/stylesheets/edit-comment.css")
+  link(rel="stylesheet" href="/stylesheets/create-comment.css")
 block content
   +validationErrorSummary(errors)
-  form(action=`/posts/${postId}/comments/${comment.id}/edit` method="post")
-    input(type="hidden" name="_csrf" value=csrfToken)
-    div
-      label(for="content" class="comment-label") Edit Comment
-    div
-      <textarea name='content' class='comment-content'>#{comment.content}</textarea>
-    div
-      button(type="submit" class="btn-send") Send
-      a(href=`/posts/${postId}` class="btn-cancel") Cancel
+  div.comment-area
+    form(action=`/posts/${postId}/comments/${comment.id}/edit` method="post")
+      input(type="hidden" name="_csrf" value=csrfToken)
+      div
+        label(for="content" class="comment-label") Edit Comment
+      div
+        <textarea name='content' class='comment-content'>#{comment.content}</textarea>
+      div.buttons
+        button(type="submit" class="btn-send") Send
+        a(href=`/posts/${postId}` class="btn-cancel") Cancel

@@ -2,10 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow&display=swap');
 
 .title-label {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 20px;
-  color: gray;
+  font-family: 'Monserrat', sans-serif;
+  font-size: 35px;
+  color: rgb(82, 81, 81);
   padding: 10px;
+  margin: 30px 10px;
 }
 
 .post-title {
@@ -14,40 +15,44 @@
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
-  font-family: 'Montserrat', sans-serif;
-  color: gray
-  
+  font-family: 'Monserrat', sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+  color: rgb(99, 97, 97)
+
 }
 
-textarea.post-content {
+textarea {
   width: 600px;
   height: 200px;
   border: 1px solid gray;
   border-radius: 5px;
   margin: 10px;
   padding: 10px;
-  font-family: 'Montserrat', sans-serif;
-  color: gray
+  font-family: 'Monserrat', sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+  color: rgb(99, 97, 97)
 }
 
-.btn-publish {
-  border-radius: 10px;
+.btn-submit {
+  border-radius: 5px;
   padding: 10px 20px;
   color: white;
   background-color: #03926e;
   border: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Monserrat', sans-serif;
   font-size: 15px;
   margin: 5px 10px;
 }
 
 .btn-cancel {
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px 20px;
   color: white;
   background-color: #bd0303;
   border: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Monserrat', sans-serif;
   font-size: 15px;
   margin: 5px 10px;
 }

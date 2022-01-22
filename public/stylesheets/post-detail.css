@@ -38,6 +38,7 @@ h2 {
   font-family: 'Monserrat', sans-serif;
   font-weight: lighter;
   font-size: 15px;
+  color: rgb(88, 86, 86);
 }
 
 .like-number {
@@ -57,9 +58,12 @@ h2 {
 
 h4 {
   font-family: 'Montserrat', sans-serif;
-
-  font-size: 25px;
+  font-size: 30px;
   margin: 15px;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid gray;
 }
 
 .btn-like {
@@ -68,7 +72,7 @@ h4 {
   color: white;
   background-color: #2e7cfa;
   border: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Monserrat', sans-serif;
   font-size: 15px;
   margin: 5px 10px;
 }
@@ -124,9 +128,8 @@ h4 {
   font-family: 'Monserrat', sans-serif;
   font-size: 11px;
   padding: 5px 5px;
-  color: white;
-  background-color: #bd0303;
-  margin: 5px 5px;
+  color: #bd0303;
+  margin: 5px;
 }
 
 .edit-comment {
@@ -134,9 +137,8 @@ h4 {
   font-family: 'Monserrat', sans-serif;
   font-size: 11px;
   padding: 5px 5px;
-  color: white;
-  background-color: #18A0FB;
-  margin: 10px;
+  color: #18A0FB;
+  margin: 5px;
 }
 
 ul {

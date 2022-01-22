@@ -2,7 +2,7 @@ extends layout.pug
 include utils.pug
 
 append head
-  link(rel="stylesheet" href="/stylesheets/edit-post.css")
+  link(rel="stylesheet" href="/stylesheets/create-post.css")
 block content
   +validationErrorSummary(errors)
   form(action=`/posts/${post.id}/edit` method='post')
@@ -14,7 +14,8 @@ block content
     div
       label(for="content" class='title-label') Tell your story
     div
-      <textarea name='content' class='post-content'>#{post.content}</textarea>
+      <textarea name='content' class='post-content'>#{post.content} </textarea>
     div
-      button(class='btn-delete' type='submit') Update Story
+      button(class='btn-submit' type='submit') Update Story
       a(href=`/posts/${post.id}` class="btn-cancel") Cancel
+
