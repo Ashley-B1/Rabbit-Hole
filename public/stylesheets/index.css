@@ -52,6 +52,7 @@ h1 {
   height: 100%;
 }
 .right-nav ul {
+  margin-top: 5px;
   padding: 5px;
   display: flex;
   flex-direction: row;
