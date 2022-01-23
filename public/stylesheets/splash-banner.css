@@ -25,7 +25,7 @@
   padding: 10px;
   font-size: 35px;
   position: absolute;
-  top: 78%;
+  top: 50%;
 }
 
 .title-one {
@@ -42,7 +42,7 @@
 
 #write-button {
   position: absolute;
-  top: 105%;
+  top: 80%;
 }
 
 .create-post {

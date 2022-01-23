@@ -12,8 +12,6 @@
   width: 800px;
 }
 
-
-
 h2 {
   font-family: 'Monserrat', sans-serif;
   font-weight: normal;
@@ -36,6 +34,10 @@ h2 {
   color: rgb(88, 86, 86);
 }
 
+.buttons-section {
+  display: flex;
+}
+
 .content {
   font-family: 'Monserrat', sans-serif;
   font-weight: lighter;
@@ -53,6 +55,12 @@ h4 {
   padding-bottom: 20px;
   border-top: 1px solid gray;
 }
+
+.buttons {
+  margin-top: 65px;
+  display: flex;
+}
+
 
 .btn-like {
   border-radius: 10px;
@@ -74,6 +82,7 @@ h4 {
   font-family: 'Monserrat', sans-serif;
   font-size: 15px;
   margin: 5px 10px;
+  height: fit-content;
 }
 
 .btn-delete {
@@ -85,6 +94,7 @@ h4 {
   font-family: 'Monserrat', sans-serif;
   font-size: 15px;
   margin: 5px 10px;
+  height: fit-content;
 }
 
 .btn-write {
@@ -96,6 +106,7 @@ h4 {
   font-family: 'Monserrat', sans-serif;
   font-size: 15px;
   margin: 10px 10px;
+  height: fit-content;
 }
 
 .username {
@@ -157,4 +168,41 @@ a:hover {
 .comment-div {
   padding: 5px;
   width: 800px;
+}
+
+.space-box{
+  height: 300px;
+}
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.article-post{
+  width: 60%;
+}
+.line-break{
+  background-color: rgb(61, 61, 61);
+  width: 95%;
+  height: 1px;
+  margin-top: 20px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+.comment-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+}
+.comments-here{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+.comment-details{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
