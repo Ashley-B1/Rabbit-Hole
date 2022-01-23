@@ -4,27 +4,28 @@ append head
   link(rel="stylesheet" href="/stylesheets/post-detail.css")
 
 block content
-  div.article-post
-    div(class='post-container')
-      h2=post.title
-      a(href=`/users/${post.userId}` class='author')=post.users.userName
-      span.timestamp=post.createdAt
-      div.buttons
+  div.main
+    div.article-post
+      div(class='post-container')
+        h2=post.title
+        a(href=`/users/${post.userId}` class='author')=post.users.userName
+        span.timestamp=post.createdAt
         p(class='content')=post.content
-        a(class='btn-edit' href=`/posts/${post.id}/edit`) Edit
-        a(class='btn-delete' href=`/posts/${post.id}/delete`) Delete
-        a(class='btn-write' href=`/posts/${post.id}/comments/create`) Write a comment
-  div.comment-box
-    div.comment-div(href=`/posts/${post.id}/comments/create`)
-      h4 Comments
-      if comments && comments.length > 0
-        ul
-          each comment in comments
-            div(class='comment-content')
-              li(class='username')=comment.users.userName
-              li(class='comment')=comment.content
-              a.edit-comment(href=`/posts/${post.id}/comments/${comment.id}/edit`) Edit
-              a.delete-comment(href=`/posts/${post.id}/comments/${comment.id}/delete`) Delete
-      else
-        div(class='no-comment')
-          p.confirm-msg: em No comments available for this story now.
+        div.buttons
+          a(class='btn-edit' href=`/posts/${post.id}/edit`) Edit
+          a(class='btn-delete' href=`/posts/${post.id}/delete`) Delete
+          a(class='btn-write' href=`/posts/${post.id}/comments/create`) Write a comment
+    div.comment-box
+      div.comment-div(href=`/posts/${post.id}/comments/create`)
+        h4 Comments
+        if comments && comments.length > 0
+          ul
+            each comment in comments
+              div(class='comment-content')
+                li(class='username')=comment.users.userName
+                li(class='comment')=comment.content
+                a.edit-comment(href=`/posts/${post.id}/comments/${comment.id}/edit`) Edit
+                a.delete-comment(href=`/posts/${post.id}/comments/${comment.id}/delete`) Delete
+        else
+          div(class='no-comment')
+            p.confirm-msg: em No comments available for this story now.
