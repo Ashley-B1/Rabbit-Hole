@@ -143,10 +143,19 @@ router.get('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
 // delete routes, haven't tested yet
 router.post('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
-  const post = await db.Post.findByPk(postId);
+  const post = await db.Post.findByPk(postId, { include: 'comments'});
+  const comments = await db.Comment.findAll({
+    where: {
+      postId: postId
+    }
+  })
+  // const comments = await db.Comment.findByPk(postId);
   console.log("--------------------")
-  console.log("post", post)
+  console.log("comments of the post!!!!", comments)
   console.log("--------------------")
+
+
+  await comments.destroy()
   await post.destroy();
   res.redirect(`/`);
 }));
