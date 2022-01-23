@@ -20,14 +20,14 @@
 h2 {
   font-family: 'Monserrat', sans-serif;
   font-weight: normal;
-  font-size: 50px;
+  font-size: 36px;
   margin: 5px 10px;
 }
 
 .author {
   font-family: 'Monserrat', sans-serif;
   font-weight: lighter;
-  font-size: 25px;
+  font-size: 24px;
   color:#2e7cfa;
   margin: 10px;
 }
@@ -46,7 +46,7 @@ h2 {
 .content {
   font-family: 'Monserrat', sans-serif;
   font-weight: lighter;
-  font-size: 30px;
+  font-size: 24px;
   color:rgb(95, 93, 93);
   margin: 30px 10px;
 }
@@ -74,7 +74,7 @@ h4 {
   background-color: #2e7cfa;
   border: none;
   font-family: 'Monserrat', sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   margin: 5px 10px;
 }
 
@@ -85,7 +85,7 @@ h4 {
   background-color: #18A0FB;
   border: none;
   font-family: 'Monserrat', sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   margin: 5px 10px;
   height: fit-content;
 }
@@ -97,7 +97,7 @@ h4 {
   background-color: #bd0303;
   border: none;
   font-family: 'Monserrat', sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   margin: 5px 10px;
   height: fit-content;
 }
@@ -109,7 +109,7 @@ h4 {
   background-color: #029b28;
   border: none;
   font-family: 'Monserrat', sans-serif;
-  font-size: 15px;
+  font-size: 12px;
   margin: 5px 10px;
   height: fit-content;
 }
