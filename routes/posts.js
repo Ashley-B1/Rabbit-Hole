@@ -149,13 +149,11 @@ router.post('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
       postId: postId
     }
   })
-  // const comments = await db.Comment.findByPk(postId);
-  console.log("--------------------")
-  console.log("comments of the post!!!!", comments)
-  console.log("--------------------")
 
+  for (let i = 0; i < comments.length; i++){
+    await comments[i].destroy();
+  }
 
-  await comments.destroy()
   await post.destroy();
   res.redirect(`/`);
 }));
