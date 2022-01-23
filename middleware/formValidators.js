@@ -47,9 +47,12 @@ const loginValidators = [
   check('email')
     .exists({ checkFalsy: true })
     .isEmail()
+    .notEmpty()
     .withMessage('Please provide a valid email.'),
   check('password')
     .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please enter your password.')
     .withMessage('Please enter a valid password.')
 ];
 
