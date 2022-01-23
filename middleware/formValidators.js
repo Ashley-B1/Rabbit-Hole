@@ -52,7 +52,6 @@ const loginValidators = [
   check('password')
     .exists({ checkFalsy: true })
     .notEmpty()
-    .withMessage('Please enter your password.')
     .withMessage('Please enter a valid password.')
 ];
 
