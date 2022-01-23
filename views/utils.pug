@@ -1,6 +1,11 @@
+append head
+  link(rel="stylesheet", type="text/css", href="/stylesheets/create-user.css")
+  script(src="/javascripts/index.js" type="module" defer)
+
+
 mixin validationErrorSummary(errors)
   if errors
-    div
+    div(class="register-error" role="alert")
       p The following error(s) occurred:
       ul
         each error in errors

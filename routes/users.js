@@ -38,6 +38,8 @@ router.route('/login')
 
   let errors = [];
   const validatorErrors = validationResult(req);
+  console.log(req.body);
+  console.log(validatorErrors);
 
   if(validatorErrors.isEmpty()){
     const user = await db.User.findOne({ where: { email }});
@@ -52,9 +54,7 @@ router.route('/login')
   } else {
     errors = validatorErrors.array().map(error => error.msg);
   }
-
-  res.redirect('/')
-
+  // res.redirect('/')
   res.render('user-login', {
     title: 'Log In',
     email,
@@ -62,6 +62,7 @@ router.route('/login')
     csrfToken: req.csrfToken()
   });
 }));
+
 
 router.route('/logout')
 .get(asyncHandler(async(req, res) => {
@@ -126,7 +127,7 @@ router.route('/:id(\\d+)')
   });
 
   const posts = [];
-  
+
   for(const post of queryData.posts){
     const month = [
       'Jan', 'Feb', 'Mar', 'Apr',
@@ -135,7 +136,7 @@ router.route('/:id(\\d+)')
     ][post.createdAt.getMonth()];
     const day = post.createdAt.getDay() + 1;
     const year = post.createdAt.getFullYear();
-    
+
     posts.push({
       date: `${month} ${day}, ${year}`,
       postId: post.id,

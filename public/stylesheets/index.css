@@ -52,6 +52,7 @@ h1 {
   height: 100%;
 }
 .right-nav ul {
+  margin-top: 5px;
   padding: 5px;
   display: flex;
   flex-direction: row;
@@ -68,14 +69,14 @@ h1 {
 
 .right-nav ul li a {
   text-decoration: none;
-  padding: 20px;
+  padding: 10px;
   font-size: 20px;
   color: #18A0FB;
 }
 
 #sign-up button {
-  border-radius: 10px;
-  padding: 10px 20px;
+  border-radius: 8px;
+  padding: 8px 15px;
   color: white;
   background-color: #18A0FB;
   border: none;

@@ -114,3 +114,18 @@ h4 {
 .demo-user > a {
     color: white;
 }
+
+.register-error {
+    font-family: 'Monserrat', sans-serif;
+    margin: auto;
+    margin-top: 15px;
+    max-width: 450px;
+    text-align: center;
+    color: #D8000C;
+    background-color: #FFD2D2;
+    border-radius: 5px;
+    padding: 10px;
+}
+.register-error ul {
+    list-style-type: none;
+}
