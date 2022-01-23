@@ -159,45 +159,5 @@ router.route('/:id(\\d+)')
 }));
 
 
-router.route('/get-posts')
-.get(asyncHandler(async(req, res) => {
-
-  const qposts = await db.Post.findAll({
-    order: [['createdAt', 'DESC']],
-    include: [{
-      model: db.PostLike,
-      as: 'postLikes',
-    }, {
-      model: db.Comment,
-      as: 'comments',
-    }],
-  });
-
-  const posts = [];
-  
-  for(const post of qposts){
-    const month = [
-      'Jan', 'Feb', 'Mar', 'Apr',
-      'May', 'Jun', 'Jul', 'Aug',
-      'Sep', 'Oct', 'Nov', 'Dec'
-    ][post.createdAt.getMonth()];
-    const day = post.createdAt.getDay() + 1;
-    const year = post.createdAt.getFullYear();
-    
-    posts.push({
-      date: `${month} ${day}, ${year}`,
-      postId: post.id,
-      title: post.title,
-      content: post.content,
-      likesCount: post.postLikes.length,
-      commentsCount: post.comments.length,
-    });
-  };
-  
-  res.json({posts});
-}));
-
-
-
 
 module.exports = router;

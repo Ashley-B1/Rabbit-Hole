@@ -49,9 +49,5 @@ app.use('/posts', postRouter);
 
 app.use([errorCatcher, errorHandler]);
 
-app.get("/followers", (req, res) => {
-  res.render('user-followers');
-});
-
 
 module.exports = app;

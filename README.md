@@ -29,17 +29,45 @@ Our current landing page will have a navbar with sign-in/log-in links, feed, and
 ### User page
 - (Placeholder image will be uploaded)
 
-## Built with
-- Express
-- CSS
-- Pug
-- Javasript
-- NPM packages
-- Sequelize
-- Postgres
+
 
 ## Team
 - Skye Brown
 - Hamlet Villa
 - Mitch DePree
 - Wan-Yi Lee
+
+
+
+## Brief explanation of what the app is and does.
+
+## How to start development environment
+
+
+## Built with
+- Javasript
+- CSS
+- Pug
+- Express
+- Node.js
+- Sequelize
+- Postgres
+
+## Link to live site
+https://rabbit-hole-gp.herokuapp.com/
+
+## Link to Wiki docs
+https://github.com/Ashley-B1/Rabbit-Hole/wiki
+
+## Discussion of two features that show off the team's technical abilities
+- Feature 1
+
+- Feature 2
+
+## Discussion of both challenges faced and the way the team solved them
+- Feature 1
+
+- Feature 2
+
+
+## Code snippets to highlight the best code
