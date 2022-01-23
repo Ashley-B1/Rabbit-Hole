@@ -38,6 +38,8 @@ router.route('/login')
 
   let errors = [];
   const validatorErrors = validationResult(req);
+  console.log(req.body);
+  console.log(validatorErrors);
 
   if(validatorErrors.isEmpty()){
     const user = await db.User.findOne({ where: { email }});
@@ -126,7 +128,7 @@ router.route('/:id(\\d+)')
   });
 
   const posts = [];
-  
+
   for(const post of queryData.posts){
     const month = [
       'Jan', 'Feb', 'Mar', 'Apr',
@@ -135,7 +137,7 @@ router.route('/:id(\\d+)')
     ][post.createdAt.getMonth()];
     const day = post.createdAt.getDay() + 1;
     const year = post.createdAt.getFullYear();
-    
+
     posts.push({
       date: `${month} ${day}, ${year}`,
       postId: post.id,
