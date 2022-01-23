@@ -46,6 +46,7 @@ const signUpValidators = [
 const loginValidators = [
   check('email')
     .exists({ checkFalsy: true })
+    .isEmail()
     .withMessage('Please provide a valid email.'),
   check('password')
     .exists({ checkFalsy: true })

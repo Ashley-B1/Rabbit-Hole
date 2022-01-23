@@ -54,9 +54,7 @@ router.route('/login')
   } else {
     errors = validatorErrors.array().map(error => error.msg);
   }
-
-  res.redirect('/')
-
+  // res.redirect('/')
   res.render('user-login', {
     title: 'Log In',
     email,
@@ -64,6 +62,7 @@ router.route('/login')
     csrfToken: req.csrfToken()
   });
 }));
+
 
 router.route('/logout')
 .get(asyncHandler(async(req, res) => {
