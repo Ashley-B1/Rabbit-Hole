@@ -279,16 +279,35 @@ router.get('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async
 }))
 
 // delete the comment
-router.post('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
-  const commentId = parseInt(req.params.commentId, 10);
-  const comment = await db.Comment.findByPk(commentId);
-  const postId = parseInt(req.params.id, 10);
-  console.log("comment!!!!!!", comment);
-  console.log("postID!!!!", postId)
-  await comment.destroy();
-  res.redirect(`/posts/${postId}`);
-}));
+// router.post('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
+//   const commentId = parseInt(req.params.commentId, 10);
+//   const comment = await db.Comment.findByPk(commentId);
+//   const postId = parseInt(req.params.id, 10);
+//   console.log("comment!!!!!!", comment);
+//   console.log("postID!!!!", postId)
+//   await comment.destroy();
+//   res.redirect(`/posts/${postId}`);
+// }));
 
+const commentNotFoundError = (commentId) => {
+  const err = new Error(`Comment ID #${commentId} does not exist.`);
+  err.title = "Comment not found."
+  err.status = 404;
+  return err
+};
+
+// Not sure if it's because we are using html form for deleting
+// because there's only sign-up.js script, not file for delete tweets??
+router.delete("/:id/comments/:commentId", asyncHandler(async (req, res, next) => {
+  const commentId = req.params.commentId
+  const comment = await db.Comment.findByPk(commentId)
+  if (comment) {
+      await comment.destroy()
+      res.status(204).end()
+  } else {
+      next(commentNotFoundError(commentId))
+  }
+}))
 
 
 module.exports = router
