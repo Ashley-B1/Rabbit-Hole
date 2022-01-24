@@ -154,8 +154,12 @@ router.post('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
   console.log("comments of the post!!!!", comments)
   console.log("--------------------")
 
+  
 
-  await comments.destroy()
+  for (let i = 0; i < comments.length; i++) {
+    await comments[i].destroy();
+  }
+
   await post.destroy();
   res.redirect(`/`);
 }));
