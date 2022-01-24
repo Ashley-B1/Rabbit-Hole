@@ -42,6 +42,8 @@ https://github.com/Ashley-B1/Rabbit-Hole/wiki
 
 ## Future Considerations
 - The team's first objective in the future would be implementing API routes to render content dynamically.
+- Implement React into the app, oAuth and make it responsive; adding likes and generally more interactive.
+- Add more web accessibility features: element attributes, have it follow more WCAG guidelines. 
 
 - Mitch began working on API comments here:
 ![api](/images/readme-media/api.mov)
