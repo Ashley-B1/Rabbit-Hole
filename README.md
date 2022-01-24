@@ -38,7 +38,7 @@ https://github.com/Ashley-B1/Rabbit-Hole/wiki
 
 
 - This was a fun way to manipulate Javascript's date object into a more readable format.
-![time-render](/images/readme-media/ddate-render-rh.png)
+![time-render](/images/readme-media/date-render-rh.png)
 
 ## Future Considerations
 - The team's first objective in the future would be implementing API routes to render content dynamically.
