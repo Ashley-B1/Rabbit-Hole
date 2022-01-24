@@ -9,13 +9,30 @@ const csrf = require('csurf');
 const csrfProtection = csrf({ cookie: true });
 
 
-const { asyncHandler } = require('../middleware/error-handling')
+const { asyncHandler, handleValidationErrors, commentNotFoundError } = require('../middleware/error-handling')
 const { postValidators } = require('../middleware/formValidators')
 
 router.use(express.static('./images'));
 
 
-// Checked, works
+const commentValidators = [
+  check('content')
+    .exists({ checkFalsy: true})
+    .withMessage('Please provide content for your comment.'),
+  handleValidationErrors,
+]
+
+
+// Get Post
+router.route(`/:id`)
+.get(asyncHandler(async (req, res) => {
+  const postId = parseInt(req.params.id, 10);
+  const post = await db.Post.findByPk(postId, { include: ['users'] });
+
+  res.render('post-detail', { post, postId })
+}));
+
+// Create Post
 router.get('/create', csrfProtection, async(req, res) => {
   const post = db.Post.build();
   res.render('create-post', {
@@ -25,7 +42,7 @@ router.get('/create', csrfProtection, async(req, res) => {
   })
 })
 
-// works
+// Create Post
 router.post('/create', postValidators, csrfProtection, asyncHandler(async(req, res) => {
   const { title, content } = req.body;
 
@@ -35,7 +52,6 @@ router.post('/create', postValidators, csrfProtection, asyncHandler(async(req, r
     title,
     content
   })
-
 
   const validationErrors = validationResult(req);
 
@@ -56,33 +72,10 @@ router.post('/create', postValidators, csrfProtection, asyncHandler(async(req, r
 }))
 
 
-// Checked, can display post title and content, but haven't checked if the comments can be displayed
-router.get(`/:id`, asyncHandler(async (req, res) => {
-  const postId = parseInt(req.params.id, 10);
-  const post = await db.Post.findByPk(postId, { include: ['users'] });
-
-  const comments = await db.Comment.findAll({
-    where: {
-      postId: postId
-    },
-    include: ['users'],
-    order: [["createdAt", "DESC"]]
-  });
-
-  res.render('post-detail', { post, comments })
-
-}));
-
-// router.use((req, res, next) => {
-//   console.log(req.path);
-//   next();
-// })
-
+// Edit Post
 router.get('/:id/edit', csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
   const post = await db.Post.findByPk(postId);
-  // const postOwnerId = postToUpdate.userId;
-  // const userId = req.session.auth.userId;
   console.log("post.content is HERE!!", post.content)
 
   res.render("edit-post", {
@@ -92,28 +85,15 @@ router.get('/:id/edit', csrfProtection, asyncHandler(async(req, res) => {
   })
 }))
 
-// Edit story
+// Edit Post
 router.post('/:id/edit', postValidators, csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
   const postToUpdate = await db.Post.findByPk(postId);
   const postOwnerId = postToUpdate.userId;
-  // const userId = req.session.auth.userId;
 
-  // if (postOwnerId===userId) {
+  const { title, content } = req.body;
 
-  // }
-
-  const {
-    title,
-    content
-  } = req.body
-
-
-  const post = {
-    userId: postOwnerId,
-    title,
-    content
-  }
+  const post = { userId: postOwnerId, title, content };
 
   const validatorErrors = validationResult(req);
 
@@ -130,6 +110,7 @@ router.post('/:id/edit', postValidators, csrfProtection, asyncHandler(async(req,
   }
 }))
 
+// Delete Post
 router.get('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
   const post = await db.Post.findByPk(postId);
@@ -140,15 +121,11 @@ router.get('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
   })
 }))
 
-// delete routes, haven't tested yet
+// Delete Post
 router.post('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
   const post = await db.Post.findByPk(postId, { include: 'comments'});
-  const comments = await db.Comment.findAll({
-    where: {
-      postId: postId
-    }
-  })
+  const comments = await db.Comment.findAll({where: { postId: postId }})
 
   for (let i = 0; i < comments.length; i++){
     await comments[i].destroy();
@@ -161,61 +138,59 @@ router.post('/:id/delete', csrfProtection, asyncHandler(async(req, res) => {
 
 
 
-// Comments route handlers below
+//************************************************************************************* */
+// API 
+//************************************************************************************* */
 
-
-// Checked, works
-router.get(`/:id/comments/create`, csrfProtection, asyncHandler(async (req, res) => {
-  const comment = db.Comment.build();
-  const postId = req.params.id
-  res.render('create-comment', {
-    title: 'Add a comment',
-    postId,
-    comment,
-    csrfToken: req.csrfToken()
-  })
-
-}));
-
-const commentValidators = [
-  check('content')
-    .exists({ checkFalsy: true})
-    .withMessage('Please provide content for your comment.')
-]
-
-
-router.post(`/:id/comments/create`, csrfProtection, commentValidators, asyncHandler( async (req, res) => {
-  const { content } = req.body;
-
+// Get Comments
+router.route(`/:id/comments`)
+.get(asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
+  
+  const comments = await db.Comment.findAll({
+    where: {postId},
+    include: ['users'],
+    order: [["createdAt", "DESC"]]
+  });
+  res.json({comments, postId})
+}))
+.post(
+  commentValidators,
+  asyncHandler(async(req, res) => {
+    const userId = req.session.auth.userId;
+    const postId = parseInt(req.params.id, 10);
 
-  const userId = req.session.auth.userId;
+    const {content} = req.body;
+    const comment = await db.Comment.create({ userId, postId, content});
 
-  const comment = db.Comment.build({
-    userId: userId,
-    postId,
-    content
-  })
-
-  const validationErrors = validationResult(req);
-
-  if (validationErrors.isEmpty()) {
-    await comment.save();
-    res.redirect(`/posts/${postId}`)
-  } else {
-    const errors = validationErrors.array().map((error) => error.msg);
-    res.render('create-comment', {
-      title: 'Add a comment',
-      postId,
-      comment,
-      errors,
-      csrfToken: req.csrfToken()
-    })
-  }
-
+    res.json({ comment });
 }))
 
-// Get the edit form
+// Delete Comment
+router.route(`/:id/comments/:commentId`)
+.delete(
+  asyncHandler(async (req, res, next) => {
+    const commentId = parseInt(req.params.commentId, 10);
+    const comment = await db.Comment.findByPk(commentId);
+
+    // console.log('debugger');
+    // console.log(`req user: ${req.session.auth.userId}`);
+    if (req.session.auth.userId !== comment.userId) {
+      const err = new Error("Unauthorized");
+      err.status = 401;
+      err.message = "You are not authorized to delete this comment.";
+      err.title = "Unauthorized";
+      throw err;
+    }
+    if (comment) {
+      await comment.destroy();
+      res.json({ message: `Deleted comment with id of ${commentId}.` });
+    } else {
+      next(commentNotFoundError(commentId));
+    }
+  }));
+
+// Edit Comment
 router.get('/:id/comments/:commentId/edit', csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
   const commentId = parseInt(req.params.commentId, 10);
@@ -228,25 +203,15 @@ router.get('/:id/comments/:commentId/edit', csrfProtection, asyncHandler(async(r
   })
 }))
 
-// Update the edit form
+
+// Edit Comment
 router.post('/:id/comments/:commentId/edit', commentValidators, csrfProtection, asyncHandler(async(req, res) => {
   const postId = parseInt(req.params.id, 10);
   const commentId = parseInt(req.params.commentId, 10);
-  console.log("1 --------------------------");
-  console.log("req", req);
-  console.log("2 --------------------------");
-  console.log("req.params",req.params);
-  console.log("3 --------------------------");
-  console.log("commentId",commentId)
-  console.log("--------------------------");
   const commentToUpdate = await db.Comment.findByPk(commentId);
   const { content } = req.body;
 
-  const comment = {
-    userId: commentToUpdate.userId,
-    postId: postId,
-    content
-  }
+  const comment = { userId: commentToUpdate.userId, postId: postId, content };
 
   const validatorErrors = validationResult(req);
 
@@ -262,50 +227,6 @@ router.post('/:id/comments/:commentId/edit', commentValidators, csrfProtection, 
       errors,
       csrfToken: req.csrfToken()
     })
-  }
-}))
-
-// get the delete form
-router.get('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
-  const commentId = parseInt(req.params.commentId, 10);
-  const comment = await db.Comment.findByPk(commentId);
-  const postId = parseInt(req.params.id, 10)
-  res.render('delete-comment', {
-    title: 'Delete Comment',
-    postId,
-    comment,
-    csrfToken: req.csrfToken()
-  })
-}))
-
-// delete the comment
-router.post('/:id/comments/:commentId/delete', csrfProtection, asyncHandler(async(req, res) => {
-  const commentId = parseInt(req.params.commentId, 10);
-  const comment = await db.Comment.findByPk(commentId);
-  const postId = parseInt(req.params.id, 10);
-  console.log("comment!!!!!!", comment);
-  console.log("postID!!!!", postId)
-  await comment.destroy();
-  res.redirect(`/posts/${postId}`);
-}));
-
-const commentNotFoundError = (commentId) => {
-  const err = new Error(`Comment ID #${commentId} does not exist.`);
-  err.title = "Comment not found."
-  err.status = 404;
-  return err
-};
-
-// Not sure if it's because we are using html form for deleting
-// because there's only sign-up.js script, not file for delete tweets??
-router.delete("/:id/comments/:commentId", asyncHandler(async (req, res, next) => {
-  const commentId = req.params.commentId
-  const comment = await db.Comment.findByPk(commentId)
-  if (comment) {
-      await comment.destroy()
-      res.status(204).end()
-  } else {
-      next(commentNotFoundError(commentId))
   }
 }))
 
