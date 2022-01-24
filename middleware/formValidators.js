@@ -22,12 +22,6 @@ const signUpValidators = [
   .withMessage('Please provide a valid email.')
   .isLength({ max: 255 })
   .withMessage('Please provide an email of 255 characters or less.'),
-  // .custom((signUpEmail, {req}) => {
-  //   if(db.User.findAll({where: signUpEmail})){
-  //     throw new Error('Email is already in use')
-  //   }
-  //   return true;
-  // }),
   check('password')
   .exists({ checkFalsy: true })
   .withMessage('Please provide a valid password.'),
